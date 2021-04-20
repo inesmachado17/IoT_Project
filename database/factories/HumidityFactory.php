@@ -9,7 +9,7 @@ class HumidityFactory extends Factory
 {
     protected $model = Humidity::class;
 
-    public function definition()
+    public function definition(): array
     {
         return [
             'name'          => $this->faker->word(),

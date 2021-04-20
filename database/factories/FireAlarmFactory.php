@@ -10,7 +10,7 @@ class FireAlarmFactory extends Factory
 {
     protected $model = FireAlarm::class;
 
-    public function definition()
+    public function definition(): array
     {
         return [
             'name'          => $this->faker->word(),

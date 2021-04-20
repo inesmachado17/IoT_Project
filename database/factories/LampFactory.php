@@ -11,7 +11,7 @@ class LampFactory extends Factory
 {
     protected $model = Lamp::class;
 
-    public function definition()
+    public function definition(): array
     {
         return [
             'name'          => $this->faker->word(),

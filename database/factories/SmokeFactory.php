@@ -9,7 +9,7 @@ class SmokeFactory extends Factory
 {
     protected $model = Smoke::class;
 
-    public function definition()
+    public function definition(): array
     {
         return [
             'name'          => $this->faker->word(),
