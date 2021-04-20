@@ -13,9 +13,9 @@
 
 </head>
 
-<body class="">
+<body class="d-flex flex-column min-vh-100">
 
-    <main class="d-flex flex-column min-vh-100 justify-content-center">
+    <main class="d-flex flex-column flex-grow-1 justify-content-center">
         <div class="container">
             @if ($errors->any())
             <div class="alert alert-danger">
@@ -48,10 +48,6 @@
             </div>
         </div>
     </main>
-
-    <div>
-        <p>teste</p>
-    </div>
 
     @include('layouts.footer')
 

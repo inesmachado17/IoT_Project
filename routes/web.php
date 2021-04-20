@@ -23,6 +23,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/dashboard', [DashboardController::class, 'index']);
 
     Route::get('/actuators/blinds', [ActuatorBlindController::class, 'index']);
+    Route::get('/actuators/blinds/{id}/edit', [ActuatorBlindController::class, 'edit']);
 
     Route::get('/sensors/alarmSmoke', [SensorSmokeController::class, 'index']);
 });

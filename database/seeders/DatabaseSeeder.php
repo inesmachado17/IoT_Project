@@ -26,7 +26,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        /*DB::table('users')->insert([
+        DB::table('users')->insert([
             'name' => 'Admin',
             'email' => 'admin@teste.com',
             'email_verified_at' => now(),
@@ -47,7 +47,7 @@ class DatabaseSeeder extends Seeder
         Light::factory()->count(5)->create();
         Motion::factory()->count(5)->create();
         Smoke::factory()->count(5)->create();
-        Temperature::factory()->count(5)->create();*/
+        Temperature::factory()->count(5)->create();
         AirConditioner::factory()->count(5)->create();
         Door::factory()->count(5)->create();
         FireAlarm::factory()->count(5)->create();
