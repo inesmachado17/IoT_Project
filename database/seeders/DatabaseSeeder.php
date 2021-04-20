@@ -2,7 +2,12 @@
 
 namespace Database\Seeders;
 
+use App\Models\Humidity;
+use App\Models\Light;
+use App\Models\Motion;
+use App\Models\Smoke;
 use App\Models\Blind;
+use App\Models\Temperature;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
@@ -33,5 +38,10 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Blind::factory()->count(10)->create();
+        Humidity::factory()->count(5)->create();
+        Light::factory()->count(5)->create();
+        Motion::factory()->count(5)->create();
+        Smoke::factory()->count(5)->create();
+        Temperature::factory()->count(5)->create();
     }
 }
