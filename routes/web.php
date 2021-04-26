@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Actuator\ActuatorBlindController;
+use App\Http\Controllers\Actuator\ActuatorController;
 use App\Http\Controllers\Sensor\SensorSmokeController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
@@ -10,20 +11,20 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::get('/login', function () {
-    return view('auth.login');
-})->name('login');
-Route::post('/login', [AuthController::class, 'login']);
-
 
 // Authenticated group router
 Route::group(['middleware' => 'auth'], function () {
-    Route::post('/logout', [AuthController::class, 'login']);
 
     Route::get('/dashboard', [DashboardController::class, 'index']);
 
+    Route::get('/actuators', [ActuatorController::class, 'index']);
+
     Route::get('/actuators/blinds', [ActuatorBlindController::class, 'index']);
     Route::get('/actuators/blinds/{id}/edit', [ActuatorBlindController::class, 'edit']);
+    Route::put('/actuators/blinds/{id}', [ActuatorBlindController::class, 'update']);
 
     Route::get('/sensors/alarmSmoke', [SensorSmokeController::class, 'index']);
 });
+
+// Routes for authentication
+require __DIR__ . '/auth.php';
