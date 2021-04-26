@@ -19,10 +19,15 @@
 <body class="d-flex flex-column">
 
     <header>
+        @auth
         @include('layouts.navbar')
+        @endauth
+
+        @yield('header')
+
     </header>
 
-    <main class="d-flex flex-column justify-content-center">
+    <main class="d-flex flex-column flex-grow-1 justify-content-center">
         <div class="container">
             @if ($errors->any())
             <div class="alert alert-danger">

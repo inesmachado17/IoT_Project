@@ -2,36 +2,33 @@
 
 @section('content')
 
-<div class="row justify-content-end">
-    <div class="col-1">
-        <a class="btn btn-outline-secondary btn-sm" href="/actuators" role="button">Voltar</a>
+<div class="row mb-3">
+    <div class="col-1 offset-1">
+        <a class="btn btn-outline-secondary btn-sm" href="/sensors/temperatures/force-update" role="button"
+            title="Atualização forçada">
+            <i class="bi bi-arrow-repeat"></i>
+        </a>
+    </div>
+    <div class="col-1 offset-8">
+        <a class="btn btn-outline-secondary btn-sm" href="{{ url()->previous() }}" role="button">Voltar</a>
     </div>
 </div>
 
 <div class="row">
     <div class="col-10 offset-1">
-        <p>Tabela</p>
+        <p>Histórico de leituras</p>
         <table class="table table-striped table-hover">
             <thead>
                 <tr>
-                    <th>ID</th>
-                    <th>Designação</th>
-                    <th>Estado</th>
-                    <th>Ações</th>
+                    <th>Data</th>
+                    <th>Valor</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach($blinds as $blind)
+                @foreach($temperatures as $temp)
                 <tr>
-                    <td>{{ $blind['id'] }}</td>
-                    <td>{{ $blind['name'] }}</td>
-                    <td>{{ $blind['state'] }}</td>
-                    <td>
-                        <a href="{{ url('/actuators/blinds/'. $blind['id'] . '/edit') }}"
-                            class="btn btn-outline-secondary btn-sm" role="button" aria-pressed="true">
-                            <i class="bi bi-gear"></i>
-                        </a>
-                    </td>
+                    <td>{{ $temp['date'] }}</td>
+                    <td>{{ $temp['value'] }}</td>
                 </tr>
                 @endforeach
             </tbody>
@@ -45,6 +42,12 @@
                     role="button" aria-pressed="true" aria-disabled="{{ $next == null }}">Proximo</a>
             </div>
         </div>
+    </div>
+</div>
+
+<div class="row justify-content-end">
+    <div class="col-1">
+
     </div>
 </div>
 

@@ -10,10 +10,10 @@ class Temperature extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name', 'state', 'trigger'
+        'name', 'value', 'date'
     ];
 
-    protected $hidden =  [
-        'created_at', 'updated_at'
-    ];
+    protected $hidden =  [];
+
+    public $timestamps = false;
 }
