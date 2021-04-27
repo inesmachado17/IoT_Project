@@ -9,7 +9,7 @@ class HumidityFactory extends Factory
 {
     protected $model = Humidity::class;
 
-    public function definition()
+    public function definition(): array
     {
         return [
             'value'         => $this->faker->numberBetween(0, 100),

@@ -10,7 +10,7 @@ class AirConditionerFactory extends Factory
 {
     protected $model = AirConditioner::class;
 
-    public function definition()
+    public function definition(): array
     {
         return [
             'name'          => $this->faker->word(),
