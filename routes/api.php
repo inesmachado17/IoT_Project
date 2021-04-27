@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Humidity;
 use App\Models\Temperature;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -34,10 +35,33 @@ Route::post('/sensors/temperatures', function (Request $request) {
     return response('', 204); //No Content
 });
 
+Route::post('/sensors/humidities', function (Request $request) {
+    $validator = Validator::make($request->all(), [
+        "value" => "required|numeric|min:0|max:100",
+        "date"  => "required|date"
+    ]);
+
+    if($validator->fails()) {
+        return response($validator->messages(), 400);
+    }
+
+    try {
+        $humd = new Humidity();
+        $humd->value = $request['value'];
+        $humd->date = new Carbon($request['date']);
+
+        $humd->save();
+    } catch(\Exception $exception) {
+        return response($exception->getMessage(), 500);
+    }
+    return response('', 204);
+});
+
 /*
 * API developed for demo purpose
-* Emulate cisco packet tracer Server
+* Simulate cisco packet tracer Server
 */
+
 Route::post('/actuators/blinds', function (Request $request) {
     $errorDraw = random_int(0, 100);
 
@@ -45,7 +69,7 @@ Route::post('/actuators/blinds', function (Request $request) {
         return response('', 500);
     }
 
-    return response('', 200);
+    return response('', 204); //No Content
 });
 
 Route::get('/sensors/temperatures', function (Request $request) {
@@ -55,5 +79,14 @@ Route::get('/sensors/temperatures', function (Request $request) {
     return response([
         'value' => $last->value + random_int(-2, 2),
         'date'  => Carbon::now()
-    ], 200); //No Content
+    ], 200);
+});
+
+Route::get('/sensors/humidities', function (Request $request) {
+    $last = (new Humidity())->orderBy('date','desc')->first();
+
+    return response([
+        'value' => $last->value + random_int(-2, 2)*10,
+        'date'  => Carbon::now()
+    ], 200);
 });

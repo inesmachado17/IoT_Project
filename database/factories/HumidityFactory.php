@@ -12,11 +12,8 @@ class HumidityFactory extends Factory
     public function definition()
     {
         return [
-            'name'          => $this->faker->word(),
-            'state'         => $this->faker->randomNumber(),
-            'trigger'       => $this->faker->randomNumber(),
-            'updated_at'    => now(),
-            'created_at'    => now()
+            'value'         => $this->faker->numberBetween(0, 100),
+            'date'          => now()
         ];
     }
 }

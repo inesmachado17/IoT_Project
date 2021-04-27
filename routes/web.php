@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Actuator\ActuatorBlindController;
 use App\Http\Controllers\Actuator\ActuatorController;
+use App\Http\Controllers\Sensor\SensorHumidityController;
 use App\Http\Controllers\Sensor\SensorSmokeController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Sensor\SensorTemperatureController;
@@ -25,6 +26,10 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/sensors/temperatures', [SensorTemperatureController::class, 'index']);
     Route::get('/sensors/temperatures/force-update', [SensorTemperatureController::class, 'update']);
+
+    Route::get('/sensors/humidities', [SensorHumidityController::class, 'index']);
+    Route::get('/sensors/humidities/force-update', [SensorHumidityController::class, 'update']);
+
 
     Route::get('/sensors/alarmSmokes', [SensorSmokeController::class, 'index']);
 });

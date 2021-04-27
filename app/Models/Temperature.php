@@ -10,10 +10,8 @@ class Temperature extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name', 'value', 'date'
+        'value', 'date'
     ];
-
-    protected $hidden =  [];
 
     public $timestamps = false;
 }

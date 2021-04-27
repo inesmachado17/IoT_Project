@@ -15,7 +15,7 @@ class CreateTemperaturesTable extends Migration
     {
         Schema::create('temperatures', function (Blueprint $table) {
             $table->id();
-            $table->decimal('value', 4, 2)->default(0);
+            $table->decimal('value', 4, 2);
             $table->dateTimeTz('date')->useCurrent();
         });
     }
