@@ -22,6 +22,7 @@ class SensorHumidityController
             'humidities'   => $pagination['data'],
             'prev'         => $pagination['prev_page_url'],
             'next'         => $pagination['next_page_url'],
+            'uriName'      => 'humidities'
         ]);
     }
 
@@ -32,7 +33,7 @@ class SensorHumidityController
             $response = $client->get(env('APP_API_BASE_URL') . '/sensors/humidities');
         } catch (\Exception $exception) {
             return back()->withErrors([
-            'error' => 'Cisco Packet Tracer reponde with unknown error!'
+            'error' => 'Cisco Packet Tracer response with unknown error!'
         ]);
         }
 
@@ -45,7 +46,7 @@ class SensorHumidityController
             $humd->save();
         } else {
             return back()->withErrors([
-                'error' => 'Cisco Packet Tracer reponde with unknown error!'
+                'error' => 'Cisco Packet Tracer response with unknown error!'
             ]);
         }
 

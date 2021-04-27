@@ -10,10 +10,8 @@ class Light extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name', 'state', 'trigger'
+        'value', 'date'
     ];
 
-    protected $hidden =  [
-        'created_at', 'updated_at'
-    ];
+    public $timestamps = false;
 }

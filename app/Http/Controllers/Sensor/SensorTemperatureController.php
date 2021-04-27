@@ -21,6 +21,7 @@ class SensorTemperatureController extends Controller
             'temperatures' => $pagination['data'],
             'prev'         => $pagination['prev_page_url'],
             'next'         => $pagination['next_page_url'],
+            'uriName'      => 'temperatures'
         ]);
     }
 
@@ -32,7 +33,7 @@ class SensorTemperatureController extends Controller
             $response = $client->get(env('APP_API_BASE_URL') . '/sensors/temperatures'); //['auth' =>  ['user', 'pass']]
         } catch (\Exception $exception) {
             return back()->withErrors([
-                'error' => 'Cisco Packet Tracer reponde with unknown error!'
+                'error' => 'Cisco Packet Tracer response with unknown error!'
             ]);
         }
 
@@ -45,10 +46,9 @@ class SensorTemperatureController extends Controller
             $temp->save();
         } else {
             return back()->withErrors([
-                'error' => 'Cisco Packet Tracer reponde with unknown error!'
+                'error' => 'Cisco Packet Tracer response with unknown error!'
             ]);
         }
-
 
         return redirect('/sensors/temperatures');
     }

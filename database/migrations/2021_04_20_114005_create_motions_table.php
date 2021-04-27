@@ -15,10 +15,8 @@ class CreateMotionsTable extends Migration
     {
         Schema::create('motions', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->unsignedInteger('state')->default(0);
-            $table->unsignedInteger('trigger');
-            $table->timestamps();
+            $table->boolean('value');
+            $table->dateTimeTz('date')->useCurrent();
         });
     }
 

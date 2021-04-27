@@ -5,16 +5,51 @@ namespace App\Http\Controllers\Sensor;
 
 use App\Http\Controllers\Controller;
 use App\Models\Smoke;
+use Carbon\Carbon;
+use GuzzleHttp;
 
 class SensorSmokeController extends Controller
 {
     public function index()
     {
         $pagination = (new Smoke())
-            ->latest()
-            ->paginate(5);
+            ->latest('date')
+            ->paginate(5)
+            ->toArray();
 
+        return view('admin.sensors.smokes.index',  [
+            'smokes'  => $pagination['data'],
+            'prev'    => $pagination['prev_page_url'],
+            'next'    => $pagination['next_page_url'],
+            'uriName' => 'smokes'
+        ]);
+    }
 
-        return view('sensors.smoke.list', ['list' => $pagination]);
+    public function update()
+    {
+        $client = new GuzzleHttp\Client();
+
+        try {
+            $response = $client->get(env('APP_API_BASE_URL') . '/sensors/smokes'); //['auth' =>  ['user', 'pass']]
+        } catch (\Exception $exception) {
+            return back()->withErrors([
+                'error' => 'Cisco Packet Tracer response with unknown error!'
+            ]);
+        }
+
+        if ($response->getStatusCode() == 200) {
+            $responseData = json_decode($response->getBody()->getContents(), true);
+
+            $smoke = new Smoke();
+            $smoke->value = $responseData['value'];
+            $smoke->date = new Carbon($responseData['date']);
+            $smoke->save();
+        } else {
+            return back()->withErrors([
+                'error' => 'Cisco Packet Tracer response with unknown error!'
+            ]);
+        }
+
+        return redirect('/sensors/smokes');
     }
 }

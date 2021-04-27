@@ -1,10 +1,15 @@
 body {
     min-height: 100vh;
+    color: #333;
+}
+
+header {
+    height: 56px;
 }
 
 main {
     height: 100%;
-    padding-top: 56px;
+    /*padding-top: 56px;*/
 }
 
 footer {
@@ -30,5 +35,16 @@ footer p {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+}
+div.sensor-icon {
+    padding: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+div.sensor-icon svg {
+    width: 120px;
+    height: 120px;
+    fill: #444;
 }
 

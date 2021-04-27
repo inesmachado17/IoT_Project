@@ -15,10 +15,8 @@ class CreateSmokesTable extends Migration
     {
         Schema::create('smokes', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->unsignedInteger('state')->default(0);
-            $table->unsignedInteger('trigger');
-            $table->timestamps();
+            $table->unsignedInteger('value');
+            $table->dateTimeTz('date')->useCurrent();
         });
     }
 

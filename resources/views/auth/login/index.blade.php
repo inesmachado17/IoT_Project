@@ -17,8 +17,8 @@
             </div>
 
             <div class="form-group">
+                <input type="checkbox" name="remember" class="" id="inputRemember">
                 <label for="inputRemember">Lembrar-me</label>
-                <input type="checkbox" name="remember" class="form-control" id="inputRemember">
             </div>
 
             @if (Route::has('password.request'))

@@ -11,11 +11,8 @@ class LightFactory extends Factory
     public function definition(): array
     {
         return [
-            'name'          => $this->faker->word(),
-            'state'         => $this->faker->randomNumber(),
-            'trigger'       => $this->faker->randomNumber(),
-            'updated_at'    => now(),
-            'created_at'    => now()
+            'value' => $this->faker->numberBetween(200, 5000),
+            'date'  => now()
         ];
     }
 }

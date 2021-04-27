@@ -3,6 +3,8 @@
 use App\Http\Controllers\Actuator\ActuatorBlindController;
 use App\Http\Controllers\Actuator\ActuatorController;
 use App\Http\Controllers\Sensor\SensorHumidityController;
+use App\Http\Controllers\Sensor\SensorLightController;
+use App\Http\Controllers\Sensor\SensorMotionController;
 use App\Http\Controllers\Sensor\SensorSmokeController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Sensor\SensorTemperatureController;
@@ -30,8 +32,15 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/sensors/humidities', [SensorHumidityController::class, 'index']);
     Route::get('/sensors/humidities/force-update', [SensorHumidityController::class, 'update']);
 
+    Route::get('/sensors/smokes', [SensorSmokeController::class, 'index']);
+    Route::get('/sensors/smokes/force-update', [SensorSmokeController::class, 'update']);
 
-    Route::get('/sensors/alarmSmokes', [SensorSmokeController::class, 'index']);
+    Route::get('/sensors/lights', [SensorLightController::class, 'index']);
+    Route::get('/sensors/lights/force-update', [SensorLightController::class, 'update']);
+
+    Route::get('/sensors/motions', [SensorMotionController::class, 'index']);
+    Route::get('/sensors/motions/force-update', [SensorMotionController::class, 'update']);
+
 });
 
 // Routes for authentication
