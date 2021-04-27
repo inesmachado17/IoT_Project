@@ -10,7 +10,7 @@ class SprinklerFactory extends Factory
 {
     protected $model = Sprinkler::class;
 
-    public function definition()
+    public function definition(): array
     {
         return [
             'name'          => $this->faker->word(),

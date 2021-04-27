@@ -9,7 +9,7 @@ class TemperatureFactory extends Factory
 {
     protected $model = Temperature::class;
 
-    public function definition()
+    public function definition(): array
     {
         return [
             'name'          => $this->faker->word(),

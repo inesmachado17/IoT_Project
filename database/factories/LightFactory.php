@@ -8,7 +8,7 @@ class LightFactory extends Factory
 {
     protected $model = Light::class;
 
-    public function definition()
+    public function definition(): array
     {
         return [
             'name'          => $this->faker->word(),
