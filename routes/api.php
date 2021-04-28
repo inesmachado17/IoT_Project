@@ -44,7 +44,7 @@ Route::post('/sensors/humidities', function (Request $request) {
         "date"  => "required|date"
     ]);
 
-    if($validator->fails()) {
+    if ($validator->fails()) {
         return response($validator->messages(), 400);
     }
 
@@ -54,7 +54,7 @@ Route::post('/sensors/humidities', function (Request $request) {
         $humd->date = new Carbon($request['date']);
 
         $humd->save();
-    } catch(\Exception $exception) {
+    } catch (\Exception $exception) {
         return response($exception->getMessage(), 500);
     }
     return response('', 204);
@@ -66,7 +66,7 @@ Route::post('/sensors/lights', function (Request $request) {
         "date"  => "required|date"
     ]);
 
-    if($validator->fails()) {
+    if ($validator->fails()) {
         return response($validator->messages(), 400);
     }
 
@@ -76,7 +76,7 @@ Route::post('/sensors/lights', function (Request $request) {
         $smoke->date = new Carbon($request['date']);
 
         $smoke->save();
-    } catch(\Exception $exception) {
+    } catch (\Exception $exception) {
         return response($exception->getMessage(), 500);
     }
     return response('', 204);
@@ -88,7 +88,7 @@ Route::post('/sensors/smokes', function (Request $request) {
         "date"  => "required|date"
     ]);
 
-    if($validator->fails()) {
+    if ($validator->fails()) {
         return response($validator->messages(), 400);
     }
 
@@ -98,7 +98,7 @@ Route::post('/sensors/smokes', function (Request $request) {
         $smoke->date = new Carbon($request['date']);
 
         $smoke->save();
-    } catch(\Exception $exception) {
+    } catch (\Exception $exception) {
         return response($exception->getMessage(), 500);
     }
     return response('', 204);
@@ -110,7 +110,7 @@ Route::post('/sensors/motions', function (Request $request) {
         "date"  => "required|date"
     ]);
 
-    if($validator->fails()) {
+    if ($validator->fails()) {
         return response($validator->messages(), 400);
     }
 
@@ -120,7 +120,7 @@ Route::post('/sensors/motions', function (Request $request) {
         $motion->date = new Carbon($request['date']);
 
         $motion->save();
-    } catch(\Exception $exception) {
+    } catch (\Exception $exception) {
         return response($exception->getMessage(), 500);
     }
     return response('', 204);
@@ -130,7 +130,7 @@ Route::post('/sensors/motions', function (Request $request) {
 * API developed for demo purpose
 * Simulate cisco packet tracer Server
 */
-
+/*
 Route::post('/actuators/blinds', function (Request $request) {
     $errorDraw = random_int(0, 100);
 
@@ -185,3 +185,4 @@ Route::get('/sensors/motions', function (Request $request) {
         'date'  => Carbon::now()
     ], 200);
 });
+ */

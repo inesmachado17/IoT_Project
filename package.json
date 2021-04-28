@@ -8,12 +8,15 @@
         "hot": "mix watch --hot",
         "prod": "npm run production",
         "production": "mix --production",
-        "json-server": "json-server db.json  --host 0.0.0.0"
+        "serve": "node __server/server.js"
     },
     "devDependencies": {
         "axios": "^0.21",
+        "faker": "^5.5.3",
+        "json-server": "^0.16.3",
         "laravel-mix": "^6.0.6",
         "lodash": "^4.17.19",
         "postcss": "^8.1.14"
-    }
+    },
+    "dependencies": {}
 }
