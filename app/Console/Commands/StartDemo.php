@@ -40,18 +40,27 @@ class StartDemo extends Command
      */
     public function handle()
     {
+        if (file_exists('.env.backup')) {
+            copy('.env.backup', '.env');
+        }
+
         $this->call('cache:clear');
 
         $useSqlite = $this->option('sqlite');
-
         if ($useSqlite) {
-            config([
-                'database.default' => 'sqlite'
-            ]);
-            config([
-                'database.connections.sqlite.database' => database_path('database.sqlite')
-            ]);
-            //dd(config('database.default'));
+            copy('.env', '.env.backup');
+            $fileArray = file('.env');
+            $fileArray = array_map(function ($value) {
+                return rtrim($value, PHP_EOL);
+            }, $fileArray);
+
+            $dbConnectionKey = $this->searchOnArray('DB_CONNECTION', $fileArray);
+            $dbDatabasekey = $this->searchOnArray('DB_DATABASE', $fileArray);
+            $fileArray[$dbConnectionKey] = 'DB_CONNECTION=sqlite';
+            $fileArray[$dbDatabasekey] = 'DB_DATABASE=' . database_path('database.sqlite');
+
+            $fileEnv = implode(PHP_EOL, $fileArray);
+            file_put_contents('.env', $fileEnv);
         }
 
         $this->info('Refresh database...');
@@ -59,7 +68,6 @@ class StartDemo extends Command
 
         $this->info('Seed database...');
         $this->call('db:seed');
-
 
         try {
             $process = new Process(['npm', 'run', 'serve']);
@@ -80,11 +88,20 @@ class StartDemo extends Command
                 } else {
                     $this->line("Read from 'npm run serve': " . $data);
                 }
-            } else { // $process::ERR === $type
+            } else {
                 $this->error("Read ERROR from 'npm run serve': " . $data);
             }
         }
 
         return 0;
+    }
+
+    private function searchOnArray($keyword, $array)
+    {
+        foreach ($array as $key => $item) {
+            if (str_contains($item, $keyword)) {
+                return $key;
+            }
+        }
     }
 }
