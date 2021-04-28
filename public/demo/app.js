@@ -1871,7 +1871,11 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 var api = axios__WEBPACK_IMPORTED_MODULE_0___default().create({
-  baseURL: "http://localhost:8000/api"
+  baseURL: "http://localhost:8000/api",
+  headers: {
+    "X-Requested-With": "XMLHttpRequest",
+    "Content-Type": "application/json"
+  }
 });
 
 var InputControl = function InputControl(_ref) {
