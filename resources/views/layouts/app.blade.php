@@ -62,7 +62,7 @@
         You need to enable JavaScript to run this demonstration.
     </noscript>
     <div id="app-demo"></div>
-    <script src="./demo/app.js"></script>
+    <script src={{ url('demo/app.js') }}></script>
     @endif
 </body>
 
