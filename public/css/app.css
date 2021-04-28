@@ -9,7 +9,7 @@ header {
 
 main {
     height: 100%;
-    padding: 16px;
+    /*padding-top: 56px;*/
 }
 
 footer {
@@ -47,3 +47,4 @@ div.sensor-icon svg {
     height: 120px;
     fill: #444;
 }
+
