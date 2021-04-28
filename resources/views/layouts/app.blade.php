@@ -57,6 +57,7 @@
 
     <!--Chart.js-->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.2.0/dist/chart.min.js"></script>
+    @yield('chart-script')
 
 
     @if (env('APP_ENV') != 'production')
