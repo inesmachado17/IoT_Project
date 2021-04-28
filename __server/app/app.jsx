@@ -70,9 +70,15 @@ const InputControl = ({ sensor, title, classIconSufix, apiCall }) => {
                 />
                 <button type="button" onClick={handleClickButton}>
                     {on ? (
-                        <i className="bi bi-toggle-on" title="Ligado"></i>
+                        <i
+                            className="bi bi-toggle-on text-success"
+                            title="Ligado"
+                        ></i>
                     ) : (
-                        <i className="bi bi-toggle-off" title="desligado"></i>
+                        <i
+                            className="bi bi-toggle-off text-danger"
+                            title="desligado"
+                        ></i>
                     )}
                 </button>
             </div>
