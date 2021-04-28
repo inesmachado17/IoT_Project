@@ -6,6 +6,7 @@
         <form action="/actuators/blinds/{{ $blind->id }}" method="POST">
             @csrf()
             @method('PUT')
+            <input type="hidden" name="return_to" value="{{ $returnUrl }}">
             <div class="mb-3">
                 <label for="name" class="form-label">Designação</label>
                 <input type="text" class="form-control" id="name" name="name" value="{{ $blind->name }}">

@@ -24,12 +24,14 @@ class ActuatorBlindController extends Controller
         ]);
     }
 
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
+        $returnUrl = $request->getSession()->previousUrl();
+
         $blind = (new Blind())->find($id);
 
         if ($blind != null) {
-            return view('actuators.blinds.edit', ['blind'    => $blind]);
+            return view('actuators.blinds.edit', ['blind'    => $blind, 'returnUrl' => $returnUrl]);
         }
 
         return back()->withErrors([
@@ -66,7 +68,7 @@ class ActuatorBlindController extends Controller
                 ]);
             }
 
-            if ($response->getStatusCode() == 200) {
+            if ($response->getStatusCode() == 200 || $response->getStatusCode() == 204) {
                 $blind->state = $request['state'];
             } else {
                 return back()->withErrors([
@@ -77,6 +79,6 @@ class ActuatorBlindController extends Controller
 
         $blind->save();
 
-        return redirect('/actuators/blinds');
+        return redirect($request['return_to'] ?? '/actuators/blinds');
     }
 }
