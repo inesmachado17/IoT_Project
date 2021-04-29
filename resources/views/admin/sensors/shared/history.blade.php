@@ -22,6 +22,11 @@
 </div>
 
 <div class="row d-flex justify-content-center">
+    <div class="col-md-2 col-sm-1 align-self-center">
+        <div class="sensor-icon-history">
+            @yield('svg-icon')
+        </div>
+    </div>
     <div class="col-6">
         <p>Histórico de leituras</p>
         <table class="table table-striped table-hover">

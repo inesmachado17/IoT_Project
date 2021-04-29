@@ -9,12 +9,12 @@
 </div>
 
 @foreach ($list as $group)
-<div class="row d-flex justify-content-center align-items-center mb-4">
+<div class="row d-flex justify-content-center align-items-center">
 
     @foreach ($group as $ac)
-    <div class="col-4">
+    <div class="col-md-4 col-sm-6 mb-4">
         <div class="card h-100">
-            <div class="air-conditioner-icon">
+            <div class="actuator-icon">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-snow"
                     viewBox="0 0 16 16">
                     <path
@@ -22,12 +22,15 @@
                 </svg>
             </div>
             <div class="card-body">
-                <h5 class="card-title text-center">
+                <h5 class="card-title text-left">
                     {{ $ac['name'] }}
-                    <span class="text-muted small">Programado para: {{ $ac['setting'] }} ºC</span>
                 </h5>
-                <p class="text-center" title="{{ $ac['state'] ? 'Ligado' : 'Desligado' }}">
-                    Estado: <i class="bi bi-power {{ $ac['state'] ? 'text-success' : 'text-danger' }}"></i>
+                <p class="text-right">
+                    <span class="text-muted small">Programado para: {{ $ac['setting'] }} ºC</span>
+                </p>
+                <p class="d-flex justify-content-between" title="{{ $ac['state'] ? 'Ligado' : 'Desligado' }}">
+                    <span>Estado:</span>
+                    <i class="bi bi-power {{ $ac['state'] ? 'text-success' : 'text-danger' }}"></i>
                 </p>
                 <a href="actuators/air-conditioners" class="btn btn-primary btn-sm">Abrir histórico</a>
             </div>

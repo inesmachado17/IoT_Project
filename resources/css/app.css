@@ -36,15 +36,29 @@ footer p {
     justify-content: space-between;
     align-items: center;
 }
-div.sensor-icon,
-div.air-conditioner-icon {
+div.sensor-icon-dashboard,
+div.actuator-icon-dashboard {
     padding: 16px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-div.sensor-icon svg,
-div.air-conditioner-icon svg {
+div.sensor-icon-dashboard svg,
+div.actuator-icon-dashboard svg {
+    width: 120px;
+    height: 120px;
+    fill: #444;
+}
+
+div.sensor-icon-history,
+div.actuator-icon-history {
+    padding: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+div.sensor-icon-history svg,
+div.actuator-icon-history svg {
     width: 120px;
     height: 120px;
     fill: #444;

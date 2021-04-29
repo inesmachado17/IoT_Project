@@ -13,9 +13,16 @@ class ActuatorAirConditionerController extends Controller
     public function index()
     {
         $airConditioners = (new AirConditioner())
-            ->all();
+            ->all()->toArray();
 
-        $list = array_chunk($airConditioners->toArray(), 3);
+        //[1,2,3,4,5]
+
+        $list = array_chunk($airConditioners, 3);
+
+        /* [
+            0 => [1, 2, 3],
+            1 => [4, 5]
+        ] */
 
         return view('admin.actuators.air-conditioners.index', ['list' => $list]);
     }

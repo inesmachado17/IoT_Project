@@ -5,7 +5,7 @@
 <div class="row">
     <div class="col-4">
         <div class="card h-100">
-            <div class="sensor-icon">
+            <div class="sensor-icon-dashboard">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                     class="bi bi-thermometer-half" viewBox="0 0 16 16">
                     <path d="M9.5 12.5a1.5 1.5 0 1 1-2-1.415V6.5a.5.5 0 0 1 1 0v4.585a1.5 1.5 0 0 1 1 1.415z" />
@@ -27,7 +27,7 @@
     </div>
     <div class="col-4">
         <div class="card">
-            <div class="sensor-icon">
+            <div class="sensor-icon-dashboard">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                     class="bi bi-moisture" viewBox="0 0 16 16">
                     <path
@@ -48,7 +48,7 @@
     </div>
     <div class="col-4">
         <div class="card">
-            <div class="sensor-icon">
+            <div class="sensor-icon-dashboard">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                     class="bi bi-thermometer-sun" viewBox="0 0 16 16">
                     <path d="M5 12.5a1.5 1.5 0 1 1-2-1.415V2.5a.5.5 0 0 1 1 0v8.585A1.5 1.5 0 0 1 5 12.5z" />
@@ -73,7 +73,7 @@
 <div class="row mt-5">
     <div class="col-4 offset-2">
         <div class="card h-100">
-            <div class="sensor-icon">
+            <div class="sensor-icon-dashboard">
 
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-wind"
                     viewBox="0 0 16 16">
@@ -95,7 +95,7 @@
     </div>
     <div class="col-4">
         <div class="card">
-            <div class="sensor-icon">
+            <div class="sensor-icon-dashboard">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                     class="bi bi-broadcast" viewBox="0 0 16 16">
                     <path

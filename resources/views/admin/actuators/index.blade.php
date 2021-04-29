@@ -2,15 +2,26 @@
 
 @section('content')
 <div class="row">
-    <div class="col">
+    <div class="col-md-6 offset-md-3">
         <div class="list-group">
-            <a href="/actuators/blinds" class="list-group-item list-group-item-action" aria-current="true">
-                Persianas
+            <a href="/actuators/blinds" class="list-group-item list-group-item-action d-flex justify-content-between"
+                aria-current="true">
+                <span>Persianas</span>
+                <i class="bi bi-back"></i>
             </a>
-            <a href="/actuators/air-conditioners" class="list-group-item list-group-item-action">Air Condicionado</a>
-            <a href="#" class="list-group-item list-group-item-action">Aspersores</a>
-            <a href="#" class="list-group-item list-group-item-action">A fourth link item</a>
-            <a href="#" class="list-group-item list-group-item-action disabled" tabindex="-1" aria-disabled="true">A
+            <a href="/actuators/air-conditioners"
+                class="list-group-item list-group-item-action d-flex justify-content-between">
+                <span>Air Condicionado</span>
+                <i class="bi bi-snow"></i>
+            </a>
+            <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between">
+                <span>Aspersores</span>
+                <i class="bi bi-droplet"></i>
+            </a>
+            <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between">A fourth link
+                item</a>
+            <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between disabled"
+                tabindex="-1" aria-disabled="true">A
                 disabled link item</a>
         </div>
     </div>
