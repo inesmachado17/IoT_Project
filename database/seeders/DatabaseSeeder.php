@@ -42,15 +42,18 @@ class DatabaseSeeder extends Seeder
             'remember_token' => Str::random(10),
         ]);
 
-        $this->createBlinds();
-
-        //Blind::factory()->count(10)->create();
+        // Sensors
         Humidity::factory()->count(5)->create();
         Light::factory()->count(5)->create();
         Motion::factory()->count(5)->create();
         Smoke::factory()->count(5)->create();
         Temperature::factory()->count(5)->create();
-        AirConditioner::factory()->count(5)->create();
+
+        // Actuators
+        $this->createBlinds();
+        $this->createAirConditioners();
+        //Blind::factory()->count(10)->create();
+        //AirConditioner::factory()->count(5)->create();
         Door::factory()->count(5)->create();
         FireAlarm::factory()->count(5)->create();
         Lamp::factory()->count(5)->create();
@@ -106,6 +109,30 @@ class DatabaseSeeder extends Seeder
                 'name'          => 'Basculante da Casa de Banho Pequena',
                 'size'          => 60,
                 'state'         => 0,
+                'updated_at'    => now(),
+                'created_at'    => now()
+            ],
+        ]);
+    }
+
+    private function createAirConditioners()
+    {
+        DB::table('air_conditioners')->insert([
+            [
+                'name'          => 'Central',
+                'setting'       => 21,
+                'updated_at'    => now(),
+                'created_at'    => now()
+            ],
+            [
+                'name'          => 'Escritório',
+                'setting'       => 22,
+                'updated_at'    => now(),
+                'created_at'    => now()
+            ],
+            [
+                'name'          => 'Sala de Jogos',
+                'setting'       => 21,
                 'updated_at'    => now(),
                 'created_at'    => now()
             ],
