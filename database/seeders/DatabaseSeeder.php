@@ -136,6 +136,12 @@ class DatabaseSeeder extends Seeder
                 'updated_at'    => now(),
                 'created_at'    => now()
             ],
+            [
+                'name'          => 'Quarto do Pânico',
+                'setting'       => 15,
+                'updated_at'    => now(),
+                'created_at'    => now()
+            ],
         ]);
     }
 }

@@ -17,7 +17,7 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="/actuators/blinds">Persianas</a>
-                    <a class="dropdown-item" href="#">Ar Condicionado</a>
+                    <a class="dropdown-item" href="/actuators/air-conditioners">Ar Condicionado</a>
                     <a class="dropdown-item" href="#">Regador</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="#">Something else here</a>

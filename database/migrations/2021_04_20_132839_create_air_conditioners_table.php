@@ -17,6 +17,7 @@ class CreateAirConditionersTable extends Migration
             $table->id();
             $table->string('name');
             $table->unsignedInteger('setting');
+            $table->boolean('state')->default(false);
             $table->timestamps();
         });
     }

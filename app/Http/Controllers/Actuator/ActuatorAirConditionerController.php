@@ -12,11 +12,11 @@ class ActuatorAirConditionerController extends Controller
 {
     public function index()
     {
-        $pagination = (new AirConditioner())
-            ->latest()
-            ->paginate(5);
+        $airConditioners = (new AirConditioner())
+            ->all();
 
+        $list = array_chunk($airConditioners->toArray(), 3);
 
-        return view('actuators.air_conditioners.list', ['list' => $pagination]);
+        return view('admin.actuators.air-conditioners.index', ['list' => $list]);
     }
 }

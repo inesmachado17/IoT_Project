@@ -36,13 +36,15 @@ footer p {
     justify-content: space-between;
     align-items: center;
 }
-div.sensor-icon {
+div.sensor-icon,
+div.air-conditioner-icon {
     padding: 16px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-div.sensor-icon svg {
+div.sensor-icon svg,
+div.air-conditioner-icon svg {
     width: 120px;
     height: 120px;
     fill: #444;
