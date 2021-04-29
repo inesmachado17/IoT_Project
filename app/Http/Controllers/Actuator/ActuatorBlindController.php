@@ -17,7 +17,7 @@ class ActuatorBlindController extends Controller
             ->paginate(5)
             ->toArray();
 
-        return view('actuators.blinds.index', [
+        return view('admin.actuators.blinds.index', [
             'blinds'    => $pagination['data'],
             'prev'      => $pagination['prev_page_url'],
             'next'      => $pagination['next_page_url'],
