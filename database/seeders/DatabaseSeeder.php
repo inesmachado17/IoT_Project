@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\AirConditioner;
 use App\Models\Door;
 use App\Models\FireAlarm;
 use App\Models\Humidity;
@@ -10,9 +9,8 @@ use App\Models\Lamp;
 use App\Models\Light;
 use App\Models\Motion;
 use App\Models\Smoke;
-use App\Models\Blind;
 use App\Models\Sprinkler;
-use App\Models\Temperature;
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
@@ -47,7 +45,8 @@ class DatabaseSeeder extends Seeder
         Light::factory()->count(5)->create();
         Motion::factory()->count(5)->create();
         Smoke::factory()->count(5)->create();
-        Temperature::factory()->count(5)->create();
+        $this->createTemperatures();
+        //Temperature::factory()->count(5)->create();
 
         // Actuators
         $this->createBlinds();
@@ -58,6 +57,22 @@ class DatabaseSeeder extends Seeder
         FireAlarm::factory()->count(5)->create();
         Lamp::factory()->count(5)->create();
         Sprinkler::factory()->count(5)->create();
+    }
+
+    private function createTemperatures()
+    {
+        $now = Carbon::now('UTC');
+        $items = [];
+
+        for ($i = 0; $i < 50; $i++) {
+            $now = $now->subMinutes(28);
+            array_push($items, [
+                'value' => random_int(-200, 200) / 10,
+                'date'  => $now
+            ]);
+        }
+
+        DB::table('temperatures')->insert(array_reverse($items));
     }
 
     private function createBlinds()

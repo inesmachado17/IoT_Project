@@ -20,18 +20,21 @@
 
 @section('script')
 <script>
-    var ctx = document.getElementById('myChart').getContext('2d');
-    var myChart = new Chart(ctx, {
+    const canvasElement = document.getElementById('myChart');
+    const ctx = canvasElement.getContext('2d');
+    const myChart = new Chart(ctx, {
         type: 'line',
         data: {
-            labels: ['08:00', '09:00', '10:00', '11:00', '12:00', '13:00'],
-            datasets: [{
-                label: 'temp ºC',
-                data: [12, 19, 3, 5, 2, 3],
-                backgroundColor: 'rgba(54, 162, 235, 0.5)',
-                borderCorlor: 'rgba(54, 162, 235, 1)',
-                borderWidth: 1
-            }]
+            labels: {!! json_encode($chart['x']) !!},
+            datasets: [
+                {
+                    label: 'temp ºC',
+                    data: {!! json_encode($chart['y']) !!},
+                    backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                    borderCorlor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1
+                }
+            ]
         },
     });
 </script>

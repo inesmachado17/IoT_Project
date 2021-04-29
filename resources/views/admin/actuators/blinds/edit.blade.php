@@ -31,15 +31,14 @@
 
 @section('scripts')
 <script type="text/javascript">
-    let value = {!! json_encode($blind->state) !!};
+    const value = {!! json_encode($blind->state) !!}; //"50"
     const spanElement = document.getElementById('span-value');
     spanElement.innerHTML = value + " %";
 
     const inputElement = document.getElementById('abertura');
-    console.log(inputElement)
 
-        inputElement.addEventListener('change', (e) => {
-            spanElement.innerHTML = e.target.value + " %";
-        })
+    inputElement.addEventListener('change', (event) => {
+        spanElement.innerHTML = event.target.value + " %";
+    })
 </script>
 @endsection

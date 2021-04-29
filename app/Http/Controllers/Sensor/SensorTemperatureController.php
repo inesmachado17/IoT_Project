@@ -17,11 +17,31 @@ class SensorTemperatureController extends Controller
             ->paginate(5)
             ->toArray();
 
+        //gráfico de temperaturas das ultimas 24h
+        $now = Carbon::now()->setTimezone('UTC');
+        $later24h = $now->copy()->subHours(24);
+        // fetch de temperaturas onde data esteja entre a hora de agora e a hora a 24 horas atrás
+        $temps = (new Temperature())->whereBetween('date', [$later24h, $now])->get();
+
+        //dd($temps->toArray());
+
+        // agrupar as temperaturas por cada hora
+        // calcular a media ou usar a primeira opcao?
+        // qd nao houver medicao naquela hora o q fazer?
+
+
+        $axisX = ['21:00', '22:00', '23:00', '00:00', '02:00', '03:00'];
+        $axisY = [12, 13, 11, 9.3, -3, -1];
+
         return view('admin.sensors.temperatures.index',  [
             'temperatures' => $pagination['data'],
             'prev'         => $pagination['prev_page_url'],
             'next'         => $pagination['next_page_url'],
-            'uriName'      => 'temperatures'
+            'uriName'      => 'temperatures',
+            'chart'        => [
+                'x' => $axisX,
+                'y' => $axisY
+            ]
         ]);
     }
 
