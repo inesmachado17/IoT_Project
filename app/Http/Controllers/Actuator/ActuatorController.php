@@ -8,6 +8,6 @@ class ActuatorController extends Controller
 {
     public function index()
     {
-        return view('actuators.index');
+        return view('admin.actuators.index');
     }
 }
