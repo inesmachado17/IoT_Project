@@ -42,7 +42,9 @@ class DatabaseSeeder extends Seeder
             'remember_token' => Str::random(10),
         ]);
 
-        Blind::factory()->count(10)->create();
+        $this->createBlinds();
+
+        //Blind::factory()->count(10)->create();
         Humidity::factory()->count(5)->create();
         Light::factory()->count(5)->create();
         Motion::factory()->count(5)->create();
@@ -53,5 +55,60 @@ class DatabaseSeeder extends Seeder
         FireAlarm::factory()->count(5)->create();
         Lamp::factory()->count(5)->create();
         Sprinkler::factory()->count(5)->create();
+    }
+
+    private function createBlinds()
+    {
+        DB::table('blinds')->insert([
+            [
+                'name'          => 'Janela Esq. da Sala',
+                'size'          => 120,
+                'state'         => 50,
+                'updated_at'    => now(),
+                'created_at'    => now()
+            ],
+            [
+                'name'          => 'Janela Dir. da Sala',
+                'size'          => 120,
+                'state'         => 50,
+                'updated_at'    => now(),
+                'created_at'    => now()
+            ],
+            [
+                'name'          => 'Janela do Quarto A',
+                'size'          => 120,
+                'state'         => 75,
+                'updated_at'    => now(),
+                'created_at'    => now()
+            ],
+            [
+                'name'          => 'Janela do Quarto B',
+                'size'          => 120,
+                'state'         => 75,
+                'updated_at'    => now(),
+                'created_at'    => now()
+            ],
+            [
+                'name'          => 'Varanda da Sala',
+                'size'          => 170,
+                'state'         => 25,
+                'updated_at'    => now(),
+                'created_at'    => now()
+            ],
+            [
+                'name'          => 'Basculante da Casa de Banho Grande',
+                'size'          => 60,
+                'state'         => 0,
+                'updated_at'    => now(),
+                'created_at'    => now()
+            ],
+            [
+                'name'          => 'Basculante da Casa de Banho Pequena',
+                'size'          => 60,
+                'state'         => 0,
+                'updated_at'    => now(),
+                'created_at'    => now()
+            ],
+        ]);
     }
 }
