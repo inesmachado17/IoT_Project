@@ -13,8 +13,8 @@ class ActuatorBlindController extends Controller
     public function index()
     {
         $pagination = (new Blind())
-            ->latest()
-            ->paginate(5)
+            ->orderBy('name')
+            ->paginate(10)
             ->toArray();
 
         return view('admin.actuators.blinds.index', [
@@ -31,7 +31,7 @@ class ActuatorBlindController extends Controller
         $blind = (new Blind())->find($id);
 
         if ($blind != null) {
-            return view('actuators.blinds.edit', ['blind'    => $blind, 'returnUrl' => $returnUrl]);
+            return view('admin.actuators.blinds.edit', ['blind'    => $blind, 'returnUrl' => $returnUrl]);
         }
 
         return back()->withErrors([

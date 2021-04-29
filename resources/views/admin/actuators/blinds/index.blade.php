@@ -9,23 +9,21 @@
 </div>
 
 <div class="row">
-    <div class="col-10 offset-1">
-        <p>Tabela</p>
+    <div class="col-8 offset-2">
+        <p>Lista de Persianas cadastradas</p>
         <table class="table table-striped table-hover">
             <thead>
                 <tr>
-                    <th>ID</th>
                     <th>Designação</th>
-                    <th>Estado</th>
-                    <th>Ações</th>
+                    <th class="text-center">Abertura</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
                 @foreach($blinds as $blind)
                 <tr>
-                    <td>{{ $blind['id'] }}</td>
                     <td>{{ $blind['name'] }}</td>
-                    <td>{{ $blind['state'] }}</td>
+                    <td class="text-center">{{ $blind['state'] }} %</td>
                     <td>
                         <a href="{{ url('/actuators/blinds/'. $blind['id'] . '/edit') }}"
                             class="btn btn-outline-secondary btn-sm" role="button" aria-pressed="true">
