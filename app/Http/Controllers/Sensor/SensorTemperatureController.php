@@ -19,19 +19,34 @@ class SensorTemperatureController extends Controller
 
         //gráfico de temperaturas das ultimas 24h
         $now = Carbon::now()->setTimezone('UTC');
-        $later24h = $now->copy()->subHours(24);
+        $last24h = $now->copy()->subHours(24);
         // fetch de temperaturas onde data esteja entre a hora de agora e a hora a 24 horas atrás
-        $temps = (new Temperature())->whereBetween('date', [$later24h, $now])->get();
+        $temps = (new Temperature())->orderBy('date')->whereBetween('date', [$last24h, $now])->get();
 
-        //dd($temps->toArray());
+        //dd($temps);
 
         // agrupar as temperaturas por cada hora
         // calcular a media ou usar a primeira opcao?
         // qd nao houver medicao naquela hora o q fazer?
+        $lastHour = $now->setTimezone('Europe/Lisbon');
 
+        $axisX = [];
+        $axisY = [];
 
-        $axisX = ['21:00', '22:00', '23:00', '00:00', '02:00', '03:00'];
-        $axisY = [12, 13, 11, 9.3, -3, -1];
+        for($i = 23; $i >= 0; $i--)
+        {
+            $hour = $lastHour->copy()->subHours($i);
+            $axisX[]=$hour->format('H');
+            $filter = $temps->filter(function ($item) use($hour) {
+              return ((new Carbon($item->date))->setTimezone('Europe/Lisbon')->hour == $hour->hour);
+            });
+
+            if(count($filter)>0) {
+                $axisY[]=$filter->first()->value;
+            } else {
+                $axisY[]=null;
+            }
+        }
 
         return view('admin.sensors.temperatures.index',  [
             'temperatures' => $pagination['data'],

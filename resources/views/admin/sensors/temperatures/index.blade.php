@@ -32,7 +32,8 @@
                     data: {!! json_encode($chart['y']) !!},
                     backgroundColor: 'rgba(54, 162, 235, 0.5)',
                     borderCorlor: 'rgba(54, 162, 235, 1)',
-                    borderWidth: 1
+                    borderWidth: 1,
+                    spanGaps: true
                 }
             ]
         },

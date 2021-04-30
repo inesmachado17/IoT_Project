@@ -45,10 +45,21 @@ class DatabaseSeeder extends Seeder
         Light::factory()->count(5)->create();
         Motion::factory()->count(5)->create();
         Smoke::factory()->count(5)->create();*/
-        $this->createTemperatures();
         //Temperature::factory()->count(5)->create();
+        $this->createSensorsData('temperatures', 50, function () {
+            return random_int(-20, 20);
+        });
         $this->createSensorsData('humidities', 50, function () {
             return random_int(0, 100);
+        });
+        $this->createSensorsData('lights', 50, function () {
+            return random_int(200, 5000);
+        });
+        $this->createSensorsData('motions', 50, function () {
+            return random_int(0, 100) > 80;
+        });
+        $this->createSensorsData('smokes', 50, function () {
+            return random_int(0, 500);
         });
 
         // Actuators
