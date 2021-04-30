@@ -13,7 +13,7 @@ class TemperatureFactory extends Factory
     {
         return [
             'value' => $this->faker->numberBetween(-20, 20),
-            'date'  => $this->faker->dateTime()
+            'date'  => $this->faker->dateTimeBetween('-24 hours')
         ];
     }
 }

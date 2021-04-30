@@ -13,7 +13,7 @@ class HumidityFactory extends Factory
     {
         return [
             'value'         => $this->faker->numberBetween(0, 100),
-            'date'          => now()
+            'date'          => $this->faker->dateTimeBetween('-24 hours')
         ];
     }
 }

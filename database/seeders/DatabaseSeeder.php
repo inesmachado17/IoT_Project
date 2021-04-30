@@ -41,12 +41,15 @@ class DatabaseSeeder extends Seeder
         ]);
 
         // Sensors
-        Humidity::factory()->count(5)->create();
+        /*Humidity::factory()->count(5)->create();
         Light::factory()->count(5)->create();
         Motion::factory()->count(5)->create();
-        Smoke::factory()->count(5)->create();
+        Smoke::factory()->count(5)->create();*/
         $this->createTemperatures();
         //Temperature::factory()->count(5)->create();
+        $this->createSensorsData('humidities', 50, function () {
+            return random_int(0, 100);
+        });
 
         // Actuators
         $this->createBlinds();
@@ -65,7 +68,8 @@ class DatabaseSeeder extends Seeder
         $items = [];
 
         for ($i = 0; $i < 50; $i++) {
-            $now = $now->subMinutes(28);
+            $now = $now->copy()->subMinutes(28);
+
             array_push($items, [
                 'value' => random_int(-200, 200) / 10,
                 'date'  => $now
@@ -74,6 +78,43 @@ class DatabaseSeeder extends Seeder
 
         DB::table('temperatures')->insert(array_reverse($items));
     }
+
+    private function createHumidities()
+    {
+        $now = Carbon::now('UTC');
+        $items = [];
+
+        for ($i = 0; $i < 50; $i++) {
+            $now = $now->copy()->subMinutes(28);
+
+            array_push($items, [
+                'value' => random_int(0, 100),
+                'date'  => $now
+            ]);
+        }
+
+        DB::table('humidities')->insert(array_reverse($items));
+    }
+
+    private function createSensorsData (string $tableName, int $totalItems, callable $cb): void
+    {
+        $now = Carbon::now('UTC');
+        $items = [];
+
+        for ($i = 0; $i < $totalItems; $i++) {
+            $now = $now->copy()->subMinutes(28);
+
+            array_push($items, [
+                'value' => $cb(),
+                'date'  => $now
+            ]);
+        }
+
+        DB::table($tableName)->insert(array_reverse($items));
+    }
+
+
+
 
     private function createBlinds()
     {
