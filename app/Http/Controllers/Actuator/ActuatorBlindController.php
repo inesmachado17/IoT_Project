@@ -98,6 +98,7 @@ class ActuatorBlindController extends Controller
         $blindState->state = $blind->state;
         $blindState->blind_id = $blind->id;
         $blindState->save();
+
         $blind->save();
 
         return redirect($request['return_to'] ?? '/actuators/blinds');

@@ -19,6 +19,6 @@ class Blind extends Model
 
     public function history()
     {
-        return $this->hasMany(BlindState::class)->take(30);
+        return $this->hasMany(BlindState::class)->latest()->take(30);
     }
 }

@@ -14,7 +14,7 @@
     @foreach ($group as $ac)
     <div class="col-md-4 col-sm-6 mb-4">
         <div class="card h-100">
-            <div class="actuator-icon">
+            <div class="actuator-icon-history">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-snow"
                     viewBox="0 0 16 16">
                     <path

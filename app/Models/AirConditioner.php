@@ -19,4 +19,8 @@ class AirConditioner extends Model
         'created_at', 'updated_at'
     ];
 
+    public function history()
+    {
+        return $this->hasMany(AirConditionerValue::class)->latest()->take(30);
+    }
 }

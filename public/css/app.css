@@ -45,8 +45,8 @@ div.actuator-icon-dashboard {
 }
 div.sensor-icon-dashboard svg,
 div.actuator-icon-dashboard svg {
-    width: 120px;
-    height: 120px;
+    width: 80px;
+    height: 80px;
     fill: #444;
 }
 
@@ -59,19 +59,20 @@ div.actuator-icon-history {
 }
 div.sensor-icon-history svg,
 div.actuator-icon-history svg {
-    width: 120px;
-    height: 120px;
+    width: 80px;
+    height: 80px;
     fill: #444;
 }
 
-#span-switch {
-    width: 100%;
-    padding: 4px;
+#button-switch {
     display: flex;
     justify-content: center;
     align-items: center;
+
+    border: none;
+    background-color: transparent;
 }
-#span-switch i {
+#button-switch i {
     font-size: 2.5rem;
 }
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Actuator;
 
 use App\Http\Controllers\Controller;
 use App\Models\AirConditioner;
+use App\Models\AirConditionerValue;
 use Illuminate\Http\Request;
 use GuzzleHttp;
 
@@ -18,6 +19,19 @@ class ActuatorAirConditionerController extends Controller
         $list = array_chunk($airConditioners, 3);
 
         return view('admin.actuators.air-conditioners.index', ['list' => $list]);
+    }
+
+    public function show($id)
+    {
+        $airConditioner = (new AirConditioner())->with('history')->find($id);
+
+        if ($airConditioner == null) {
+            return back()->withErrors([
+                'error' => 'Air Conditioner id not found'
+            ]);
+        }
+
+        return view('admin.actuators.air-conditioners.show', ['airConditioner' => $airConditioner]);
     }
 
     public function edit($id)
@@ -59,7 +73,7 @@ class ActuatorAirConditionerController extends Controller
             } catch (\Exception $exception) {
                 dd($exception);
                 return back()->withErrors([
-                    'error' => 'Cisco Packet Tracer reponde with unknown error!'
+                    'error' => 'Cisco Packet Tracer response with unknown error!'
                 ]);
             }
 
@@ -68,10 +82,16 @@ class ActuatorAirConditionerController extends Controller
                 $airConditioner->state = $request['state'];
             } else {
                 return back()->withErrors([
-                    'error' => 'Cisco Packet Tracer reponde with unknown error!'
+                    'error' => 'Cisco Packet Tracer response with unknown error!'
                 ]);
             }
         }
+
+        $airConditionerValue = new AirConditionerValue();
+        $airConditionerValue->state = $airConditioner->state;
+        $airConditionerValue->setting = $airConditioner->setting;
+        $airConditionerValue->air_conditioner_id = $airConditioner->id;
+        $airConditionerValue->save();
 
         $airConditioner->save();
 

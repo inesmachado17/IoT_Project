@@ -21,8 +21,8 @@
 
             <div class="mb-3">
                 <label for="state" class="form-label" style="display: block;">Ligar/Desligar</label>
-                <div class="d-flex align-items-center justify-content-between">
-                    <span id="span-switch"></span>
+                <div class="d-flex align-items-center justify-content-center">
+                    <button id="button-switch" type="button" onclick="toggleState()"></button>
                     <input type="hidden" id="state" name="state" value="{{ $airConditioner->state }}">
                 </div>
             </div>
@@ -39,16 +39,16 @@
 @section('scripts')
 <script type="text/javascript">
     const inputElement = document.getElementById('state');
-    const spanElement = document.getElementById('span-switch');
-    spanElement.innerHTML = inputElement.value === '1' ?
+    const buttonElement = document.getElementById('button-switch');
+    buttonElement.innerHTML = inputElement.value === '1' ?
     '<i class="bi bi-toggle-on text-success" title="Ligar"></i>' :
     '<i class="bi bi-toggle-off text-danger" title="Desligar"></i>';
 
-    spanElement.addEventListener('click', (event) => {
+    function toggleState() {
         inputElement.value = inputElement.value == '0' ? 1 : 0;
-        spanElement.innerHTML = inputElement.value === '1' ?
+        buttonElement.innerHTML = inputElement.value === '1' ?
         '<i class="bi bi-toggle-on text-success" title="Ligar"></i>' :
         '<i class="bi bi-toggle-off text-danger" title="Desligar"></i>';
-    })
+    }
 </script>
 @endsection
