@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Actuator;
 
 use App\Http\Controllers\Controller;
 use App\Models\Blind;
+use App\Models\BlindState;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use GuzzleHttp;
@@ -22,6 +23,23 @@ class ActuatorBlindController extends Controller
             'prev'      => $pagination['prev_page_url'],
             'next'      => $pagination['next_page_url'],
         ]);
+    }
+
+    public function show(Request $request, $id)
+    {
+        $returnUrl = $request->getSession()->previousUrl();
+
+        $blind = (new Blind())->with('history')->find($id);
+
+        if ($blind == null) {
+            return back()->withErrors([
+                'error' => 'Blind id not found'
+            ]);
+        }
+
+        //dd($blind);
+
+        return view('admin.actuators.blinds.show', ['blind'    => $blind, 'returnUrl' => $returnUrl]);
     }
 
     public function edit(Request $request, $id)
@@ -77,6 +95,10 @@ class ActuatorBlindController extends Controller
             }
         }
 
+        $blindState = new BlindState();
+        $blindState->state = $blind->state;
+        $blindState->blind_id = $blind->id;
+        $blindState->save();
         $blind->save();
 
         return redirect($request['return_to'] ?? '/actuators/blinds');

@@ -24,10 +24,14 @@
                 <tr>
                     <td>{{ $blind['name'] }}</td>
                     <td class="text-center">{{ $blind['state'] }} %</td>
-                    <td>
+                    <td class="text-center">
                         <a href="{{ url('/actuators/blinds/'. $blind['id'] . '/edit') }}"
                             class="btn btn-outline-secondary btn-sm" role="button" aria-pressed="true">
                             <i class="bi bi-gear"></i>
+                        </a>
+                        <a href="{{ url('/actuators/blinds/'. $blind['id']) }}" class="btn btn-outline-primary btn-sm"
+                            role="button" aria-pressed="true">
+                            <span class="small"><i>histórico</i></span>
                         </a>
                     </td>
                 </tr>

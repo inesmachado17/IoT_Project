@@ -16,4 +16,9 @@ class Blind extends Model
     protected $hidden =  [
         'created_at', 'updated_at'
     ];
+
+    public function history()
+    {
+        return $this->hasMany(BlindState::class)->take(30);
+    }
 }

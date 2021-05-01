@@ -24,6 +24,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/actuators', [ActuatorController::class, 'index']);
 
     Route::get('/actuators/blinds', [ActuatorBlindController::class, 'index']);
+    Route::get('/actuators/blinds/{id}', [ActuatorBlindController::class, 'show']);
     Route::get('/actuators/blinds/{id}/edit', [ActuatorBlindController::class, 'edit']);
     Route::put('/actuators/blinds/{id}', [ActuatorBlindController::class, 'update']);
 
