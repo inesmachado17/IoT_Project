@@ -32,6 +32,6 @@ class CreateBlindStatesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('blind_status');
+        Schema::dropIfExists('blind_states');
     }
 }

@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Blind;
 use App\Models\BlindState;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use GuzzleHttp;
 
 class ActuatorBlindController extends Controller

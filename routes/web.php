@@ -29,6 +29,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::put('/actuators/blinds/{id}', [ActuatorBlindController::class, 'update']);
 
     Route::get('/actuators/air-conditioners', [ActuatorAirConditionerController::class, 'index']);
+    Route::get('/actuators/air-conditioners/{id}', [ActuatorAirConditionerController::class, 'show']);
+    Route::get('/actuators/air-conditioners/{id}/edit', [ActuatorAirConditionerController::class, 'edit']);
+    Route::put('/actuators/air-conditioners/{id}', [ActuatorAirConditionerController::class, 'update']);
 
     Route::get('/sensors/temperatures', [SensorTemperatureController::class, 'index']);
     Route::get('/sensors/temperatures/force-update', [SensorTemperatureController::class, 'update']);

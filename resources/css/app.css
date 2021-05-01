@@ -63,3 +63,14 @@ div.actuator-icon-history svg {
     height: 120px;
     fill: #444;
 }
+
+#span-switch {
+    width: 100%;
+    padding: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#span-switch i {
+    font-size: 2.5rem;
+}

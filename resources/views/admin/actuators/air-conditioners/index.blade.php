@@ -32,7 +32,14 @@
                     <span>Estado:</span>
                     <i class="bi bi-power {{ $ac['state'] ? 'text-success' : 'text-danger' }}"></i>
                 </p>
-                <a href="actuators/air-conditioners" class="btn btn-primary btn-sm">Abrir histórico</a>
+                <p class="d-flex justify-content-between">
+                    <a href="/actuators/air-conditioners/{{ $ac['id'] }}" class="btn btn-outline-primary btn-sm">
+                        <span class="small"><i>histórico</i></span>
+                    </a>
+                    <a href="/actuators/air-conditioners/{{ $ac['id'] }}/edit" class="btn btn-outline-secondary btn-sm">
+                        <i class="bi bi-gear"></i>
+                    </a>
+                </p>
             </div>
         </div>
     </div>
