@@ -14,8 +14,12 @@
 
 <div class="row mb-3">
     <div class="col">
-        <canvas id="myChart" width="400" height="100"></canvas>
+        <canvas id="sensorChart" width="400" height="100"></canvas>
         @section('chart-script')
+        <script>
+            const canvasElement = document.getElementById('sensorChart');
+            const ctx = canvasElement.getContext('2d');
+        </script>
         @yield('script')
         @endsection
     </div>

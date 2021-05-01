@@ -20,15 +20,13 @@
 
 @section('script')
 <script>
-    const canvasElement = document.getElementById('myChart');
-    const ctx = canvasElement.getContext('2d');
-    const myChart = new Chart(ctx, {
+    const sensorChart = new Chart(ctx, {
         type: 'line',
         data: {
             labels: {!! json_encode($chart['x']) !!},
             datasets: [
                 {
-                    label: 'temp ºC',
+                    label: 'Temperatura das últimas 24 horas em ºC',
                     data: {!! json_encode($chart['y']) !!},
                     backgroundColor: 'rgba(54, 162, 235, 0.5)',
                     borderCorlor: 'rgba(54, 162, 235, 1)',

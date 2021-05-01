@@ -1,10 +1,9 @@
 <?php
 
-
 namespace App\Http\Controllers\Sensor;
 
 use App\Http\Controllers\Controller;
-use App\Models\Smoke;
+use App\Models\Sensors\Smoke;
 use Carbon\Carbon;
 use GuzzleHttp;
 
@@ -17,11 +16,14 @@ class SensorSmokeController extends Controller
             ->paginate(5)
             ->toArray();
 
+        $chart = (new Smoke())->getChartAxisXY();
+
         return view('admin.sensors.smokes.index',  [
             'smokes'  => $pagination['data'],
             'prev'    => $pagination['prev_page_url'],
             'next'    => $pagination['next_page_url'],
-            'uriName' => 'smokes'
+            'uriName' => 'smokes',
+            'chart'   => $chart
         ]);
     }
 

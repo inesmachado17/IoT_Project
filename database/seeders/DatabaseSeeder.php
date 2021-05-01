@@ -25,27 +25,25 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         DB::table('users')->insert([
-            'name' => 'Admin',
-            'email' => 'admin@teste.com',
-            'email_verified_at' => now(),
-            'role' => 'admin',
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-            'remember_token' => Str::random(10),
-        ]);
-        DB::table('users')->insert([
-            'name' => 'User',
-            'email' => 'user@teste.com',
-            'email_verified_at' => now(),
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-            'remember_token' => Str::random(10),
+            [
+                'name'              => 'Admin',
+                'email'             => 'admin@teste.com',
+                'email_verified_at' => now(),
+                'role'              => 'admin',
+                'password'          => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+                'remember_token'    => Str::random(10),
+            ],
+            [
+                'name'              => 'User',
+                'email'             => 'user@teste.com',
+                'email_verified_at' => now(),
+                'role'              => 'user',
+                'password'          => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+                'remember_token'    => Str::random(10),
+            ]
         ]);
 
         // Sensors
-        /*Humidity::factory()->count(5)->create();
-        Light::factory()->count(5)->create();
-        Motion::factory()->count(5)->create();
-        Smoke::factory()->count(5)->create();*/
-        //Temperature::factory()->count(5)->create();
         $this->createSensorsData('temperatures', 50, function () {
             return random_int(-20, 20);
         });
@@ -65,49 +63,14 @@ class DatabaseSeeder extends Seeder
         // Actuators
         $this->createBlinds();
         $this->createAirConditioners();
-        //Blind::factory()->count(10)->create();
-        //AirConditioner::factory()->count(5)->create();
+
         Door::factory()->count(5)->create();
         FireAlarm::factory()->count(5)->create();
         Lamp::factory()->count(5)->create();
         Sprinkler::factory()->count(5)->create();
     }
 
-    private function createTemperatures()
-    {
-        $now = Carbon::now('UTC');
-        $items = [];
-
-        for ($i = 0; $i < 50; $i++) {
-            $now = $now->copy()->subMinutes(28);
-
-            array_push($items, [
-                'value' => random_int(-200, 200) / 10,
-                'date'  => $now
-            ]);
-        }
-
-        DB::table('temperatures')->insert(array_reverse($items));
-    }
-
-    private function createHumidities()
-    {
-        $now = Carbon::now('UTC');
-        $items = [];
-
-        for ($i = 0; $i < 50; $i++) {
-            $now = $now->copy()->subMinutes(28);
-
-            array_push($items, [
-                'value' => random_int(0, 100),
-                'date'  => $now
-            ]);
-        }
-
-        DB::table('humidities')->insert(array_reverse($items));
-    }
-
-    private function createSensorsData (string $tableName, int $totalItems, callable $cb): void
+    private function createSensorsData(string $tableName, int $totalItems, callable $cb): void
     {
         $now = Carbon::now('UTC');
         $items = [];
@@ -123,9 +86,6 @@ class DatabaseSeeder extends Seeder
 
         DB::table($tableName)->insert(array_reverse($items));
     }
-
-
-
 
     private function createBlinds()
     {
@@ -188,24 +148,28 @@ class DatabaseSeeder extends Seeder
             [
                 'name'          => 'Central',
                 'setting'       => 21,
+                'state'         => 1,
                 'updated_at'    => now(),
                 'created_at'    => now()
             ],
             [
                 'name'          => 'Escritório',
                 'setting'       => 22,
+                'state'         => 0,
                 'updated_at'    => now(),
                 'created_at'    => now()
             ],
             [
                 'name'          => 'Sala de Jogos',
                 'setting'       => 21,
+                'state'         => 0,
                 'updated_at'    => now(),
                 'created_at'    => now()
             ],
             [
                 'name'          => 'Quarto do Pânico',
                 'setting'       => 15,
+                'state'         => 1,
                 'updated_at'    => now(),
                 'created_at'    => now()
             ],

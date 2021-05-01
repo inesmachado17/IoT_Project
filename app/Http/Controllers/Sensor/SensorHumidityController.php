@@ -1,13 +1,10 @@
 <?php
 
-
 namespace App\Http\Controllers\Sensor;
 
-use App\Models\Humidity;
+use App\Models\Sensors\Humidity;
 use Carbon\Carbon;
 use GuzzleHttp;
-use Illuminate\Database\Eloquent\Model;
-
 
 class SensorHumidityController
 {
@@ -18,11 +15,14 @@ class SensorHumidityController
             ->paginate(5)
             ->toArray();
 
+        $chart = (new Humidity())->getChartAxisXY();
+
         return view('admin.sensors.humidities.index', [
             'humidities'   => $pagination['data'],
             'prev'         => $pagination['prev_page_url'],
             'next'         => $pagination['next_page_url'],
-            'uriName'      => 'humidities'
+            'uriName'      => 'humidities',
+            'chart'        => $chart
         ]);
     }
 
@@ -33,8 +33,8 @@ class SensorHumidityController
             $response = $client->get(env('APP_API_BASE_URL') . '/sensors/humidities');
         } catch (\Exception $exception) {
             return back()->withErrors([
-            'error' => 'Cisco Packet Tracer response with unknown error!'
-        ]);
+                'error' => 'Cisco Packet Tracer response with unknown error!'
+            ]);
         }
 
         if ($response->getStatusCode() == 200) {

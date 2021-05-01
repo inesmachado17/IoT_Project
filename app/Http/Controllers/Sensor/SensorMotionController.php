@@ -1,10 +1,9 @@
 <?php
 
-
 namespace App\Http\Controllers\Sensor;
 
 use App\Http\Controllers\Controller;
-use App\Models\Motion;
+use App\Models\Sensors\Motion;
 use Carbon\Carbon;
 use GuzzleHttp;
 
@@ -17,11 +16,14 @@ class SensorMotionController extends Controller
             ->paginate(5)
             ->toArray();
 
+        $chart = (new Motion())->getChartAxisXY();
+
         return view('admin.sensors.motions.index',  [
             'motions' => $pagination['data'],
             'prev'    => $pagination['prev_page_url'],
             'next'    => $pagination['next_page_url'],
-            'uriName' => 'motions'
+            'uriName' => 'motions',
+            'chart'   => $chart
         ]);
     }
 
@@ -53,4 +55,3 @@ class SensorMotionController extends Controller
         return redirect('/sensors/motions');
     }
 }
-

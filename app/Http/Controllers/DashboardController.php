@@ -2,18 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Humidity;
-use App\Models\Light;
-use App\Models\Motion;
-use App\Models\Smoke;
-use App\Models\Temperature;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use App\Models\Sensors\Humidity;
+use App\Models\Sensors\Light;
+use App\Models\Sensors\Motion;
+use App\Models\Sensors\Smoke;
+use App\Models\Sensors\Temperature;
 
 class DashboardController extends Controller
 {
 
-    public function index(Request $request)
+    public function index()
     {
         $lastTemperature = (new Temperature())->orderBy('date', 'desc')->first();
         $lastHumidity = (new Humidity())->orderBy('date', 'desc')->first();

@@ -1,9 +1,8 @@
 <?php
 
-
 namespace App\Http\Controllers\Sensor;
 
-use App\Models\Light;
+use App\Models\Sensors\Light;
 use Carbon\Carbon;
 use GuzzleHttp;
 
@@ -16,11 +15,14 @@ class SensorLightController
             ->paginate(5)
             ->toArray();
 
+        $chart = (new Light())->getChartAxisXY();
+
         return view('admin.sensors.lights.index', [
             'lights'   => $pagination['data'],
             'prev'     => $pagination['prev_page_url'],
             'next'     => $pagination['next_page_url'],
-            'uriName'  => 'lights'
+            'uriName'  => 'lights',
+            'chart'    => $chart
         ]);
     }
 
