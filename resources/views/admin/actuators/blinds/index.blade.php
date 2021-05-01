@@ -8,6 +8,10 @@
     </div>
 </div>
 
+<div class="row d-flex justify-content-center">
+    <img id="actuator-icon-blind" src="/imgs/blind-icon.png" alt="Persiana">
+</div>
+
 <div class="row">
     <div class="col-8 offset-2">
         <p>Lista de Persianas cadastradas</p>

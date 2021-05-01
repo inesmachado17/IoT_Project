@@ -42,6 +42,7 @@ div.actuator-icon-dashboard {
     display: flex;
     justify-content: center;
     align-items: center;
+    font-size: 64px;
 }
 div.sensor-icon-dashboard svg,
 div.actuator-icon-dashboard svg {
@@ -56,6 +57,7 @@ div.actuator-icon-history {
     display: flex;
     justify-content: center;
     align-items: center;
+    font-size: 64px;
 }
 div.sensor-icon-history svg,
 div.actuator-icon-history svg {
@@ -74,4 +76,9 @@ div.actuator-icon-history svg {
 }
 #button-switch i {
     font-size: 2.5rem;
+}
+
+#actuator-icon-blind {
+    width: 80px;
+    height: 80px;
 }
