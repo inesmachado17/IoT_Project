@@ -71,7 +71,6 @@ class ActuatorAirConditionerController extends Controller
                     'state'   => $request['state']
                 ]); //['auth' =>  ['user', 'pass']]
             } catch (\Exception $exception) {
-                dd($exception);
                 return back()->withErrors([
                     'error' => 'Cisco Packet Tracer response with unknown error!'
                 ]);
@@ -95,6 +94,6 @@ class ActuatorAirConditionerController extends Controller
 
         $airConditioner->save();
 
-        return redirect($request['return_to'] ?? '/actuators/air-conditioners');
+        return redirect('/actuators/air-conditioners');
     }
 }

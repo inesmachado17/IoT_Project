@@ -18,4 +18,9 @@ class Sprinkler extends Model
     protected $hidden =  [
         'created_at', 'updated_at'
     ];
+
+    public function history()
+    {
+        return $this->hasMany(SprinklerValue::class)->latest()->take(30);
+    }
 }

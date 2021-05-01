@@ -63,11 +63,12 @@ class DatabaseSeeder extends Seeder
         // Actuators
         $this->createBlinds();
         $this->createAirConditioners();
+        $this->createSprinklers();
 
         Door::factory()->count(5)->create();
         FireAlarm::factory()->count(5)->create();
         Lamp::factory()->count(5)->create();
-        Sprinkler::factory()->count(5)->create();
+        //Sprinkler::factory()->count(5)->create();
     }
 
     private function createSensorsData(string $tableName, int $totalItems, callable $cb): void
@@ -169,6 +170,40 @@ class DatabaseSeeder extends Seeder
             [
                 'name'          => 'Quarto do Pânico',
                 'setting'       => 15,
+                'state'         => 1,
+                'updated_at'    => now(),
+                'created_at'    => now()
+            ],
+        ]);
+    }
+
+    private function createSprinklers()
+    {
+        DB::table('sprinklers')->insert([
+            [
+                'name'          => 'Relvado frente',
+                'timer'         => 30,
+                'state'         => 1,
+                'updated_at'    => now(),
+                'created_at'    => now()
+            ],
+            [
+                'name'          => 'Relvado traseiras',
+                'timer'         => 45,
+                'state'         => 0,
+                'updated_at'    => now(),
+                'created_at'    => now()
+            ],
+            [
+                'name'          => 'Parque',
+                'timer'         => 21,
+                'state'         => 0,
+                'updated_at'    => now(),
+                'created_at'    => now()
+            ],
+            [
+                'name'          => 'Estufa',
+                'timer'         => 15,
                 'state'         => 1,
                 'updated_at'    => now(),
                 'created_at'    => now()

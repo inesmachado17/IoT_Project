@@ -11,10 +11,10 @@
             </a>
             <a href="/actuators/air-conditioners"
                 class="list-group-item list-group-item-action d-flex justify-content-between">
-                <span>Air Condicionado</span>
+                <span>Ar Condicionado</span>
                 <i class="bi bi-snow"></i>
             </a>
-            <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between">
+            <a href="/actuators/sprinklers" class="list-group-item list-group-item-action d-flex justify-content-between">
                 <span>Aspersores</span>
                 <i class="bi bi-droplet"></i>
             </a>

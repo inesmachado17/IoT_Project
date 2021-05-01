@@ -13,12 +13,12 @@
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
-                    Atuadores
+                    Equipamentos
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="/actuators/blinds">Persianas</a>
+                    <a class="dropdown-item" href="/actuators/blinds">Persiana</a>
                     <a class="dropdown-item" href="/actuators/air-conditioners">Ar Condicionado</a>
-                    <a class="dropdown-item" href="#">Regador</a>
+                    <a class="dropdown-item" href="actuators/sprinklers">Aspersor</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="#">Something else here</a>
                 </div>
