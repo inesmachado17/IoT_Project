@@ -19,8 +19,8 @@
                     <a class="dropdown-item" href="/actuators/blinds">Persiana</a>
                     <a class="dropdown-item" href="/actuators/air-conditioners">Ar Condicionado</a>
                     <a class="dropdown-item" href="actuators/sprinklers">Aspersor</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Something else here</a>
+                    <a class="dropdown-item" href="actuators/doors">Porta</a>
+                    <a class="dropdown-item" href="actuators/lamps">Lâmpada</a>
                 </div>
             </li>
         </ul>

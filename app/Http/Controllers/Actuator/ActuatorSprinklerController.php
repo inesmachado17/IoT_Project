@@ -42,7 +42,7 @@ class ActuatorSprinklerController extends Controller
         }
 
         return back()->withErrors([
-            'error' => 'Sprinkler not found'
+            'error' => 'Sprinkler id not found'
         ]);
     }
 

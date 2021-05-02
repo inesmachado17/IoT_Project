@@ -12,10 +12,91 @@ class ActuatorLampController extends Controller
     public function index()
     {
         $pagination = (new Lamp())
-            ->latest()
-            ->paginate(5);
+            ->orderBy('name')
+            ->paginate(10)
+            ->toArray();
 
+        return view('admin.actuators.lamps.index', [
+            'lamps'    => $pagination['data'],
+            'prev'     => $pagination['prev_page_url'],
+            'next'     => $pagination['next_page_url'],
+        ]);
+    }
 
-        return view('actuators.lamps.list', ['list' => $pagination]);
+    public function show(Request $request, $id)
+    {
+        $returnUrl = $request->getSession()->previousUrl();
+
+        $lamp = (new Lamp())->with('history')->find($id);
+
+        if ($lamp == null) {
+            return back()->withErrors([
+                'error' => 'Lamp id not found'
+            ]);
+        }
+        return view('admin.actuators.lamps.show', ['lamp'    => $lamp, 'returnUrl' => $returnUrl]);
+    }
+
+    public function edit(Request $request, $id)
+    {
+        $returnUrl = $request->getSession()->previousUrl();
+
+        $lamp = (new Lamp())->find($id);
+
+        if ($lamp != null) {
+            return view('admin.actuators.lamps.edit', ['lamp'    => $lamp, 'returnUrl' => $returnUrl]);
+        }
+
+        return back()->withErrors([
+            'error' => 'Lamp id not found'
+        ]);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $request->merge(['id' => $id]);
+        $request->validate([
+            'id'        => 'required|exists:lamps,id',
+            'name'      => 'required|string',
+            'setting'   => 'required|numeric|min:0|max:100',
+            'timer'     => 'required|numeric',
+            'state'     => 'required|boolean'
+        ]);
+
+        $lamp = (new Lamp())->findOrFail($id);
+        $lamp->name = $request['name'];
+
+        if ($lamp->state != $request['state']) {
+
+            $client = new GuzzleHttp\Client();
+
+            try {
+                $response = $client->post(env('APP_API_BASE_URL') . '/actuators/lamps', [
+                    'code'  => $id,
+                    'state' => $request['state']
+                ]); //['auth' =>  ['user', 'pass']]
+            } catch (\Exception $exception) {
+                return back()->withErrors([
+                    'error' => 'Cisco Packet Tracer response with unknown error!'
+                ]);
+            }
+
+            if ($response->getStatusCode() == 200 || $response->getStatusCode() == 204) {
+                $lamp->state = $request['state'];
+            } else {
+                return back()->withErrors([
+                    'error' => 'Cisco Packet Tracer reponde with unknown error!'
+                ]);
+            }
+        }
+
+        $lampState = new LampState();
+        $lampState->state = $lamp->state;
+        $lampState->lamp_id = $lamp->id;
+        $lampState->save();
+
+        $lamp->save();
+
+        return redirect($request['return_to'] ?? '/actuators/lamps');
     }
 }

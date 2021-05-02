@@ -18,7 +18,7 @@ class CreateLampsTable extends Migration
             $table->string('name');
             $table->unsignedInteger('setting');
             $table->unsignedInteger('timer')->default(60);
-            $table->unsignedInteger('state')->default(0);
+            $table->boolean('state')->default(false);
             $table->timestamps();
         });
     }

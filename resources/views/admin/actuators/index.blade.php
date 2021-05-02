@@ -18,11 +18,14 @@
                 <span>Aspersores</span>
                 <i class="bi bi-droplet"></i>
             </a>
-            <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between">A fourth link
-                item</a>
-            <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between disabled"
-                tabindex="-1" aria-disabled="true">A
-                disabled link item</a>
+            <a href="/actuators/doors" class="list-group-item list-group-item-action d-flex justify-content-between">
+                <span>Portas</span>
+                <i class="bi bi-door-closed"></i>
+            </a>
+            <a href="/actuators/lamps" class="list-group-item list-group-item-action d-flex justify-content-between">
+                <span>Lâmpadas</span>
+                <i class="bi bi-lightbulb"></i>
+            </a>
         </div>
     </div>
 </div>

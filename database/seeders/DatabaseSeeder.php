@@ -64,11 +64,9 @@ class DatabaseSeeder extends Seeder
         $this->createBlinds();
         $this->createAirConditioners();
         $this->createSprinklers();
+        $this->createDoors();
+        $this->createLamps();
 
-        Door::factory()->count(5)->create();
-        FireAlarm::factory()->count(5)->create();
-        Lamp::factory()->count(5)->create();
-        //Sprinkler::factory()->count(5)->create();
     }
 
     private function createSensorsData(string $tableName, int $totalItems, callable $cb): void
@@ -203,6 +201,78 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'name'          => 'Estufa',
+                'timer'         => 15,
+                'state'         => 1,
+                'updated_at'    => now(),
+                'created_at'    => now()
+            ],
+        ]);
+    }
+
+    private function createDoors()
+    {
+        DB::table('doors')->insert([
+            [
+                'name'          => 'Porta principal',
+                'state'         => 0,
+                'auth'          => 0,
+                'updated_at'    => now(),
+                'created_at'    => now()
+            ],
+            [
+                'name'          => 'Porta traseiras',
+                'state'         => 1,
+                'auth'          => 1,
+                'updated_at'    => now(),
+                'created_at'    => now()
+            ],
+            [
+                'name'          => 'Portão garagem',
+                'state'         => 0,
+                'auth'          => 0,
+                'updated_at'    => now(),
+                'created_at'    => now()
+            ],
+            [
+                'name'          => 'Portão jardim',
+                'state'         => 0,
+                'auth'          => 0,
+                'updated_at'    => now(),
+                'created_at'    => now()
+            ],
+        ]);
+    }
+
+    private function createLamps()
+    {
+        DB::table('lamps')->insert([
+            [
+                'name'          => 'Sala de estar',
+                'setting'       => 70,
+                'timer'         => 30,
+                'state'         => 1,
+                'updated_at'    => now(),
+                'created_at'    => now()
+            ],
+            [
+                'name'          => 'Sala de jantar',
+                'setting'       => 0,
+                'timer'         => 45,
+                'state'         => 0,
+                'updated_at'    => now(),
+                'created_at'    => now()
+            ],
+            [
+                'name'          => 'Cozinha',
+                'setting'       => 25,
+                'timer'         => 21,
+                'state'         => 0,
+                'updated_at'    => now(),
+                'created_at'    => now()
+            ],
+            [
+                'name'          => 'Quarto principal',
+                'setting'       => 0,
                 'timer'         => 15,
                 'state'         => 1,
                 'updated_at'    => now(),

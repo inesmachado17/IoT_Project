@@ -15,7 +15,7 @@ class LampFactory extends Factory
     {
         return [
             'name'          => $this->faker->word(),
-            'setting'       => $this->faker->numberBetween(1, 5),
+            'setting'       => $this->faker->numberBetween(1, 100),
             'timer'         => $this->faker->numberBetween(60, 720),
             'updated_at'    => now(),
             'created_at'    => now()
