@@ -126,23 +126,6 @@ Route::post('/sensors/motions', function (Request $request) {
     return response('', 204);
 });
 
-/*Route::get('/sensors/temperatures', function (Request $request)
-{
-    $temp = new Temperature();
-    $find = $temp->orderBy('date', 'desc')->first();
-
-    return response($find);
-
-});*/
-
-/*Route::get('/sensors/humidities', function (Request $request)
-{
-    $humd = new Humidity();
-    $find = $humd->orderBy('date', 'desc')->first();
-
-    return response($find);
-});*/
-
 Route::get('/sensors/{sensorName}', function (Request $request, $sensorName) {
     $sensors = [
         "temperatures"    => new Temperature(),
