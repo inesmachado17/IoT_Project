@@ -66,6 +66,13 @@ class DatabaseSeeder extends Seeder
         $this->createSprinklers();
         $this->createDoors();
         $this->createLamps();
+
+        DB::table('fire_alarms')->insert([
+            'name'       => 'Alarm 1',
+            'state'      => 1,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
     }
 
     private function createSensorsData(string $tableName, int $totalItems, callable $cb): void

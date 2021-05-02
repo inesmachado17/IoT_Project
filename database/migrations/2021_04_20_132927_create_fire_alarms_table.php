@@ -17,7 +17,7 @@ class CreateFireAlarmsTable extends Migration
             $table->id();
             $table->string('name');
             $table->unsignedInteger('state')->default(0);
-            $table->string('action');
+            $table->string('action')->nullable();
             $table->timestamps();
         });
     }

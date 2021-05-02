@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Sensor;
 
+use App\Http\Controllers\AdminController;
 use App\Models\Sensors\Humidity;
 use Carbon\Carbon;
 use GuzzleHttp;
 
-class SensorHumidityController
+class SensorHumidityController extends AdminController
 {
     public function index()
     {

@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Sensor;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\AdminController;
 use App\Models\Sensors\Smoke;
 use Carbon\Carbon;
 use GuzzleHttp;
 
-class SensorSmokeController extends Controller
+class SensorSmokeController extends AdminController
 {
     public function index()
     {

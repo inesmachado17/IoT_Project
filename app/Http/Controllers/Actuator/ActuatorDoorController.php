@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Actuator;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\AdminController;
 use App\Models\Door;
 use App\Models\DoorState;
 use Illuminate\Http\Request;
 use GuzzleHttp;
 
-class ActuatorDoorController extends Controller
+class ActuatorDoorController extends AdminController
 {
     public function index()
     {

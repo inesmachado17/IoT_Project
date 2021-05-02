@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Actuator;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\AdminController;
 
-class ActuatorController extends Controller
+class ActuatorController extends AdminController
 {
     public function index()
     {

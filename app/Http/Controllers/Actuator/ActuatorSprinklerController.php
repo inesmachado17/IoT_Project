@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers\Actuator;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\AdminController;
 use App\Models\Sprinkler;
 use App\Models\SprinklerValue;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use GuzzleHttp;
 
-class ActuatorSprinklerController extends Controller
+class ActuatorSprinklerController extends AdminController
 {
     public function index()
     {

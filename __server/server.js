@@ -107,6 +107,9 @@ server.post("/api/actuators/lamps", (req, res) => {
 
     return res.sendStatus(500);
 });
+server.post("/api/actuators/fire-alarms", (req, res) => {
+    return res.sendStatus(204);
+});
 
 // Authenticated routes
 server.use((req, res, next) => {

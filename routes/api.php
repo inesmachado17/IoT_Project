@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\FireAlarm;
 use App\Models\Sensors\Humidity;
 use App\Models\Sensors\Light;
 use App\Models\Sensors\Motion;
@@ -120,6 +121,26 @@ Route::post('/sensors/motions', function (Request $request) {
         $motion->date = new Carbon($request['date']);
 
         $motion->save();
+    } catch (\Exception $exception) {
+        return response($exception->getMessage(), 500);
+    }
+    return response('', 204);
+});
+
+Route::post('/actuators/fire-alarms', function (Request $request) {
+    $validator = Validator::make($request->all(), [
+        "value" => "required|boolean"
+    ]);
+
+    if ($validator->fails()) {
+        return response($validator->messages(), 400);
+    }
+
+    try {
+        $fireAlarm = new FireAlarm();
+        $fireAlarm->value = $request['value'];
+
+        $fireAlarm->save();
     } catch (\Exception $exception) {
         return response($exception->getMessage(), 500);
     }

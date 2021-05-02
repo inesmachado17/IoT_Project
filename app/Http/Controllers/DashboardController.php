@@ -8,7 +8,7 @@ use App\Models\Sensors\Motion;
 use App\Models\Sensors\Smoke;
 use App\Models\Sensors\Temperature;
 
-class DashboardController extends Controller
+class DashboardController extends AdminController
 {
 
     public function index()

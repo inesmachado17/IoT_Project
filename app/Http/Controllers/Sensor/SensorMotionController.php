@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Sensor;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\AdminController;
 use App\Models\Sensors\Motion;
 use Carbon\Carbon;
 use GuzzleHttp;
 
-class SensorMotionController extends Controller
+class SensorMotionController extends AdminController
 {
     public function index()
     {

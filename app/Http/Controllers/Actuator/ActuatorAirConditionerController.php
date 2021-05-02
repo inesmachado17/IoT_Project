@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\Actuator;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\AdminController;
 use App\Models\AirConditioner;
 use App\Models\AirConditionerValue;
 use Illuminate\Http\Request;
 use GuzzleHttp;
 
 
-class ActuatorAirConditionerController extends Controller
+class ActuatorAirConditionerController extends AdminController
 {
     public function index()
     {

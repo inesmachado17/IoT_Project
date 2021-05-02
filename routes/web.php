@@ -6,6 +6,7 @@ use App\Http\Controllers\Actuator\ActuatorSprinklerController;
 use App\Http\Controllers\Actuator\ActuatorDoorController;
 use App\Http\Controllers\Actuator\ActuatorLampController;
 use App\Http\Controllers\Actuator\ActuatorController;
+use App\Http\Controllers\Actuator\ActuatorFireAlarmController;
 use App\Http\Controllers\Sensor\SensorHumidityController;
 use App\Http\Controllers\Sensor\SensorLightController;
 use App\Http\Controllers\Sensor\SensorMotionController;
@@ -50,6 +51,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/actuators/lamps/{id}', [ActuatorLampController::class, 'show']);
     Route::get('/actuators/lamps/{id}/edit', [ActuatorLampController::class, 'edit']);
     Route::put('/actuators/lamps/{id}', [ActuatorLampController::class, 'update']);
+
+    Route::get('/actuators/fire-alarms/turn-off/{id}', [ActuatorFireAlarmController::class, 'turnOff']);
 
     Route::get('/sensors/temperatures', [SensorTemperatureController::class, 'index']);
     Route::get('/sensors/temperatures/force-update', [SensorTemperatureController::class, 'update']);

@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Actuator;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\AdminController;
 use App\Models\Blind;
 use App\Models\BlindState;
 use Illuminate\Http\Request;
 use GuzzleHttp;
 
-class ActuatorBlindController extends Controller
+class ActuatorBlindController extends AdminController
 {
     public function index()
     {

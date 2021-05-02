@@ -29,6 +29,29 @@
 
         @yield('header')
 
+        <div class="row d-flex justify-content-end m-3">
+
+            @if (isset($fireAlarm))
+            <span id="fire-alarm-icon">
+                @if ($fireAlarm && $fireAlarm->state)
+                <button type="button" class="btn btn-danger">Ligar 112</button>
+                {{-- <button type="button" class="btn btn-outline-danger">Desligar Alarme</button> --}}
+                {{-- <a class="btn btn-danger" href="#" role="button">Ligar 112</a>--}}
+                <a class="btn btn-outline-danger" href="/actuators/fire-alarms/turn-off/{{$fireAlarm->id}}"
+                    role="button">Desligar
+                    Alarme</a>
+                @endif
+
+                <span class="text-muted ml-4 mr-2 {{ $fireAlarm && $fireAlarm->state ? '' : 'small'}}">Alarme de
+                    incêndio</span>
+                {!! $fireAlarm && $fireAlarm->state ? '<i class="far fa-bell text-danger on"></i>' : '<i
+                    class="far fa-bell text-muted"></i>'
+                !!}
+            </span>
+            @endif
+
+        </div>
+
     </header>
 
     <main class="d-flex flex-column flex-grow-1 justify-content-center">

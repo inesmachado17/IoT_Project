@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Actuator;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\AdminController;
 use App\Models\Lamp;
 use App\Models\LampState;
 use Illuminate\Http\Request;
 use GuzzleHttp;
 
-class ActuatorLampController extends Controller
+class ActuatorLampController extends AdminController
 {
     public function index()
     {
