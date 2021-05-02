@@ -16,7 +16,6 @@ class CreateLampStatesTable extends Migration
         Schema::create('lamp_states', function (Blueprint $table) {
             $table->id();
             $table->unsignedInteger('setting');
-            $table->unsignedInteger('timer');
             $table->boolean('state');
             $table->timestamps();
 

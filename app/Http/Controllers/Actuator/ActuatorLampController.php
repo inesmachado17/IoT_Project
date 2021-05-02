@@ -4,8 +4,9 @@ namespace App\Http\Controllers\Actuator;
 
 use App\Http\Controllers\Controller;
 use App\Models\Lamp;
+use App\Models\LampState;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use GuzzleHttp;
 
 class ActuatorLampController extends Controller
 {
@@ -34,7 +35,7 @@ class ActuatorLampController extends Controller
                 'error' => 'Lamp id not found'
             ]);
         }
-        return view('admin.actuators.lamps.show', ['lamp'    => $lamp, 'returnUrl' => $returnUrl]);
+        return view('admin.actuators.lamps.show', ['lamp' => $lamp, 'returnUrl' => $returnUrl]);
     }
 
     public function edit(Request $request, $id)
@@ -44,7 +45,7 @@ class ActuatorLampController extends Controller
         $lamp = (new Lamp())->find($id);
 
         if ($lamp != null) {
-            return view('admin.actuators.lamps.edit', ['lamp'    => $lamp, 'returnUrl' => $returnUrl]);
+            return view('admin.actuators.lamps.edit', ['lamp' => $lamp, 'returnUrl' => $returnUrl]);
         }
 
         return back()->withErrors([
@@ -59,21 +60,21 @@ class ActuatorLampController extends Controller
             'id'        => 'required|exists:lamps,id',
             'name'      => 'required|string',
             'setting'   => 'required|numeric|min:0|max:100',
-            'timer'     => 'required|numeric',
             'state'     => 'required|boolean'
         ]);
 
         $lamp = (new Lamp())->findOrFail($id);
         $lamp->name = $request['name'];
 
-        if ($lamp->state != $request['state']) {
+        if ($lamp->state != $request['state'] || $lamp->setting != $request['setting']) {
 
             $client = new GuzzleHttp\Client();
 
             try {
                 $response = $client->post(env('APP_API_BASE_URL') . '/actuators/lamps', [
-                    'code'  => $id,
-                    'state' => $request['state']
+                    'code'    => $id,
+                    'state'   => $request['state'],
+                    'setting' => $request['setting']
                 ]); //['auth' =>  ['user', 'pass']]
             } catch (\Exception $exception) {
                 return back()->withErrors([
@@ -83,6 +84,7 @@ class ActuatorLampController extends Controller
 
             if ($response->getStatusCode() == 200 || $response->getStatusCode() == 204) {
                 $lamp->state = $request['state'];
+                $lamp->setting = $request['setting'];
             } else {
                 return back()->withErrors([
                     'error' => 'Cisco Packet Tracer reponde with unknown error!'
@@ -91,6 +93,7 @@ class ActuatorLampController extends Controller
         }
 
         $lampState = new LampState();
+        $lampState->setting = $lamp->setting;
         $lampState->state = $lamp->state;
         $lampState->lamp_id = $lamp->id;
         $lampState->save();

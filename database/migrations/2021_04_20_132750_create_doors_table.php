@@ -17,7 +17,7 @@ class CreateDoorsTable extends Migration
             $table->id();
             $table->string('name');
             $table->boolean('state');
-            $table->boolean('auth');
+            $table->boolean('locked');
             $table->timestamps();
         });
     }

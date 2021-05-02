@@ -27,7 +27,7 @@ class DatabaseSeeder extends Seeder
         DB::table('users')->insert([
             [
                 'name'              => 'Admin',
-                'email'             => 'admin@teste.com',
+                'email'             => 'admin@test.com',
                 'email_verified_at' => now(),
                 'role'              => 'admin',
                 'password'          => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
@@ -35,7 +35,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'name'              => 'User',
-                'email'             => 'user@teste.com',
+                'email'             => 'user@test.com',
                 'email_verified_at' => now(),
                 'role'              => 'user',
                 'password'          => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
@@ -66,7 +66,6 @@ class DatabaseSeeder extends Seeder
         $this->createSprinklers();
         $this->createDoors();
         $this->createLamps();
-
     }
 
     private function createSensorsData(string $tableName, int $totalItems, callable $cb): void
@@ -215,28 +214,28 @@ class DatabaseSeeder extends Seeder
             [
                 'name'          => 'Porta principal',
                 'state'         => 0,
-                'auth'          => 0,
+                'locked'        => 0,
                 'updated_at'    => now(),
                 'created_at'    => now()
             ],
             [
                 'name'          => 'Porta traseiras',
                 'state'         => 1,
-                'auth'          => 1,
+                'locked'        => 1,
                 'updated_at'    => now(),
                 'created_at'    => now()
             ],
             [
                 'name'          => 'Portão garagem',
                 'state'         => 0,
-                'auth'          => 0,
+                'locked'        => 0,
                 'updated_at'    => now(),
                 'created_at'    => now()
             ],
             [
                 'name'          => 'Portão jardim',
                 'state'         => 0,
-                'auth'          => 0,
+                'locked'        => 0,
                 'updated_at'    => now(),
                 'created_at'    => now()
             ],
@@ -249,7 +248,6 @@ class DatabaseSeeder extends Seeder
             [
                 'name'          => 'Sala de estar',
                 'setting'       => 70,
-                'timer'         => 30,
                 'state'         => 1,
                 'updated_at'    => now(),
                 'created_at'    => now()
@@ -257,7 +255,6 @@ class DatabaseSeeder extends Seeder
             [
                 'name'          => 'Sala de jantar',
                 'setting'       => 0,
-                'timer'         => 45,
                 'state'         => 0,
                 'updated_at'    => now(),
                 'created_at'    => now()
@@ -265,7 +262,6 @@ class DatabaseSeeder extends Seeder
             [
                 'name'          => 'Cozinha',
                 'setting'       => 25,
-                'timer'         => 21,
                 'state'         => 0,
                 'updated_at'    => now(),
                 'created_at'    => now()
@@ -273,7 +269,6 @@ class DatabaseSeeder extends Seeder
             [
                 'name'          => 'Quarto principal',
                 'setting'       => 0,
-                'timer'         => 15,
                 'state'         => 1,
                 'updated_at'    => now(),
                 'created_at'    => now()

@@ -18,9 +18,9 @@
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="/actuators/blinds">Persiana</a>
                     <a class="dropdown-item" href="/actuators/air-conditioners">Ar Condicionado</a>
-                    <a class="dropdown-item" href="actuators/sprinklers">Aspersor</a>
-                    <a class="dropdown-item" href="actuators/doors">Porta</a>
-                    <a class="dropdown-item" href="actuators/lamps">Lâmpada</a>
+                    <a class="dropdown-item" href="/actuators/sprinklers">Aspersor</a>
+                    <a class="dropdown-item" href="/actuators/doors">Porta</a>
+                    <a class="dropdown-item" href="/actuators/lamps">Lâmpada</a>
                 </div>
             </li>
         </ul>

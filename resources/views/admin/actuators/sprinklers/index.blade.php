@@ -25,7 +25,8 @@
                     {{ $sprinkler['name'] }}
                 </h5>
                 <p class="text-right">
-                    <span class="text-muted small">Programado para: {{ $sprinkler['timer'] }} <i class="bi bi-stopwatch"></i></span>
+                    <span class="text-muted small">Programado para: {{ $sprinkler['timer'] }} <i
+                            class="bi bi-stopwatch"></i></span>
                 </p>
                 <p class="d-flex justify-content-between" title="{{ $sprinkler['state'] ? 'Ligado' : 'Desligado' }}">
                     <span>Estado:</span>
@@ -35,7 +36,8 @@
                     <a href="/actuators/sprinklers/{{ $sprinkler['id'] }}" class="btn btn-outline-primary btn-sm">
                         <span class="small"><i>histórico</i></span>
                     </a>
-                    <a href="/actuators/sprinklers/{{ $sprinkler['id'] }}/edit" class="btn btn-outline-secondary btn-sm">
+                    <a href="/actuators/sprinklers/{{ $sprinkler['id'] }}/edit"
+                        class="btn btn-outline-secondary btn-sm">
                         <i class="bi bi-gear"></i>
                     </a>
                 </p>

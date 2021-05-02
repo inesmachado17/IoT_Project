@@ -11,11 +11,18 @@
                 <input type="text" class="form-control" id="name" name="name" value="{{ $door->name }}">
             </div>
 
-            <div class="mb-3">
-                <label for="timer" class="form-label" style="display: block;">Presença</label>
-                <div class="d-flex align-items-center justify-content-between">
-                    <input type="text" class="form-control" id="timer" name="timer"
-                        value="{{ $door->state }}">
+            <div class="mb-3 text-center">
+                <p class="form-label text-left">Tranca Eletrônica</p>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="locked" id="locked" value="1"
+                        checked={{ $door->locked }} />
+                    <label class="form-check-label" for="locked"><i class="bi bi-lock"></i></label>
+                </div>
+
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="locked" id="unlocked" value="0"
+                        checked={{ $door->locked }} />
+                    <label class="form-check-label" for="unlocked"><i class="bi bi-unlock"></i></label>
                 </div>
             </div>
 
@@ -23,7 +30,7 @@
                 <label for="state" class="form-label" style="display: block;">Abrir/Fechar</label>
                 <div class="d-flex align-items-center justify-content-center">
                     <button id="button-switch" type="button" onclick="toggleState()"></button>
-                    <input type="hidden" id="state" name="state" value="{{ $door->auth }}">
+                    <input type="hidden" id="state" name="state" value="{{ $door->state }}">
                 </div>
             </div>
 
@@ -41,14 +48,14 @@
     const inputElement = document.getElementById('state');
     const buttonElement = document.getElementById('button-switch');
     buttonElement.innerHTML = inputElement.value === '1' ?
-    '<i class="bi bi-toggle-on text-success" title="Ligar"></i>' :
-    '<i class="bi bi-toggle-off text-danger" title="Desligar"></i>';
+    '<i class="bi bi-toggle-on text-success" title="Ligado"></i>' :
+    '<i class="bi bi-toggle-off text-danger" title="Desligado"></i>';
 
     function toggleState() {
         inputElement.value = inputElement.value == '0' ? 1 : 0;
         buttonElement.innerHTML = inputElement.value === '1' ?
-        '<i class="bi bi-toggle-on text-success" title="Ligar"></i>' :
-        '<i class="bi bi-toggle-off text-danger" title="Desligar"></i>';
+        '<i class="bi bi-toggle-on text-success" title="Ligado"></i>' :
+        '<i class="bi bi-toggle-off text-danger" title="Desligado"></i>';
     }
 </script>
 @endsection

@@ -5,6 +5,8 @@ const port = 3333;
 
 server.use(express.json());
 
+const RATE_ERROR = 5;
+
 const usedData = {
     temp: 20,
     hum: 50,
@@ -15,7 +17,7 @@ const usedData = {
 // Pulbic routes
 server.get("/api/sensors/temperatures", (req, res) => {
     const success = faker.datatype.number({ min: 0, max: 100 });
-    if (success > 10) {
+    if (success > RATE_ERROR) {
         usedData.temp += faker.datatype.float({ min: -2.0, max: 2.0 });
         return res.send({
             value: usedData.temp.toFixed(2),
@@ -27,7 +29,7 @@ server.get("/api/sensors/temperatures", (req, res) => {
 });
 server.get("/api/sensors/humidities", (req, res) => {
     const success = faker.datatype.number({ min: 0, max: 100 });
-    if (success > 0) {
+    if (success > RATE_ERROR) {
         usedData.hum += faker.datatype.float({ min: -0.09, max: 0.09 }) * 100;
         usedData.hum = Math.abs(usedData.hum);
         usedData.hum = usedData.hum > 100 ? 100 : usedData.hum;
@@ -41,7 +43,7 @@ server.get("/api/sensors/humidities", (req, res) => {
 });
 server.get("/api/sensors/lights", (req, res) => {
     const success = faker.datatype.number({ min: 0, max: 100 });
-    if (success > 10) {
+    if (success > RATE_ERROR) {
         return res.send({
             value: faker.datatype.number({ min: 100, max: 5000 }),
             date: new Date(),
@@ -52,7 +54,7 @@ server.get("/api/sensors/lights", (req, res) => {
 });
 server.get("/api/sensors/smokes", (req, res) => {
     const success = faker.datatype.number({ min: 0, max: 100 });
-    if (success > 10) {
+    if (success > RATE_ERROR) {
         return res.send({
             value: faker.datatype.number({ min: 50, max: 500 }),
             date: new Date(),
@@ -63,7 +65,7 @@ server.get("/api/sensors/smokes", (req, res) => {
 });
 server.get("/api/sensors/motions", (req, res) => {
     const success = faker.datatype.number({ min: 0, max: 100 });
-    if (success > 10) {
+    if (success > RATE_ERROR) {
         return res.send({
             value: faker.datatype.number({ min: 0, max: 100 }) > 35 ? 0 : 1,
             date: new Date(),
@@ -75,7 +77,7 @@ server.get("/api/sensors/motions", (req, res) => {
 
 server.post("/api/actuators/blinds", (req, res) => {
     const success = faker.datatype.number({ min: 0, max: 100 });
-    if (success > 10) {
+    if (success > RATE_ERROR) {
         return res.sendStatus(204);
     }
 
@@ -83,7 +85,23 @@ server.post("/api/actuators/blinds", (req, res) => {
 });
 server.post("/api/actuators/air-conditioners", (req, res) => {
     const success = faker.datatype.number({ min: 0, max: 100 });
-    if (success > 10) {
+    if (success > RATE_ERROR) {
+        return res.sendStatus(204);
+    }
+
+    return res.sendStatus(500);
+});
+server.post("/api/actuators/doors", (req, res) => {
+    const success = faker.datatype.number({ min: 0, max: 100 });
+    if (success > RATE_ERROR) {
+        return res.sendStatus(204);
+    }
+
+    return res.sendStatus(500);
+});
+server.post("/api/actuators/lamps", (req, res) => {
+    const success = faker.datatype.number({ min: 0, max: 100 });
+    if (success > RATE_ERROR) {
         return res.sendStatus(204);
     }
 

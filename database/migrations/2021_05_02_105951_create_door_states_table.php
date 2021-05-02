@@ -16,6 +16,8 @@ class CreateDoorStatesTable extends Migration
         Schema::create('door_states', function (Blueprint $table) {
             $table->id();
             $table->boolean('state');
+            $table->boolean('locked');
+            $table->boolean('presence');
             $table->timestamps();
 
             $table->foreignId('door_id')

@@ -82,3 +82,7 @@ div.actuator-icon-history svg {
     width: 80px;
     height: 80px;
 }
+
+label.form-check-label i {
+    font-size: 32px;
+}

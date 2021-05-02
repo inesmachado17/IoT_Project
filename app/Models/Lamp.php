@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Models;
-
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -12,7 +10,7 @@ class Lamp extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name', 'setting', 'timer', 'state'
+        'name', 'setting', 'state'
     ];
 
     protected $hidden =  [
@@ -21,6 +19,6 @@ class Lamp extends Model
 
     public function history()
     {
-        return $this->hasMany(BlindState::class)->latest()->take(30);
+        return $this->hasMany(LampState::class)->latest()->take(30);
     }
 }

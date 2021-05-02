@@ -15,7 +15,7 @@ class DoorFactory extends Factory
     {
         return [
             'name'          => $this->faker->word(),
-            'auth'          => $this->faker->boolean(),
+            'locked'        => $this->faker->boolean(),
             'updated_at'    => now(),
             'created_at'    => now()
         ];

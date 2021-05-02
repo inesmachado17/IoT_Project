@@ -25,11 +25,17 @@
                     {{ $door['name'] }}
                 </h5>
                 <p class="text-right">
-                    <span class="text-muted small">Presença à porta: {{ $door['state'] }} <i class="bi bi-person-bounding-box"></i></span>
+                    <span class="text-muted small">Presença à porta: {{ count($door['history']) }} <i
+                            class="bi bi-person-bounding-box"></i></span>
                 </p>
-                <p class="d-flex justify-content-between" title="{{ $door['auth'] ? 'Abrir' : 'Fechar' }}">
-                    <span>Autorizado:</span>
-                    <i class="bi bi-door-closed {{ $door['auth'] ? 'text-success' : 'text-danger' }}"></i>
+                <p class="text-right">
+                    <span class="text-muted small">
+                        Porta: <i
+                            class="bi bi-door-{{ $door['state'] ? 'open text-success' : 'closed text-danger' }}"></i></span>
+                </p>
+                <p class="d-flex justify-content-between" title="{{ $door['locked'] ? 'Abrir' : 'Fechar' }}">
+                    <span>Tranca eletrônica:</span>
+                    <i class="bi bi-{{ $door['locked'] ? 'lock' : 'unlock' }}"></i>
                 </p>
                 <p class="d-flex justify-content-between">
                     <a href="/actuators/doors/{{ $door['id'] }}" class="btn btn-outline-primary btn-sm">

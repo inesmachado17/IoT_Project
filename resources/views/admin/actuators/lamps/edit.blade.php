@@ -15,11 +15,20 @@
             <div class="mb-3">
                 <label for="luminosidade" class="form-label" style="display: block;">Luminosidade</label>
                 <div class="d-flex align-items-center justify-content-between">
-                    <input type="range" min="0" max="100" class="form-range" id="luminosidade" name="state"
-                        value="{{ $lamp->state }}">
+                    <input type="range" min="0" max="100" class="form-range" id="luminosidade" name="setting"
+                        value="{{ $lamp->setting }}">
                     <span id="span-value" class="ml-2"></span>
                 </div>
             </div>
+
+            <div class="mb-3">
+                <label for="state" class="form-label" style="display: block;">Ligar/Desligar</label>
+                <div class="d-flex align-items-center justify-content-center">
+                    <button id="button-switch" type="button" onclick="toggleState()"></button>
+                    <input type="hidden" id="state" name="state" value="{{ $lamp->state }}">
+                </div>
+            </div>
+
             <div class="form-buttons">
                 <button type="submit" class="btn btn-primary">Guardar</button>
                 <a class="btn btn-outline-secondary" href="/actuators/lamps" role="button">Cancelar</a>
@@ -35,10 +44,24 @@
     const spanElement = document.getElementById('span-value');
     spanElement.innerHTML = value + " %";
 
-    const inputElement = document.getElementById('luminosidade');
+    const inputElementSetting = document.getElementById('luminosidade');
 
-    inputElement.addEventListener('change', (event) => {
+    inputElementSetting.addEventListener('change', (event) => {
         spanElement.innerHTML = event.target.value + " %";
-    })
+    });
+
+
+    const inputElementState = document.getElementById('state');
+    const buttonElement = document.getElementById('button-switch');
+    buttonElement.innerHTML = inputElementState.value === '1' ?
+    '<i class="bi bi-toggle-on text-success" title="Ligar"></i>' :
+    '<i class="bi bi-toggle-off text-danger" title="Desligar"></i>';
+
+    function toggleState() {
+        inputElementState.value = inputElementState.value == '0' ? 1 : 0;
+        buttonElement.innerHTML = inputElementState.value === '1' ?
+        '<i class="bi bi-toggle-on text-success" title="Ligar"></i>' :
+        '<i class="bi bi-toggle-off text-danger" title="Desligar"></i>';
+    }
 </script>
 @endsection

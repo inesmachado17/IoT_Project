@@ -8,8 +8,10 @@
     </div>
 </div>
 
-<div class="row d-flex justify-content-center">
-    <i class="bi bi-lightbulb"></i>
+<div class="row d-flex justify-content-center mb-3">
+    <div class="actuator-icon-history">
+        <i class="bi bi-lightbulb"></i>
+    </div>
 </div>
 
 <div class="row">
@@ -20,6 +22,7 @@
                 <tr>
                     <th>Designação</th>
                     <th class="text-center">Luminosidade</th>
+                    <th class="text-center">Estado</th>
                     <th></th>
                 </tr>
             </thead>
@@ -27,7 +30,11 @@
                 @foreach($lamps as $lamp)
                 <tr>
                     <td>{{ $lamp['name'] }}</td>
-                    <td class="text-center">{{ $lamp['state'] }} %</td>
+                    <td class="text-center">{{ $lamp['setting'] }} %</td>
+                    <td class="text-center">
+                        {!! $lamp['state'] ? '<i class="bi bi-lightbulb text-success"></i>' : '<i
+                            class="bi bi-lightbulb-off text-danger"></i>' !!}
+                    </td>
                     <td class="text-center">
                         <a href="{{ url('/actuators/lamps/'. $lamp['id'] . '/edit') }}"
                             class="btn btn-outline-secondary btn-sm" role="button" aria-pressed="true">

@@ -12,7 +12,7 @@ class Door extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name', 'state', 'auth'
+        'name', 'state', 'locked'
     ];
 
     protected $hidden =  [

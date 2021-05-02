@@ -10,11 +10,20 @@
 
 <div class="row d-flex justify-content-center mb-5">
     <div class="col-6">
-        <h2>{{ $door->name }}</h2>
+        <p class="d-flex justify-content-between">
+            <span class="h2">{{ $door->name }}</span>
+            <span class="d-flex align-items-center">
+                <i class="text-muted small mr-2">(total de visitas)</i>
+                {{ $door->history->count() }}
+            </span>
+        </p>
         <p>Atualmente:
-            <span class="h3 mx-2">{{ $door->state }} <i class="bi bi-person-bounding-box" small></i></span>
+            <span class="h3 mx-2">
+                <i
+                    class="bi bi-door-{{ $door->state ? 'open' : 'closed' }} {{ $door->state ? 'text-success' : 'text-danger' }}"></i>
+            </span>
             <span class="h3">
-                <i class="bi bi-door-closed {{ $door->state ? 'text-success' : 'text-danger' }}"></i>
+                <i class="bi bi-{{$door->locked ? 'play' : 'pause' }}"></i>
             </span>
         </p>
     </div>
@@ -28,16 +37,24 @@
                 <tr>
                     <th class="text-center">Data</th>
                     <th class="text-center">Presença</th>
-                    <th class="text-center">Autorização</th>
+                    <th class="text-center">Aberta?</th>
+                    <th class="text-center">Automotização habilitada</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($door->history as $history)
                 <tr>
                     <td class="text-center">{{ $history->created_at->setTimezone('Europe/Lisbon') }}</td>
-                    <td class="text-right">{{ $history->state }}<i class="bi bi-person-bounding-box"></i></td>
-                    <td class="text-right">
-                        <i class="bi bi-door-closed {{ $history->auth ? 'text-success' : 'text-danger' }}"></i>
+                    <td class="text-center">
+                        {!! $history->presence ? '<i class="bi bi-person-check text-success"></i>' : '<i
+                            class="bi bi-person-x text-danger"></i>' !!}
+                    </td>
+                    <td class="text-center">
+                        <i
+                            class="bi bi-door-{{ $history->state ? 'open' : 'closed' }} {{ $history->state ? 'text-success' : 'text-danger' }}"></i>
+                    </td>
+                    <td class="text-center">
+                        <i class="bi bi-{{ $history->locked ? 'play' : 'pause' }}"></i>
                 </tr>
                 @endforeach
             </tbody>

@@ -4,15 +4,17 @@ namespace App\Http\Controllers\Actuator;
 
 use App\Http\Controllers\Controller;
 use App\Models\Door;
+use App\Models\DoorState;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use GuzzleHttp;
 
 class ActuatorDoorController extends Controller
 {
     public function index()
     {
         $doors = (new Door())
-            ->all()->toArray();
+            ->with('history')
+            ->get()->toArray();
 
         $list = array_chunk($doors, 3);
 
@@ -51,20 +53,24 @@ class ActuatorDoorController extends Controller
             'id'      => 'required|exists:doors,id',
             'name'    => 'required|string',
             'state'   => 'required|boolean',
-            'auth'    => 'required|boolean'
+            'locked'  => 'required|boolean'
         ]);
 
         $door = (new Door())->find($id);
         $door->name = $request['name'];
+        $presence = false;
 
-        if ($door->timer != $request['timer'] || $door->state != $request['state']) {
+        if ($door->locked != $request['locked'] || $door->state != $request['state']) {
             $client = new GuzzleHttp\Client();
 
             try {
+                $responseForPresence = $client->get(env('APP_API_BASE_URL') . '/sensors/motions');
+                $presence = json_decode($responseForPresence->getBody()->getContents());
+
                 $response = $client->post(env('APP_API_BASE_URL') . '/actuators/doors', [
                     'code'    => $id,
                     'state'   => $request['state'],
-                    'auth'    => $request['auth']
+                    'locked'  => $request['locked']
                 ]); //['auth' =>  ['user', 'pass']]
             } catch (\Exception $exception) {
                 return back()->withErrors([
@@ -74,7 +80,7 @@ class ActuatorDoorController extends Controller
 
             if ($response->getStatusCode() == 200 || $response->getStatusCode() == 204) {
                 $door->state = $request['state'];
-                $door->auth = $request['auth'];
+                $door->locked = $request['locked'];
             } else {
                 return back()->withErrors([
                     'error' => 'Cisco Packet Tracer response with unknown error!'
@@ -84,7 +90,8 @@ class ActuatorDoorController extends Controller
 
         $doorState = new DoorState();
         $doorState->state = $door->state;
-        $doorState->auth = $door->auth;
+        $doorState->locked = $door->locked;
+        $doorState->presence = boolval($presence);
         $doorState->door_id = $door->id;
         $doorState->save();
 
