@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDoorsTable extends Migration
+class CreateDoorStatesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,15 @@ class CreateDoorsTable extends Migration
      */
     public function up()
     {
-        Schema::create('doors', function (Blueprint $table) {
+        Schema::create('door_states', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
             $table->boolean('state');
-            $table->boolean('auth');
             $table->timestamps();
+
+            $table->foreignId('door_id')
+                ->constrained()
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
         });
     }
 
@@ -29,6 +32,6 @@ class CreateDoorsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('doors');
+        Schema::dropIfExists('door_states');
     }
 }

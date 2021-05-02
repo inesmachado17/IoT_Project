@@ -12,10 +12,15 @@ class Door extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name', 'open'
+        'name', 'state', 'auth'
     ];
 
     protected $hidden =  [
         'created_at', 'updated_at'
     ];
+
+    public function history()
+    {
+        return $this->hasMany(DoorState::class)->latest()->take(30);
+    }
 }
