@@ -17,7 +17,7 @@ class ActuatorFireAlarmController extends AdminController
 
         try {
             $response = $client->post(env('APP_API_BASE_URL') . '/actuators/fire-alarms', [
-                'code'  => $id,
+                'id'    => $id,
                 'state' => false
             ]); //['auth' =>  ['user', 'pass']]
         } catch (\Exception $exception) {

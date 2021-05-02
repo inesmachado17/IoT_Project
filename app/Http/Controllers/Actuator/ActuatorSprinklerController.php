@@ -63,7 +63,7 @@ class ActuatorSprinklerController extends AdminController
 
             try {
                 $response = $client->post(env('APP_API_BASE_URL') . '/actuators/sprinklers', [
-                    'code'    => $id,
+                    'id'      => $id,
                     'timer'   => $request['timer'],
                     'state'   => $request['state']
                 ]); //['auth' =>  ['user', 'pass']]

@@ -68,7 +68,7 @@ class ActuatorDoorController extends AdminController
                 $presence = json_decode($responseForPresence->getBody()->getContents());
 
                 $response = $client->post(env('APP_API_BASE_URL') . '/actuators/doors', [
-                    'code'    => $id,
+                    'id'      => $id,
                     'state'   => $request['state'],
                     'locked'  => $request['locked']
                 ]); //['auth' =>  ['user', 'pass']]

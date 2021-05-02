@@ -74,7 +74,7 @@ class ActuatorBlindController extends AdminController
 
             try {
                 $response = $client->post(env('APP_API_BASE_URL') . '/actuators/blinds', [
-                    'code'  => $id,
+                    'id'    => $id,
                     'state' => $request['state']
                 ]); //['auth' =>  ['user', 'pass']]
             } catch (\Exception $exception) {

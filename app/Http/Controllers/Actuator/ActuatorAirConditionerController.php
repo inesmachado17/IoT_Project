@@ -66,7 +66,7 @@ class ActuatorAirConditionerController extends AdminController
 
             try {
                 $response = $client->post(env('APP_API_BASE_URL') . '/actuators/air-conditioners', [
-                    'code'    => $id,
+                    'id'      => $id,
                     'setting' => $request['setting'],
                     'state'   => $request['state']
                 ]); //['auth' =>  ['user', 'pass']]

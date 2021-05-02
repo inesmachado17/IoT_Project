@@ -72,7 +72,7 @@ class ActuatorLampController extends AdminController
 
             try {
                 $response = $client->post(env('APP_API_BASE_URL') . '/actuators/lamps', [
-                    'code'    => $id,
+                    'id'      => $id,
                     'state'   => $request['state'],
                     'setting' => $request['setting']
                 ]); //['auth' =>  ['user', 'pass']]
