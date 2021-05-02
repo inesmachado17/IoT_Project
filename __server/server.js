@@ -1,10 +1,9 @@
 const faker = require("faker");
-const jsonServer = require("json-server");
-const server = jsonServer.create();
-const middlewares = jsonServer.defaults();
+const express = require("express");
+const server = express();
+const port = 3333;
 
-server.use(middlewares);
-server.use(jsonServer.bodyParser);
+server.use(express.json());
 
 const usedData = {
     temp: 20,
@@ -18,7 +17,7 @@ server.get("/api/sensors/temperatures", (req, res) => {
     const success = faker.datatype.number({ min: 0, max: 100 });
     if (success > 10) {
         usedData.temp += faker.datatype.float({ min: -2.0, max: 2.0 });
-        return res.jsonp({
+        return res.send({
             value: usedData.temp.toFixed(2),
             date: new Date(),
         });
@@ -32,7 +31,7 @@ server.get("/api/sensors/humidities", (req, res) => {
         usedData.hum += faker.datatype.float({ min: -0.09, max: 0.09 }) * 100;
         usedData.hum = Math.abs(usedData.hum);
         usedData.hum = usedData.hum > 100 ? 100 : usedData.hum;
-        return res.jsonp({
+        return res.send({
             value: usedData.hum.toFixed(0),
             date: new Date(),
         });
@@ -43,7 +42,7 @@ server.get("/api/sensors/humidities", (req, res) => {
 server.get("/api/sensors/lights", (req, res) => {
     const success = faker.datatype.number({ min: 0, max: 100 });
     if (success > 10) {
-        return res.jsonp({
+        return res.send({
             value: faker.datatype.number({ min: 100, max: 5000 }),
             date: new Date(),
         });
@@ -54,7 +53,7 @@ server.get("/api/sensors/lights", (req, res) => {
 server.get("/api/sensors/smokes", (req, res) => {
     const success = faker.datatype.number({ min: 0, max: 100 });
     if (success > 10) {
-        return res.jsonp({
+        return res.send({
             value: faker.datatype.number({ min: 50, max: 500 }),
             date: new Date(),
         });
@@ -65,7 +64,7 @@ server.get("/api/sensors/smokes", (req, res) => {
 server.get("/api/sensors/motions", (req, res) => {
     const success = faker.datatype.number({ min: 0, max: 100 });
     if (success > 10) {
-        return res.jsonp({
+        return res.send({
             value: faker.datatype.number({ min: 0, max: 100 }) > 35 ? 0 : 1,
             date: new Date(),
         });
@@ -100,6 +99,6 @@ server.use((req, res, next) => {
     }
 });
 
-server.listen(3333, () => {
-    console.log("JSON Server is running on port 3333");
+server.listen(port, () => {
+    console.log(`JSON Server is running on port ${port}`);
 });

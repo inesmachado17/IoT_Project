@@ -1,14 +1,14 @@
 <?php
 
-use App\Models\Humidity;
-use App\Models\Light;
-use App\Models\Motion;
-use App\Models\Smoke;
-use App\Models\Temperature;
-use Carbon\Carbon;
+use App\Models\Sensors\Humidity;
+use App\Models\Sensors\Light;
+use App\Models\Sensors\Motion;
+use App\Models\Sensors\Smoke;
+use App\Models\Sensors\Temperature;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Validator;
+use Carbon\Carbon;
 
 /* Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
@@ -143,17 +143,16 @@ Route::post('/sensors/motions', function (Request $request) {
     return response($find);
 });*/
 
-Route::get('/sensors/{sensorName}', function (Request $request, $sensorName)
-{
+Route::get('/sensors/{sensorName}', function (Request $request, $sensorName) {
     $sensors = [
-      "temperatures"    => new Temperature(),
-      "humidities"      => new Humidity(),
-      "lights"          => new Light(),
-      "motions"         => new Motion(),
-      "smokes"          => new Smoke()
+        "temperatures"    => new Temperature(),
+        "humidities"      => new Humidity(),
+        "lights"          => new Light(),
+        "motions"         => new Motion(),
+        "smokes"          => new Smoke()
     ];
 
-    if(!array_key_exists($sensorName, $sensors)) {
+    if (!array_key_exists($sensorName, $sensors)) {
         return response("Sensor name not recognized", 400);
     }
 
