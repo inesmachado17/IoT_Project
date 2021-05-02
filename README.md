@@ -1,11 +1,18 @@
 # IoT_Project
 
-## Grupo nº 128
+# Grupo nº 128
 
 -   2200723 Inês Alexandra Ribeiro Machado
 -   2203845 Carlos Filipe de Moura Braz
 
-### Rotas da API do servidor PHP
+## Usuários pré cadastrados
+
+-   Ambos os utilizadores estºao cadastrados com a senha `password`
+
+-   `admin@test.com` com os previlégios de administrador, pondendo aceder às páginas de edição
+-   `user@test.com` somente leitura das informações
+
+## Rotas da API do servidor PHP
 
 -   Todas as rotas do tipo POST esperam receber os dados no formato JSON como no exemplo:
 
@@ -30,9 +37,9 @@
 | GET /api/sensors/motions       | receber a última leitura registada para a deteção de movimento |
 | GET /api/actuators/fire-alarms | informe o estado do alarme de incêndio                         |
 
-### Rotas para o servidor HTTP do sistema de IoT (Cisco Packet Tracer)
+## Rotas para o servidor HTTP do sistema de IoT (Cisco Packet Tracer)
 
-a) GETS
+### a) GETS
 
 | Rota                     | Descrição                                              |
 | :----------------------- | :----------------------------------------------------- |
@@ -42,7 +49,7 @@ a) GETS
 | /api/sensors/smokes      | solicita uma leitura do sensor de fumaça               |
 | /api/sensors/motions     | solicita uma leitura do sensor de deteção de movimento |
 
-b) POSTS
+### b) POSTS
 
 | Rota                       | Descrição                                        |
 | :------------------------- | :----------------------------------------------- |
