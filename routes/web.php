@@ -4,6 +4,7 @@ use App\Http\Controllers\Actuator\ActuatorAirConditionerController;
 use App\Http\Controllers\Actuator\ActuatorBlindController;
 use App\Http\Controllers\Actuator\ActuatorSprinklerController;
 use App\Http\Controllers\Actuator\ActuatorDoorController;
+use App\Http\Controllers\Actuator\ActuatorLampController;
 use App\Http\Controllers\Actuator\ActuatorController;
 use App\Http\Controllers\Sensor\SensorHumidityController;
 use App\Http\Controllers\Sensor\SensorLightController;
@@ -44,6 +45,11 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/actuators/doors/{id}', [ActuatorDoorController::class, 'show']);
     Route::get('/actuators/doors/{id}/edit', [ActuatorDoorController::class, 'edit']);
     Route::put('/actuators/doors/{id}', [ActuatorDoorController::class, 'update']);
+
+    Route::get('/actuators/lamps', [ActuatorLampController::class, 'index']);
+    Route::get('/actuators/lamps/{id}', [ActuatorLampController::class, 'show']);
+    Route::get('/actuators/lamps/{id}/edit', [ActuatorLampController::class, 'edit']);
+    Route::put('/actuators/lamps/{id}', [ActuatorLampController::class, 'update']);
 
     Route::get('/sensors/temperatures', [SensorTemperatureController::class, 'index']);
     Route::get('/sensors/temperatures/force-update', [SensorTemperatureController::class, 'update']);

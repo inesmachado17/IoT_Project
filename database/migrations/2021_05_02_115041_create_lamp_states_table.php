@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLampsTable extends Migration
+class CreateLampStatesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,17 @@ class CreateLampsTable extends Migration
      */
     public function up()
     {
-        Schema::create('lamps', function (Blueprint $table) {
+        Schema::create('lamp_states', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
             $table->unsignedInteger('setting');
-            $table->unsignedInteger('timer')->default(60);
-            $table->boolean('state')->default(false);
+            $table->unsignedInteger('timer');
+            $table->boolean('state');
             $table->timestamps();
+
+            $table->foreignId('lamp_id')
+                ->constrained()
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
         });
     }
 
@@ -30,6 +34,6 @@ class CreateLampsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('lamps');
+        Schema::dropIfExists('lamp_states');
     }
 }

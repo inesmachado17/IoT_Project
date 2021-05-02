@@ -81,7 +81,7 @@ class ActuatorBlindController extends Controller
                 ]); //['auth' =>  ['user', 'pass']]
             } catch (\Exception $exception) {
                 return back()->withErrors([
-                    'error' => 'Cisco Packet Tracer reponde with unknown error!'
+                    'error' => 'Cisco Packet Tracer response with unknown error!'
                 ]);
             }
 

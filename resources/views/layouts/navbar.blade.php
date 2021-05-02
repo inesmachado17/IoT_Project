@@ -20,6 +20,7 @@
                     <a class="dropdown-item" href="/actuators/air-conditioners">Ar Condicionado</a>
                     <a class="dropdown-item" href="actuators/sprinklers">Aspersor</a>
                     <a class="dropdown-item" href="actuators/doors">Porta</a>
+                    <a class="dropdown-item" href="actuators/lamps">Lâmpada</a>
                 </div>
             </li>
         </ul>

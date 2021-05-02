@@ -22,6 +22,10 @@
                 <span>Portas</span>
                 <i class="bi bi-door-closed"></i>
             </a>
+            <a href="/actuators/lamps" class="list-group-item list-group-item-action d-flex justify-content-between">
+                <span>Lâmpadas</span>
+                <i class="bi bi-lightbulb"></i>
+            </a>
         </div>
     </div>
 </div>
