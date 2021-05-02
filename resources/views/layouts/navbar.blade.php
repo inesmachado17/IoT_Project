@@ -24,6 +24,9 @@
                 </div>
             </li>
         </ul>
+        <span class="mr-3" style="color: #ffffff80;">
+            {{ Auth::user()->email }}
+        </span>
         <form class="form-inline my-2 my-lg-0" action="/logout" method="POST">
             @csrf()
             <button type="submit" class="btn btn-outline-light" title="Sair da aplicação">

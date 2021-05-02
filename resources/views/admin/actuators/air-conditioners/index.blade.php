@@ -35,9 +35,12 @@
                     <a href="/actuators/air-conditioners/{{ $ac['id'] }}" class="btn btn-outline-primary btn-sm">
                         <span class="small"><i>histórico</i></span>
                     </a>
+
+                    @if (Auth::user()->role === 'admin')
                     <a href="/actuators/air-conditioners/{{ $ac['id'] }}/edit" class="btn btn-outline-secondary btn-sm">
                         <i class="bi bi-gear"></i>
                     </a>
+                    @endif
                 </p>
             </div>
         </div>

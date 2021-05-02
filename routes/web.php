@@ -29,30 +29,30 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/actuators/blinds', [ActuatorBlindController::class, 'index']);
     Route::get('/actuators/blinds/{id}', [ActuatorBlindController::class, 'show']);
-    Route::get('/actuators/blinds/{id}/edit', [ActuatorBlindController::class, 'edit']);
-    Route::put('/actuators/blinds/{id}', [ActuatorBlindController::class, 'update']);
+    Route::get('/actuators/blinds/{id}/edit', [ActuatorBlindController::class, 'edit'])->middleware('is.admin');
+    Route::put('/actuators/blinds/{id}', [ActuatorBlindController::class, 'update'])->middleware('is.admin');
 
     Route::get('/actuators/air-conditioners', [ActuatorAirConditionerController::class, 'index']);
     Route::get('/actuators/air-conditioners/{id}', [ActuatorAirConditionerController::class, 'show']);
-    Route::get('/actuators/air-conditioners/{id}/edit', [ActuatorAirConditionerController::class, 'edit']);
-    Route::put('/actuators/air-conditioners/{id}', [ActuatorAirConditionerController::class, 'update']);
+    Route::get('/actuators/air-conditioners/{id}/edit', [ActuatorAirConditionerController::class, 'edit'])->middleware('is.admin');
+    Route::put('/actuators/air-conditioners/{id}', [ActuatorAirConditionerController::class, 'update'])->middleware('is.admin');
 
     Route::get('/actuators/sprinklers', [ActuatorSprinklerController::class, 'index']);
     Route::get('/actuators/sprinklers/{id}', [ActuatorSprinklerController::class, 'show']);
-    Route::get('/actuators/sprinklers/{id}/edit', [ActuatorSprinklerController::class, 'edit']);
-    Route::put('/actuators/sprinklers/{id}', [ActuatorSprinklerController::class, 'update']);
+    Route::get('/actuators/sprinklers/{id}/edit', [ActuatorSprinklerController::class, 'edit'])->middleware('is.admin');
+    Route::put('/actuators/sprinklers/{id}', [ActuatorSprinklerController::class, 'update'])->middleware('is.admin');
 
     Route::get('/actuators/doors', [ActuatorDoorController::class, 'index']);
     Route::get('/actuators/doors/{id}', [ActuatorDoorController::class, 'show']);
-    Route::get('/actuators/doors/{id}/edit', [ActuatorDoorController::class, 'edit']);
-    Route::put('/actuators/doors/{id}', [ActuatorDoorController::class, 'update']);
+    Route::get('/actuators/doors/{id}/edit', [ActuatorDoorController::class, 'edit'])->middleware('is.admin');
+    Route::put('/actuators/doors/{id}', [ActuatorDoorController::class, 'update'])->middleware('is.admin');
 
     Route::get('/actuators/lamps', [ActuatorLampController::class, 'index']);
     Route::get('/actuators/lamps/{id}', [ActuatorLampController::class, 'show']);
-    Route::get('/actuators/lamps/{id}/edit', [ActuatorLampController::class, 'edit']);
-    Route::put('/actuators/lamps/{id}', [ActuatorLampController::class, 'update']);
+    Route::get('/actuators/lamps/{id}/edit', [ActuatorLampController::class, 'edit'])->middleware('is.admin');
+    Route::put('/actuators/lamps/{id}', [ActuatorLampController::class, 'update'])->middleware('is.admin');
 
-    Route::get('/actuators/fire-alarms/turn-off/{id}', [ActuatorFireAlarmController::class, 'turnOff']);
+    Route::get('/actuators/fire-alarms/turn-off/{id}', [ActuatorFireAlarmController::class, 'turnOff'])->middleware('is.admin');
 
     Route::get('/sensors/temperatures', [SensorTemperatureController::class, 'index']);
     Route::get('/sensors/temperatures/force-update', [SensorTemperatureController::class, 'update']);

@@ -36,8 +36,6 @@ class ActuatorBlindController extends AdminController
             ]);
         }
 
-        //dd($blind);
-
         return view('admin.actuators.blinds.show', ['blind'    => $blind, 'returnUrl' => $returnUrl]);
     }
 

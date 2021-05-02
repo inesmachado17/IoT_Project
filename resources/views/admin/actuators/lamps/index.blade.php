@@ -36,10 +36,12 @@
                             class="bi bi-lightbulb-off text-danger"></i>' !!}
                     </td>
                     <td class="text-center">
+                        @if (Auth::user()->role === 'admin')
                         <a href="{{ url('/actuators/lamps/'. $lamp['id'] . '/edit') }}"
                             class="btn btn-outline-secondary btn-sm" role="button" aria-pressed="true">
                             <i class="bi bi-gear"></i>
                         </a>
+                        @endif
                         <a href="{{ url('/actuators/lamps/'. $lamp['id']) }}" class="btn btn-outline-primary btn-sm"
                             role="button" aria-pressed="true">
                             <span class="small"><i>histórico</i></span>
