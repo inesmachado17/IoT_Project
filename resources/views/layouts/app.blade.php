@@ -17,18 +17,14 @@
 
     <title>Iot - Smart Home</title>
 
-
 </head>
 
-<body class="d-flex flex-column">
+<body class="d-flex flex-column" style="{{ isset($isHome) && $isHome ? 'overflow: hidden' : '' }}">
 
     <header>
         @auth
         @include('layouts.navbar')
         @endauth
-
-        @yield('header')
-
         <div class="row d-flex justify-content-end m-3">
 
             @if (isset($fireAlarm))

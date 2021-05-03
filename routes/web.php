@@ -13,10 +13,16 @@ use App\Http\Controllers\Sensor\SensorMotionController;
 use App\Http\Controllers\Sensor\SensorSmokeController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Sensor\SensorTemperatureController;
+use App\Models\FireAlarm;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('home');
+    $fireAlarm = null;
+    if (Auth::check()) {
+        $fireAlarm = (new FireAlarm())->latest()->first();
+    }
+    return view('home', ['isHome' => 'true', 'fireAlarm' => $fireAlarm]);
 });
 
 
