@@ -20,10 +20,16 @@
         <p>Atualmente:
             <span class="h3 mx-2">
                 <i
-                    class="bi bi-door-{{ $door->state ? 'open' : 'closed' }} {{ $door->state ? 'text-success' : 'text-danger' }}"></i>
+                    class="bi bi-door-{{ $door->state ? 'open' : 'closed' }} {{ $door->state ? 'text-success' : 'text-danger' }}"
+                    title="{{ $door->state ? 'Porta aberta' : 'Porta fechada' }}">
+
+                </i>
             </span>
             <span class="h3">
-                <i class="bi bi-{{$door->locked ? 'play' : 'pause' }}"></i>
+                <i
+                    class="bi bi-{{$door->locked ? 'play' : 'pause' }}"
+                    title="{{$door->locked ? 'Fecho ativado' : 'Fecho desativado' }}">
+                </i>
             </span>
         </p>
     </div>
@@ -31,14 +37,14 @@
 
 <div class="row d-flex justify-content-center">
     <div class="col-6">
-        <p>Listagem das últimas 30 alterações</p>
+        <p>Configurações anteriores</p>
         <table class="table table-striped table-hover">
             <thead>
                 <tr>
                     <th class="text-center">Data</th>
                     <th class="text-center">Presença</th>
                     <th class="text-center">Aberta?</th>
-                    <th class="text-center">Automotização habilitada</th>
+                    <th class="text-center">Fecho central ativado</th>
                 </tr>
             </thead>
             <tbody>

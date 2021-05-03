@@ -33,7 +33,7 @@
                 </p>
                 <p class="d-flex justify-content-between" title="{{ $ac['state'] ? 'Ligado' : 'Desligado' }}">
                     <span>Estado:</span>
-                    <i class="bi bi-power {{ $ac['state'] ? 'text-success' : 'text-danger' }}"></i>
+                    <i class="bi bi-power {{ $ac['state'] ? 'text-success' : 'text-danger' }}" title="{{ $ac['state'] ? 'Ligado' : 'Desligado' }}"></i>
                 </p>
                 <p class="d-flex justify-content-between">
                     <a href="/actuators/air-conditioners/{{ $ac['id'] }}" class="btn btn-outline-primary btn-sm">
@@ -42,7 +42,7 @@
 
                     @if (Auth::user()->role === 'admin')
                     <a href="/actuators/air-conditioners/{{ $ac['id'] }}/edit" class="btn btn-outline-secondary btn-sm">
-                        <i class="bi bi-gear"></i>
+                        <i class="bi bi-gear" title="Configurar"></i>
                     </a>
                     @endif
                 </p>

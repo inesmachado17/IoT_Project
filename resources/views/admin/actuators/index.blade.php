@@ -7,7 +7,7 @@
             <a href="/actuators/blinds" class="list-group-item list-group-item-action d-flex justify-content-between"
                 aria-current="true">
                 <span>Persianas</span>
-                <i class="bi bi-back"></i>
+                <i class="fas fa-sliders-h"></i>
             </a>
             <a href="/actuators/air-conditioners"
                 class="list-group-item list-group-item-action d-flex justify-content-between">
@@ -16,7 +16,7 @@
             </a>
             <a href="/actuators/sprinklers" class="list-group-item list-group-item-action d-flex justify-content-between">
                 <span>Aspersores</span>
-                <i class="bi bi-droplet"></i>
+                <i class="fas fa-faucet"></i>
             </a>
             <a href="/actuators/doors" class="list-group-item list-group-item-action d-flex justify-content-between">
                 <span>Portas</span>

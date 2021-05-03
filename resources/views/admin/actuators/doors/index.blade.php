@@ -30,12 +30,13 @@
                 </p>
                 <p class="text-right">
                     <span class="text-muted small">
-                        Porta: <i
-                            class="bi bi-door-{{ $door['state'] ? 'open text-success' : 'closed text-danger' }}"></i></span>
+                        Porta:
+                        <i class="bi bi-door-{{ $door['state'] ? 'open text-success' : 'closed text-danger' }}" title="{{ $door['state'] ? 'Aberta' : 'Fechada' }}"></i>
+                    </span>
                 </p>
                 <p class="d-flex justify-content-between" title="{{ $door['locked'] ? 'Abrir' : 'Fechar' }}">
-                    <span>Tranca eletrônica:</span>
-                    <i class="bi bi-{{ $door['locked'] ? 'lock' : 'unlock' }}"></i>
+                    <span>Fecho central:</span>
+                    <i class="bi bi-{{ $door['locked'] ? 'lock' : 'unlock' }}" title="{{ $door['locked'] ? 'Ativado' : 'Desativado' }}"></i>
                 </p>
                 <p class="d-flex justify-content-between">
                     <a href="/actuators/doors/{{ $door['id'] }}" class="btn btn-outline-primary btn-sm">
@@ -43,7 +44,7 @@
                     </a>
                     @if (Auth::user()->role === 'admin')
                     <a href="/actuators/doors/{{ $door['id'] }}/edit" class="btn btn-outline-secondary btn-sm">
-                        <i class="bi bi-gear"></i>
+                        <i class="bi bi-gear" title="Configurar"></i>
                     </a>
                     @endif
                 </p>

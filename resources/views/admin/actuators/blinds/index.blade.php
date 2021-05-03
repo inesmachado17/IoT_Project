@@ -14,7 +14,7 @@
 
 <div class="row">
     <div class="col-8 offset-2">
-        <p>Lista de Persianas cadastradas</p>
+        <p>As Minhas Persianas</p>
         <table class="table table-striped table-hover">
             <thead>
                 <tr>
@@ -32,7 +32,7 @@
                         @if (Auth::user()->role === 'admin')
                         <a href="{{ url('/actuators/blinds/'. $blind['id'] . '/edit') }}"
                             class="btn btn-outline-secondary btn-sm" role="button" aria-pressed="true">
-                            <i class="bi bi-gear"></i>
+                            <i class="bi bi-gear" title="Configurar"></i>
                         </a>
                         @endif
                         <a href="{{ url('/actuators/blinds/'. $blind['id']) }}" class="btn btn-outline-primary btn-sm"

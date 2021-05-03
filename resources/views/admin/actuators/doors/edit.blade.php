@@ -12,17 +12,17 @@
             </div>
 
             <div class="mb-3 text-center">
-                <p class="form-label text-left">Tranca Eletrônica</p>
+                <p class="form-label text-left">Fecho Central</p>
                 <div class="form-check form-check-inline">
                     <input class="form-check-input" type="radio" name="locked" id="locked" value="1"
                         checked={{ $door->locked }} />
-                    <label class="form-check-label" for="locked"><i class="bi bi-lock"></i></label>
+                    <label class="form-check-label" for="locked"><i class="bi bi-lock" title="Ativar"></i></label>
                 </div>
 
                 <div class="form-check form-check-inline">
                     <input class="form-check-input" type="radio" name="locked" id="unlocked" value="0"
                         checked={{ $door->locked }} />
-                    <label class="form-check-label" for="unlocked"><i class="bi bi-unlock"></i></label>
+                    <label class="form-check-label" for="unlocked"><i class="bi bi-unlock" title="Desativar"></i></label>
                 </div>
             </div>
 
@@ -48,14 +48,14 @@
     const inputElement = document.getElementById('state');
     const buttonElement = document.getElementById('button-switch');
     buttonElement.innerHTML = inputElement.value === '1' ?
-    '<i class="bi bi-toggle-on text-success" title="Ligado"></i>' :
-    '<i class="bi bi-toggle-off text-danger" title="Desligado"></i>';
+    '<i class="bi bi-toggle-on text-success" title="Fechar"></i>' :
+    '<i class="bi bi-toggle-off text-danger" title="Abrir"></i>';
 
     function toggleState() {
         inputElement.value = inputElement.value == '0' ? 1 : 0;
         buttonElement.innerHTML = inputElement.value === '1' ?
-        '<i class="bi bi-toggle-on text-success" title="Ligado"></i>' :
-        '<i class="bi bi-toggle-off text-danger" title="Desligado"></i>';
+        '<i class="bi bi-toggle-on text-success" title="Fechar"></i>' :
+        '<i class="bi bi-toggle-off text-danger" title="Abrir"></i>';
     }
 </script>
 @endsection

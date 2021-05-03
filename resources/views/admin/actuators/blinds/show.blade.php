@@ -17,7 +17,7 @@
 
 <div class="row d-flex justify-content-center">
     <div class="col-6">
-        <p>Listagem das últimas 30 alterações</p>
+        <p>Configurações anteriores</p>
         <table class="table table-striped table-hover">
             <thead>
                 <tr>
