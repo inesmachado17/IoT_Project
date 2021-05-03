@@ -82,7 +82,7 @@
                 <i class="fas fa-smog"></i>
             </div>
             <div class="card-body">
-                <h5 class="card-title text-center">Níveis de fumo</h5>
+                <h5 class="card-title text-center">Fumo</h5>
                 <p class="card-text text-center mb-1">
                     <span class="h5">{{ $data['smoke']->value }}</span>
                 </p>

@@ -5,7 +5,7 @@
 <div class="row d-flex justify-content-center mb-3">
     <div class="col-6 d-flex justify-content-between">
         <a class="btn btn-outline-secondary btn-sm" href="/sensors/{{ $uriName }}/force-update" role="button"
-            title="Atualização forçada">
+            title="Atualizar registos">
             <i class="bi bi-arrow-repeat"></i>
         </a>
         <a class="btn btn-outline-secondary btn-sm" href="/dashboard" role="button">Voltar</a>
@@ -32,12 +32,12 @@
         </div>
     </div>
     <div class="col-6">
-        <p>Histórico de leituras</p>
+        <p>Últimas leituras</p>
         <table class="table table-striped table-hover">
             <thead>
                 <tr>
                     <th class="text-center">Data</th>
-                    <th class="text-center">Valor</th>
+                    <th class="text-center">Valor lido</th>
                 </tr>
             </thead>
             <tbody>

@@ -13,7 +13,7 @@
 @foreach($temperatures as $temp)
 <tr>
     <td class="text-center">{{ (new \Carbon\Carbon($temp['date']))->setTimezone('Europe/Lisbon') }}</td>
-    <td class="text-right">{{ $temp['value'] }} ºC</td>
+    <td class="text-center">{{ $temp['value'] }} ºC</td>
 </tr>
 @endforeach
 @endsection
@@ -26,7 +26,7 @@
             labels: {!! json_encode($chart['x']) !!},
             datasets: [
                 {
-                    label: 'Temperatura das últimas 24 horas em ºC',
+                    label: 'Temperatura em ºC das últimas 24 horas',
                     data: {!! json_encode($chart['y']) !!},
                     backgroundColor: 'rgba(54, 162, 235, 0.5)',
                     borderCorlor: 'rgba(54, 162, 235, 1)',

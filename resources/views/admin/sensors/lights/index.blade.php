@@ -13,7 +13,7 @@
 @foreach($lights as $light)
 <tr>
     <td class="text-center">{{ (new \Carbon\Carbon($light['date']))->setTimezone('Europe/Lisbon') }}</td>
-    <td class="text-right">{{ $light['value'] }}</td>
+    <td class="text-center">{{ $light['value'] }}</td>
 </tr>
 @endforeach
 @endsection
@@ -26,7 +26,7 @@
             labels: {!! json_encode($chart['x']) !!},
             datasets: [
                 {
-                    label: 'índice de Claridade das últimas 24 horas',
+                    label: 'Índice de Claridade das últimas 24 horas',
                     data: {!! json_encode($chart['y']) !!},
                     backgroundColor: 'rgba(54, 162, 235, 0.5)',
                     borderCorlor: 'rgba(54, 162, 235, 1)',
