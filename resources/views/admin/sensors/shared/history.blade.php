@@ -14,7 +14,7 @@
 
 <div class="row mb-3">
     <div class="col">
-        <canvas id="sensorChart" width="400" height="100"></canvas>
+        <canvas id="sensorChart" height="100"></canvas>
         @section('chart-script')
         <script>
             const canvasElement = document.getElementById('sensorChart');
@@ -50,7 +50,7 @@
                 <a href="{{ $prev }}" class="btn btn-primary btn-sm {{ $prev == null ? 'disabled' : '' }}" role="button"
                     aria-pressed="true" aria-disabled="{{ $prev == null ? 'true' : 'false' }}">Anterior</a>
                 <a href="{{ $next }}" class="btn btn-primary btn-sm ml-2 {{ $next == null ? 'disabled' : '' }}"
-                    role="button" aria-pressed="true" aria-disabled="{{ $next == null }}">Proximo</a>
+                    role="button" aria-pressed="true" aria-disabled="{{ $next == null ? 'true' : 'false' }}">Proximo</a>
             </div>
         </div>
     </div>

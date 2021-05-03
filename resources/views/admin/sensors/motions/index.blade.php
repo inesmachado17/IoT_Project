@@ -12,7 +12,7 @@
 @foreach($motions as $motion)
 <tr>
     <td class="text-center">{{ (new \Carbon\Carbon($motion['date']))->setTimezone('Europe/Lisbon') }}</td>
-    <td class="text-center">{!! $motion['value'] == 0 ? '<i class="bi bi-person-check text-success"></i>' : '<i
+    <td class="text-center">{!! $motion['value'] != 0 ? '<i class="bi bi-person-check text-success"></i>' : '<i
             class="bi bi-person-x text-danger"></i>' !!}</td>
 </tr>
 @endforeach
@@ -21,7 +21,7 @@
 @section('script')
 <script>
     const sensorChart = new Chart(ctx, {
-        type: 'radar',
+        type: 'bar',
         data: {
             labels: {!! json_encode($chart['x']) !!},
             datasets: [

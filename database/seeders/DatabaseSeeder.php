@@ -280,6 +280,20 @@ class DatabaseSeeder extends Seeder
                 'updated_at'    => now(),
                 'created_at'    => now()
             ],
+            [
+                'name'          => 'Quarto das crianças',
+                'setting'       => 0,
+                'state'         => 1,
+                'updated_at'    => now(),
+                'created_at'    => now()
+            ],
+            [
+                'name'          => 'Escritório',
+                'setting'       => 75,
+                'state'         => 1,
+                'updated_at'    => now(),
+                'created_at'    => now()
+            ],
         ]);
     }
 }
