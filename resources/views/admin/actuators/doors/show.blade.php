@@ -27,7 +27,7 @@
             </span>
             <span class="h3">
                 <i
-                    class="bi bi-{{$door->locked ? 'play' : 'pause' }}"
+                    class="bi bi-{{$door->locked ? 'lock' : 'unlock' }}"
                     title="{{$door->locked ? 'Fecho ativado' : 'Fecho desativado' }}">
                 </i>
             </span>
@@ -37,7 +37,7 @@
 
 <div class="row d-flex justify-content-center">
     <div class="col-6">
-        <p>Configurações anteriores</p>
+        <p>Últimas alterações</p>
         <table class="table table-striped table-hover">
             <thead>
                 <tr>

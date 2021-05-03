@@ -16,7 +16,7 @@
 
 <div class="row">
     <div class="col-8 offset-2">
-        <p>Lista de Lâmpadas cadastradas</p>
+        <p>As Minhas Lâmpadas</p>
         <table class="table table-striped table-hover">
             <thead>
                 <tr>
@@ -32,14 +32,14 @@
                     <td>{{ $lamp['name'] }}</td>
                     <td class="text-center">{{ $lamp['setting'] }} %</td>
                     <td class="text-center">
-                        {!! $lamp['state'] ? '<i class="bi bi-lightbulb text-success"></i>' : '<i
-                            class="bi bi-lightbulb-off text-danger"></i>' !!}
+                        {!! $lamp['state'] ? '<i class="bi bi-lightbulb text-success" title="Ligado"></i>' : '<i
+                            class="bi bi-lightbulb-off text-danger" title="Desligado"></i>' !!}
                     </td>
                     <td class="text-center">
                         @if (Auth::user()->role === 'admin')
                         <a href="{{ url('/actuators/lamps/'. $lamp['id'] . '/edit') }}"
                             class="btn btn-outline-secondary btn-sm" role="button" aria-pressed="true">
-                            <i class="bi bi-gear"></i>
+                            <i class="bi bi-gear" title="Configurar"></i>
                         </a>
                         @endif
                         <a href="{{ url('/actuators/lamps/'. $lamp['id']) }}" class="btn btn-outline-primary btn-sm"

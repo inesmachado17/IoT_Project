@@ -11,14 +11,19 @@
 <div class="row d-flex justify-content-center mb-5">
     <div class="col-6">
         <h2>{{ $lamp->name }}</h2>
-        <p>Estado atual de luminosidade: <span class="h3">{{ $lamp->setting }}
-                %</span> <span class="ml-2">{{ $lamp->state ? 'Ligado' : 'Desligado'}}</span></p>
+        <p>Atualmente: <span class="h3">{{ $lamp->setting }}% </span>
+            <span class="h5">luminosidade</span>
+            <span class="ml-2">
+                {!! $lamp['state'] ? '<i class="bi bi-lightbulb text-success" title="Ligado"></i>' :
+                    '<i class="bi bi-lightbulb-off text-danger" title="Desligado"></i>' !!}
+            </span>
+        </p>
     </div>
 </div>
 
 <div class="row d-flex justify-content-center">
     <div class="col-6">
-        <p>Listagem das últimas 30 alterações</p>
+        <p>Últimas alterações</p>
         <table class="table table-striped table-hover">
             <thead>
                 <tr>

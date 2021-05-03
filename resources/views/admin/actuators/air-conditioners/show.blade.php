@@ -14,7 +14,10 @@
         <p>Atualmente:
             <span class="h3 mx-2">{{ $airConditioner->setting }} ºC</span>
             <span class="h3">
-                <i class="bi bi-power {{ $airConditioner->state ? 'text-success' : 'text-danger' }}"></i>
+                <i
+                    class="bi bi-power {{ $airConditioner->state ? 'text-success' : 'text-danger' }}"
+                    title="{{ $airConditioner->state ? 'Ligado' : 'Desligado' }}">
+                </i>
             </span>
         </p>
     </div>
@@ -22,7 +25,7 @@
 
 <div class="row d-flex justify-content-center">
     <div class="col-6">
-        <p>Configurações anteriores</p>
+        <p>Últimas alterações</p>
         <table class="table table-striped table-hover">
             <thead>
                 <tr>

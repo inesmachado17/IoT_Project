@@ -12,7 +12,7 @@
             </div>
 
             <div class="mb-3">
-                <label for="timer" class="form-label" style="display: block;">Temporizador</label>
+                <label for="timer" class="form-label" style="display: block;">Temporizador (min)</label>
                 <div class="d-flex align-items-center justify-content-between">
                     <input type="text" class="form-control" id="timer" name="timer"
                         value="{{ $sprinkler->timer }}">
@@ -41,14 +41,14 @@
     const inputElement = document.getElementById('state');
     const buttonElement = document.getElementById('button-switch');
     buttonElement.innerHTML = inputElement.value === '1' ?
-    '<i class="bi bi-toggle-on text-success" title="Ligar"></i>' :
-    '<i class="bi bi-toggle-off text-danger" title="Desligar"></i>';
+    '<i class="bi bi-toggle-on text-success" title="Desligar"></i>' :
+    '<i class="bi bi-toggle-off text-danger" title="Ligar"></i>';
 
     function toggleState() {
         inputElement.value = inputElement.value == '0' ? 1 : 0;
         buttonElement.innerHTML = inputElement.value === '1' ?
-        '<i class="bi bi-toggle-on text-success" title="Ligar"></i>' :
-        '<i class="bi bi-toggle-off text-danger" title="Desligar"></i>';
+        '<i class="bi bi-toggle-on text-success" title="Desligar"></i>' :
+        '<i class="bi bi-toggle-off text-danger" title="Ligar"></i>';
     }
 </script>
 @endsection

@@ -54,14 +54,14 @@
     const inputElementState = document.getElementById('state');
     const buttonElement = document.getElementById('button-switch');
     buttonElement.innerHTML = inputElementState.value === '1' ?
-    '<i class="bi bi-toggle-on text-success" title="Ligar"></i>' :
-    '<i class="bi bi-toggle-off text-danger" title="Desligar"></i>';
+    '<i class="bi bi-toggle-on text-success" title="Desligar"></i>' :
+    '<i class="bi bi-toggle-off text-danger" title="Ligar"></i>';
 
     function toggleState() {
         inputElementState.value = inputElementState.value == '0' ? 1 : 0;
         buttonElement.innerHTML = inputElementState.value === '1' ?
-        '<i class="bi bi-toggle-on text-success" title="Ligar"></i>' :
-        '<i class="bi bi-toggle-off text-danger" title="Desligar"></i>';
+        '<i class="bi bi-toggle-on text-success" title="Desligar"></i>' :
+        '<i class="bi bi-toggle-off text-danger" title="Ligar"></i>';
     }
 </script>
 @endsection

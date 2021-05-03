@@ -14,15 +14,15 @@
             <div class="mb-3 text-center">
                 <p class="form-label text-left">Fecho Central</p>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="locked" id="locked" value="1"
+                    <input class="form-check-input" type="radio" name="locked" id="locked" value="1" title="Ativar"
                         checked={{ $door->locked }} />
-                    <label class="form-check-label" for="locked"><i class="bi bi-lock" title="Ativar"></i></label>
+                    <label class="form-check-label" for="locked"><i class="bi bi-lock"></i></label>
                 </div>
 
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="locked" id="unlocked" value="0"
+                    <input class="form-check-input" type="radio" name="locked" id="unlocked" value="0" title="Desativar"
                         checked={{ $door->locked }} />
-                    <label class="form-check-label" for="unlocked"><i class="bi bi-unlock" title="Desativar"></i></label>
+                    <label class="form-check-label" for="unlocked"><i class="bi bi-unlock"></i></label>
                 </div>
             </div>
 

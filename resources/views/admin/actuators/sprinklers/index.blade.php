@@ -24,13 +24,17 @@
                 <h5 class="card-title text-left">
                     {{ $sprinkler['name'] }}
                 </h5>
-                <p class="text-right">
-                    <span class="text-muted small">Programado para: {{ $sprinkler['timer'] }} <i
-                            class="bi bi-stopwatch"></i></span>
+                <p class="text-right" title="minutos">
+                    <span class="text-muted small">Programado para: {{ $sprinkler['timer'] }}
+                        <i class="bi bi-stopwatch"></i>
+                    </span>
                 </p>
                 <p class="d-flex justify-content-between" title="{{ $sprinkler['state'] ? 'Ligado' : 'Desligado' }}">
                     <span>Estado:</span>
-                    <i class="bi bi-power {{ $sprinkler['state'] ? 'text-success' : 'text-danger' }}"></i>
+                    <i
+                        class="bi bi-power {{ $sprinkler['state'] ? 'text-success' : 'text-danger' }}"
+                        title="{{ $sprinkler['state'] ? 'Ligado' : 'Desligado' }}"
+                    ></i>
                 </p>
                 <p class="d-flex justify-content-between">
                     <a href="/actuators/sprinklers/{{ $sprinkler['id'] }}" class="btn btn-outline-primary btn-sm">
@@ -39,7 +43,7 @@
                     @if (Auth::user()->role === 'admin')
                     <a href="/actuators/sprinklers/{{ $sprinkler['id'] }}/edit"
                         class="btn btn-outline-secondary btn-sm">
-                        <i class="bi bi-gear"></i>
+                        <i class="bi bi-gear" title="Configurar"></i>
                     </a>
                     @endif
                 </p>

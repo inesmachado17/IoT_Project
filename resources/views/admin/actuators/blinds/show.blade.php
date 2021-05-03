@@ -11,13 +11,15 @@
 <div class="row d-flex justify-content-center mb-5">
     <div class="col-6">
         <h2>{{ $blind->name }}</h2>
-        <p>Estado atual de abertura: <span class="h3">{{ $blind->state }} %</span></p>
+        <p>Atualmente: <span class="h3">{{ $blind->state }} %</span>
+            <span class="h5">abertura</span>
+        </p>
     </div>
 </div>
 
 <div class="row d-flex justify-content-center">
     <div class="col-6">
-        <p>Configurações anteriores</p>
+        <p>Últimas alterações</p>
         <table class="table table-striped table-hover">
             <thead>
                 <tr>
