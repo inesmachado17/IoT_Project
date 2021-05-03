@@ -12,6 +12,9 @@
 -   `admin@test.com` com os privilégios de administrador, pondendo aceder às páginas de edição
 -   `user@test.com` permissão somente de leitura
 
+## Comprovativos de verificação
+- Encontram-se na diretoria w3c-proofs
+
 ## Rotas da API do servidor PHP
 
 -   Todas as rotas do tipo POST esperam receber os dados em formato JSON como no exemplo:

@@ -20,7 +20,7 @@
             </div>
 
             <div class="mb-3">
-                <label for="state" class="form-label" style="display: block;">Ligar/Desligar</label>
+                <span class="form-label" style="display: block;">Ligar/Desligar</span>
                 <div class="d-flex align-items-center justify-content-center">
                     <button id="button-switch" type="button" onclick="toggleState()"></button>
                     <input type="hidden" id="state" name="state" value="{{ $airConditioner->state }}">
@@ -37,7 +37,7 @@
 @endsection()
 
 @section('scripts')
-<script type="text/javascript">
+<script>
     const inputElement = document.getElementById('state');
     const buttonElement = document.getElementById('button-switch');
     buttonElement.innerHTML = inputElement.value === '1' ?

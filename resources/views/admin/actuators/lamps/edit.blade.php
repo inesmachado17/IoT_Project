@@ -22,7 +22,7 @@
             </div>
 
             <div class="mb-3">
-                <label for="state" class="form-label" style="display: block;">Ligar/Desligar</label>
+                <span class="form-label" style="display: block;">Ligar/Desligar</span>
                 <div class="d-flex align-items-center justify-content-center">
                     <button id="button-switch" type="button" onclick="toggleState()"></button>
                     <input type="hidden" id="state" name="state" value="{{ $lamp->state }}">
@@ -39,7 +39,7 @@
 @endsection()
 
 @section('scripts')
-<script type="text/javascript">
+<script>
     const value = {!! json_encode($lamp->setting) !!}; //"50"
     const spanElement = document.getElementById('span-value');
     spanElement.innerHTML = value + " %";

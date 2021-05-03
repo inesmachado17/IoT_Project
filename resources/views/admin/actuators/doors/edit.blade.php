@@ -15,19 +15,19 @@
                 <p class="form-label text-left">Fecho Central</p>
                 <div class="form-check form-check-inline">
                     <input class="form-check-input" type="radio" name="locked" id="locked" value="1" title="Ativar"
-                        checked={{ $door->locked }} />
+                        checked="{{ boolval($door->locked) }}" />
                     <label class="form-check-label" for="locked"><i class="bi bi-lock"></i></label>
                 </div>
 
                 <div class="form-check form-check-inline">
                     <input class="form-check-input" type="radio" name="locked" id="unlocked" value="0" title="Desativar"
-                        checked={{ $door->locked }} />
+                        checked="{{ boolval($door->locked) }}" />
                     <label class="form-check-label" for="unlocked"><i class="bi bi-unlock"></i></label>
                 </div>
             </div>
 
             <div class="mb-3">
-                <label for="state" class="form-label" style="display: block;">Abrir/Fechar</label>
+                <span class="form-label" style="display: block;">Abrir/Fechar</span>
                 <div class="d-flex align-items-center justify-content-center">
                     <button id="button-switch" type="button" onclick="toggleState()"></button>
                     <input type="hidden" id="state" name="state" value="{{ $door->state }}">
@@ -44,7 +44,7 @@
 @endsection()
 
 @section('scripts')
-<script type="text/javascript">
+<script>
     const inputElement = document.getElementById('state');
     const buttonElement = document.getElementById('button-switch');
     buttonElement.innerHTML = inputElement.value === '1' ?

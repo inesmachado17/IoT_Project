@@ -13,7 +13,7 @@
             </div>
 
             <div class="mb-3">
-                <label for="abertura" class="form-label" style="display: block;">Abertura</label>
+                <span class="form-label" style="display: block;">Abertura</span>
                 <div class="d-flex align-items-center justify-content-between">
                     <input type="range" min="0" max="100" class="form-range" id="abertura" name="state"
                         value="{{ $blind->state }}">
@@ -30,7 +30,7 @@
 @endsection()
 
 @section('scripts')
-<script type="text/javascript">
+<script>
     const value = {!! json_encode($blind->state) !!}; //"50"
     const spanElement = document.getElementById('span-value');
     spanElement.innerHTML = value + " %";
