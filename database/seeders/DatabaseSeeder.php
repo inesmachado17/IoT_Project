@@ -154,6 +154,7 @@ class DatabaseSeeder extends Seeder
                 'name'          => 'Central',
                 'setting'       => 21,
                 'state'         => 1,
+                'automatic'     => 1,
                 'updated_at'    => now(),
                 'created_at'    => now()
             ],
@@ -161,6 +162,7 @@ class DatabaseSeeder extends Seeder
                 'name'          => 'Escritório',
                 'setting'       => 22,
                 'state'         => 0,
+                'automatic'     => 0,
                 'updated_at'    => now(),
                 'created_at'    => now()
             ],
@@ -168,6 +170,7 @@ class DatabaseSeeder extends Seeder
                 'name'          => 'Sala de Jogos',
                 'setting'       => 21,
                 'state'         => 0,
+                'automatic'     => 0,
                 'updated_at'    => now(),
                 'created_at'    => now()
             ],
@@ -175,6 +178,7 @@ class DatabaseSeeder extends Seeder
                 'name'          => 'Quarto do Pânico',
                 'setting'       => 15,
                 'state'         => 1,
+                'automatic'     => 1,
                 'updated_at'    => now(),
                 'created_at'    => now()
             ],

@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\AirConditioner;
 use App\Models\FireAlarm;
 use App\Models\Sensors\Humidity;
 use App\Models\Sensors\Light;
@@ -14,6 +15,25 @@ use Carbon\Carbon;
 /* Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 }); */
+
+// SENSORS
+Route::get('/sensors/{sensorName}', function (Request $request, $sensorName) {
+    $sensors = [
+        "temperatures"    => new Temperature(),
+        "humidities"      => new Humidity(),
+        "lights"          => new Light(),
+        "motions"         => new Motion(),
+        "smokes"          => new Smoke()
+    ];
+
+    if (!array_key_exists($sensorName, $sensors)) {
+        return response("Sensor name not recognized", 400);
+    }
+
+    $find = $sensors[$sensorName]->orderBy('date', 'desc')->first();
+
+    return response($find);
+});
 
 Route::post('/sensors/temperatures', function (Request $request) {
 
@@ -127,6 +147,8 @@ Route::post('/sensors/motions', function (Request $request) {
     return response('', 204);
 });
 
+
+// ACTUATORS
 Route::post('/actuators/fire-alarms', function (Request $request) {
     $validator = Validator::make($request->all(), [
         "value" => "required|boolean"
@@ -147,20 +169,14 @@ Route::post('/actuators/fire-alarms', function (Request $request) {
     return response('', 204);
 });
 
-Route::get('/sensors/{sensorName}', function (Request $request, $sensorName) {
-    $sensors = [
-        "temperatures"    => new Temperature(),
-        "humidities"      => new Humidity(),
-        "lights"          => new Light(),
-        "motions"         => new Motion(),
-        "smokes"          => new Smoke()
-    ];
+Route::get('/actuators/air-conditionairs', function (Request $request) {
+    $airConditionairs = [];
 
-    if (!array_key_exists($sensorName, $sensors)) {
-        return response("Sensor name not recognized", 400);
+    try {
+        $airConditionairs = AirConditioner::all();
+    } catch (\Exception $exception) {
+        return response($exception->getMessage(), 500);
     }
 
-    $find = $sensors[$sensorName]->orderBy('date', 'desc')->first();
-
-    return response($find);
+    return response($airConditionairs, 200);
 });

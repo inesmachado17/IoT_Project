@@ -60,31 +60,8 @@ class ActuatorAirConditionerController extends AdminController
 
         $airConditioner = (new AirConditioner())->findOrFail($id);
         $airConditioner->name = $request['name'];
-
-        if ($airConditioner->setting != $request['setting'] || $airConditioner->state != $request['state']) {
-            $client = new GuzzleHttp\Client();
-
-            try {
-                $response = $client->post(env('APP_API_BASE_URL') . '/actuators/air-conditioners', [
-                    'id'      => $id,
-                    'setting' => $request['setting'],
-                    'state'   => $request['state']
-                ]); //['auth' =>  ['user', 'pass']]
-            } catch (\Exception $exception) {
-                return back()->withErrors([
-                    'error' => 'Cisco Packet Tracer response with unknown error!'
-                ]);
-            }
-
-            if ($response->getStatusCode() == 200 || $response->getStatusCode() == 204) {
-                $airConditioner->setting = $request['setting'];
-                $airConditioner->state = $request['state'];
-            } else {
-                return back()->withErrors([
-                    'error' => 'Cisco Packet Tracer response with unknown error!'
-                ]);
-            }
-        }
+        $airConditioner->setting = $request['setting'];
+        $airConditioner->state = $request['state'];
 
         $airConditionerValue = new AirConditionerValue();
         $airConditionerValue->state = $airConditioner->state;
