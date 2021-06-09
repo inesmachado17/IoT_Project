@@ -28,6 +28,10 @@
                 <h5 class="card-title text-left">
                     {{ $ac['name'] }}
                 </h5>
+                <p class="text-right mb-0">
+                    <span class="text-muted small">Operação em modo {{ $ac['automatic'] ? 'Automático' : 'Manual' }}</span>
+                    <i class="bi bi-{{ $ac['automatic'] ? 'play-circle' : 'stop-circle' }} text-muted" title="{{ $ac['automatic'] ? 'Operando Automaticamente' : 'Operando Manualmente' }}"></i>
+                </p>
                 <p class="text-right">
                     <span class="text-muted small">Programado para: {{ $ac['setting'] }} ºC</span>
                 </p>

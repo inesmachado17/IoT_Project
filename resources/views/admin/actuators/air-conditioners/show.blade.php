@@ -19,6 +19,12 @@
                     title="{{ $airConditioner->state ? 'Ligado' : 'Desligado' }}">
                 </i>
             </span>
+            <span class="h3">
+                <i
+                    class="bi bi-{{ $airConditioner->automatic ? 'play-circle' : 'stop-circle' }} {{ $airConditioner->automatic ? 'text-success' : 'text-danger' }}"
+                    title="{{ $airConditioner->automatic ? 'Automático' : 'Manual' }}">
+                </i>
+            </span>
         </p>
     </div>
 </div>

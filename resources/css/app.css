@@ -70,7 +70,8 @@ div.actuator-icon-history svg {
     fill: #444;
 }
 
-#button-switch {
+#button-switch,
+#button-switch-op {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -78,8 +79,14 @@ div.actuator-icon-history svg {
     border: none;
     background-color: transparent;
 }
-#button-switch i {
+#button-switch,
+#button-switch-op i {
     font-size: 2.5rem;
+}
+#button-switch:disabled,
+#button-switch-op:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
 }
 
 #actuator-icon-blind {
