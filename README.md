@@ -31,17 +31,18 @@
 }
 ```
 
-| Rota                             | Descrição                                                           |
-| :------------------------------- | :------------------------------------------------------------------ |
-| POST /api/sensors/temperature    | envio das leituras do sensor de temperatura                         |
-| GET /api/sensors/temperature     | recebe a última leitura registada para a temperatura                |
-| POST /api/sensors/humidities     | envio das leituras do sensor de humidade                            |
-| GET /api/sensors/humidities      | recebe a última leitura registada para a humidade                   |
-| POST /api/sensors/lights         | envio das leituras do sensor de luminosidade                        |
-| GET /api/sensors/lights          | recebe a última leitura registada para a luminosidade               |
-| POST /api/sensors/smokes         | envio das leituras do sensor de fumo                                |
-| GET /api/sensors/smokes          | recebe a última leitura registada para o fumo                       |
-| POST /api/sensors/motions        | envio das leituras do sensor de movimento                           |
-| GET /api/sensors/motions         | recebe a última leitura registada para a deteção de movimento       |
-| GET /api/actuators/fire-alarms   | informa o estado do alarme de incêndio (disparo)                    |
-| GET /actuators/air-conditionairs | retorna a lista de ar condicionados e respectivos valores de estado |
+| Rota                              | Descrição                                                           |
+| :-------------------------------- | :------------------------------------------------------------------ |
+| POST /api/sensors/temperature     | envio das leituras do sensor de temperatura                         |
+| GET /api/sensors/temperature      | recebe a última leitura registada para a temperatura                |
+| POST /api/sensors/humidities      | envio das leituras do sensor de humidade                            |
+| GET /api/sensors/humidities       | recebe a última leitura registada para a humidade                   |
+| POST /api/sensors/lights          | envio das leituras do sensor de luminosidade                        |
+| GET /api/sensors/lights           | recebe a última leitura registada para a luminosidade               |
+| POST /api/sensors/smokes          | envio das leituras do sensor de fumo                                |
+| GET /api/sensors/smokes           | recebe a última leitura registada para o fumo                       |
+| POST /api/sensors/motions         | envio das leituras do sensor de movimento                           |
+| GET /api/sensors/motions          | recebe a última leitura registada para a deteção de movimento       |
+| GET /api/actuators/fire-alarms    | informa o estado do alarme de incêndio (disparo)                    |
+| GET /actuators/air-conditionairs  | retorna a lista de ar condicionados e respectivos valores de estado |
+| POST /actuators/air-conditionairs | atualiza o estado de funcionamento do ar condicionado               |

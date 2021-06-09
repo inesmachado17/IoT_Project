@@ -168,6 +168,27 @@ Route::post('/actuators/fire-alarms', function (Request $request) {
     }
     return response('', 204);
 });
+Route::post('/actuators/air-conditionairs', function (Request $request) {
+    $validator = Validator::make($request->all(), [
+        "id"    => "required|exists:air_conditioners,id",
+        "state" => "required|boolean"
+    ]);
+
+    if ($validator->fails()) {
+        return response($validator->messages(), 400);
+    }
+
+    try {
+        $airConditionair = (new AirConditioner())->find($request["id"]);
+        $airConditionair->state = $request['state'];
+
+        $airConditionair->save();
+    } catch (\Exception $exception) {
+        return response($exception->getMessage(), 500);
+    }
+
+    return response(['air' => $airConditionair, 'state' => $request['state']], 200);
+});
 
 Route::get('/actuators/air-conditionairs', function (Request $request) {
     $airConditionairs = [];

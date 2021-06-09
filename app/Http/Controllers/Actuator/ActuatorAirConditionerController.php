@@ -52,16 +52,18 @@ class ActuatorAirConditionerController extends AdminController
     {
         $request->merge(['id' => $id]);
         $request->validate([
-            'id'      => 'required|exists:blinds,id',
-            'name'    => 'required|string',
-            'setting' => 'required|numeric',
-            'state'   => 'required|boolean'
+            'id'        => 'required|exists:blinds,id',
+            'name'      => 'required|string',
+            'setting'   => 'required|numeric',
+            'state'     => 'required|boolean',
+            'automatic' => 'required|boolean'
         ]);
 
         $airConditioner = (new AirConditioner())->findOrFail($id);
         $airConditioner->name = $request['name'];
         $airConditioner->setting = $request['setting'];
         $airConditioner->state = $request['state'];
+        $airConditioner->automatic = $request['automatic'];
 
         $airConditionerValue = new AirConditionerValue();
         $airConditionerValue->state = $airConditioner->state;
