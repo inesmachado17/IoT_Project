@@ -85,7 +85,7 @@
     @yield('chart-script')
 
 
-    @if (env('APP_ENV') != 'production')
+    @if (env('APP_EMULATE_CPT'))
     <!-- For demonstration purpose -->
     <noscript>
         You need to enable JavaScript to run this demonstration.
