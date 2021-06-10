@@ -12,9 +12,9 @@
             </div>
 
             <div class="mb-3">
-                <label for="timer" class="form-label" style="display: block;">Humidade (min %)</label>
+                <label for="setting" class="form-label" style="display: block;">Humidade (min %)</label>
                 <div class="d-flex align-items-center justify-content-between">
-                    <input type="text" class="form-control" id="timer" name="timer"
+                    <input type="text" class="form-control" id="setting" name="setting"
                         value="{{ $sprinkler->setting }}">
                 </div>
             </div>

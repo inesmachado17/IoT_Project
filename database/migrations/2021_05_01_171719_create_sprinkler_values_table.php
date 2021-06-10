@@ -15,7 +15,7 @@ class CreateSprinklerValuesTable extends Migration
     {
         Schema::create('sprinkler_values', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('timer');
+            $table->unsignedInteger('setting');
             $table->boolean('state');
             $table->timestamps();
 
