@@ -153,7 +153,7 @@ class DatabaseSeeder extends Seeder
             [
                 'name'          => 'Central',
                 'setting'       => 21,
-                'state'         => 1,
+                'state'         => 0,
                 'automatic'     => 1,
                 'updated_at'    => now(),
                 'created_at'    => now()
@@ -177,7 +177,7 @@ class DatabaseSeeder extends Seeder
             [
                 'name'          => 'Quarto do Pânico',
                 'setting'       => 15,
-                'state'         => 1,
+                'state'         => 0,
                 'automatic'     => 1,
                 'updated_at'    => now(),
                 'created_at'    => now()
@@ -190,29 +190,33 @@ class DatabaseSeeder extends Seeder
         DB::table('sprinklers')->insert([
             [
                 'name'          => 'Relvado frente',
-                'timer'         => 30,
-                'state'         => 1,
+                'setting'       => 72,
+                'state'         => 0,
+                'automatic'     => 0,
                 'updated_at'    => now(),
                 'created_at'    => now()
             ],
             [
                 'name'          => 'Relvado traseiras',
-                'timer'         => 45,
+                'setting'       => 72,
                 'state'         => 0,
+                'automatic'     => 1,
                 'updated_at'    => now(),
                 'created_at'    => now()
             ],
             [
                 'name'          => 'Parque',
-                'timer'         => 21,
+                'setting'       => 72,
                 'state'         => 0,
+                'automatic'     => 1,
                 'updated_at'    => now(),
                 'created_at'    => now()
             ],
             [
                 'name'          => 'Estufa',
-                'timer'         => 15,
-                'state'         => 1,
+                'setting'       => 72,
+                'state'         => 0,
+                'automatic'     => 0,
                 'updated_at'    => now(),
                 'created_at'    => now()
             ],

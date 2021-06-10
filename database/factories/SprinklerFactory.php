@@ -14,7 +14,7 @@ class SprinklerFactory extends Factory
     {
         return [
             'name'          => $this->faker->word(),
-            'timer'          => $this->faker->numberBetween(60, 720),
+            'setting'       => $this->faker->numberBetween(1, 5),
             'updated_at'    => now(),
             'created_at'    => now()
         ];

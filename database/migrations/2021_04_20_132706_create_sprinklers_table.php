@@ -16,7 +16,8 @@ class CreateSprinklersTable extends Migration
         Schema::create('sprinklers', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->unsignedInteger('timer')->default(60);
+            $table->unsignedInteger('setting');
+            $table->boolean('automatic')->default(false);
             $table->boolean('state')->default(false);
             $table->timestamps();
         });
