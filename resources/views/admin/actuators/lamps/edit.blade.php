@@ -22,6 +22,14 @@
             </div>
 
             <div class="mb-3">
+                <span id="span-switch-op" class="form-label" style="display: block;">{{ $lamp->automatic ? 'Automático' : 'Manual' }}</span>
+                <div class="d-flex align-items-center justify-content-center">
+                    <button id="button-switch-op" type="button" onclick="toggleOperationMode()" class="text-secondary"></button>
+                    <input type="hidden" id="automatic" name="automatic" value="{{ $lamp->automatic }}">
+                </div>
+            </div>
+
+            <div class="mb-3">
                 <span class="form-label" style="display: block;">Ligar/Desligar</span>
                 <div class="d-flex align-items-center justify-content-center">
                     <button id="button-switch" type="button" onclick="toggleState()"></button>
@@ -62,6 +70,26 @@
         buttonElement.innerHTML = inputElementState.value === '1' ?
         '<i class="bi bi-toggle-on text-success" title="Desligar"></i>' :
         '<i class="bi bi-toggle-off text-danger" title="Ligar"></i>';
+    }
+
+
+    const spanOpElement = document.getElementById('span-switch-op');
+    const inputOpElement = document.getElementById('automatic');
+    const buttonOpElement = document.getElementById('button-switch-op');
+
+    buttonOpElement.innerHTML = inputElementState.value === '1' ?
+    '<i class="bi bi-stop-circle" title="Passar a modo Manual"></i>' :
+    '<i class="bi bi-play-circle" title="Passar a modo Automático"></i>';
+
+    buttonElement.disabled = inputOpElement.value === '1';
+
+    function toggleOperationMode() {
+        inputOpElement.value = inputOpElement.value == '0' ? 1 : 0;
+        buttonOpElement.innerHTML = inputOpElement.value === '1' ?
+        '<i class="bi bi-stop-circle" title="Passar a modo Manual"></i>' :
+        '<i class="bi bi-play-circle" title="Passar a modo Automático"></i>';
+        spanOpElement.innerHTML = inputOpElement.value === '1' ? 'Automático' : 'Manual';
+        buttonElement.disabled = inputOpElement.value === '1';
     }
 </script>
 @endsection
