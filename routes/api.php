@@ -7,6 +7,7 @@ use App\Models\Sensors\Light;
 use App\Models\Sensors\Motion;
 use App\Models\Sensors\Smoke;
 use App\Models\Sensors\Temperature;
+use App\Models\Sprinkler;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Validator;
@@ -187,7 +188,28 @@ Route::post('/actuators/air-conditionairs', function (Request $request) {
         return response($exception->getMessage(), 500);
     }
 
-    return response(['air' => $airConditionair, 'state' => $request['state']], 200);
+    return response('', 204);
+});
+Route::post('/actuators/sprinklers', function (Request $request) {
+    $validator = Validator::make($request->all(), [
+        "id"    => "required|exists:sprinklers,id",
+        "state" => "required|boolean"
+    ]);
+
+    if ($validator->fails()) {
+        return response($validator->messages(), 400);
+    }
+
+    try {
+        $sprinkler = (new Sprinkler())->find($request["id"]);
+        $sprinkler->state = $request['state'];
+
+        $sprinkler->save();
+    } catch (\Exception $exception) {
+        return response($exception->getMessage(), 500);
+    }
+
+    return response('', 204);
 });
 
 Route::get('/actuators/air-conditionairs', function (Request $request) {
@@ -200,4 +222,15 @@ Route::get('/actuators/air-conditionairs', function (Request $request) {
     }
 
     return response($airConditionairs, 200);
+});
+Route::get('/actuators/sprinklers', function (Request $request) {
+    $sprinklers = [];
+
+    try {
+        $sprinklers = Sprinkler::all();
+    } catch (\Exception $exception) {
+        return response($exception->getMessage(), 500);
+    }
+
+    return response($sprinklers, 200);
 });

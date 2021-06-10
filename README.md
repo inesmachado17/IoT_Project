@@ -46,3 +46,5 @@
 | GET /api/actuators/fire-alarms    | informa o estado do alarme de incêndio (disparo)                    |
 | GET /actuators/air-conditionairs  | retorna a lista de ar condicionados e respectivos valores de estado |
 | POST /actuators/air-conditionairs | atualiza o estado de funcionamento do ar condicionado               |
+| GET /actuators/sprinklers         | retorna a lista de regadores e respectivos valores de estado        |
+| POST /actuators/sprinklers        | atualiza o estado de funcionamento do aspersor                      |
