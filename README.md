@@ -48,3 +48,5 @@
 | POST /actuators/air-conditionairs | atualiza o estado de funcionamento do ar condicionado               |
 | GET /actuators/sprinklers         | retorna a lista de regadores e respectivos valores de estado        |
 | POST /actuators/sprinklers        | atualiza o estado de funcionamento do aspersor                      |
+| GET /actuators/lamps              | retorna a lista de lampadas e respectivos valores de estado         |
+| POST /actuators/lamps             | atualiza o estado de funcionamento das lâmpadas                     |

@@ -2,6 +2,7 @@
 
 use App\Models\AirConditioner;
 use App\Models\FireAlarm;
+use App\Models\Lamp;
 use App\Models\Sensors\Humidity;
 use App\Models\Sensors\Light;
 use App\Models\Sensors\Motion;
@@ -169,6 +170,7 @@ Route::post('/actuators/fire-alarms', function (Request $request) {
     }
     return response('', 204);
 });
+
 Route::post('/actuators/air-conditionairs', function (Request $request) {
     $validator = Validator::make($request->all(), [
         "id"    => "required|exists:air_conditioners,id",
@@ -190,6 +192,7 @@ Route::post('/actuators/air-conditionairs', function (Request $request) {
 
     return response('', 204);
 });
+
 Route::post('/actuators/sprinklers', function (Request $request) {
     $validator = Validator::make($request->all(), [
         "id"    => "required|exists:sprinklers,id",
@@ -212,6 +215,29 @@ Route::post('/actuators/sprinklers', function (Request $request) {
     return response('', 204);
 });
 
+Route::post('/actuators/lamps', function (Request $request) {
+    $validator = Validator::make($request->all(), [
+        "id"    => "required|exists:lamps,id",
+        "state" => "required|boolean"
+    ]);
+
+    if ($validator->fails()) {
+        return response($validator->messages(), 400);
+    }
+
+    try {
+        $lamp = (new Lamp())->find($request["id"]);
+        $lamp->state = $request['state'];
+
+        $lamp->save();
+    } catch (\Exception $exception) {
+        return response($exception->getMessage(), 500);
+    }
+
+    return response('', 204);
+});
+
+
 Route::get('/actuators/air-conditionairs', function (Request $request) {
     $airConditionairs = [];
 
@@ -223,6 +249,7 @@ Route::get('/actuators/air-conditionairs', function (Request $request) {
 
     return response($airConditionairs, 200);
 });
+
 Route::get('/actuators/sprinklers', function (Request $request) {
     $sprinklers = [];
 
@@ -233,4 +260,16 @@ Route::get('/actuators/sprinklers', function (Request $request) {
     }
 
     return response($sprinklers, 200);
+});
+
+Route::get('/actuators/lamps', function (Request $request) {
+    $lamps = [];
+
+    try {
+        $lamps = Lamp::all();
+    } catch (\Exception $exception) {
+        return response($exception->getMessage(), 500);
+    }
+
+    return response($lamps, 200);
 });

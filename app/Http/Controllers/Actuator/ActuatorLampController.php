@@ -60,37 +60,16 @@ class ActuatorLampController extends AdminController
             'id'        => 'required|exists:lamps,id',
             'name'      => 'required|string',
             'setting'   => 'required|numeric|min:0|max:100',
-            'state'     => 'required|boolean'
+            'state'     => 'required|boolean',
+            'automatic' => 'required|boolean'
         ]);
 
         $lamp = (new Lamp())->findOrFail($id);
         $lamp->name = $request['name'];
+        $lamp->setting = $request['setting'];
+        $lamp->state = $request['state'];
+        $lamp->automatic = $request['automatic'];
 
-        if ($lamp->state != $request['state'] || $lamp->setting != $request['setting']) {
-
-            $client = new GuzzleHttp\Client();
-
-            try {
-                $response = $client->post(env('APP_API_BASE_URL') . '/actuators/lamps', [
-                    'id'      => $id,
-                    'state'   => $request['state'],
-                    'setting' => $request['setting']
-                ]); //['auth' =>  ['user', 'pass']]
-            } catch (\Exception $exception) {
-                return back()->withErrors([
-                    'error' => 'Cisco Packet Tracer response with unknown error!'
-                ]);
-            }
-
-            if ($response->getStatusCode() == 200 || $response->getStatusCode() == 204) {
-                $lamp->state = $request['state'];
-                $lamp->setting = $request['setting'];
-            } else {
-                return back()->withErrors([
-                    'error' => 'Cisco Packet Tracer reponde with unknown error!'
-                ]);
-            }
-        }
 
         $lampState = new LampState();
         $lampState->setting = $lamp->setting;

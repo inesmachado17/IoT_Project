@@ -23,6 +23,7 @@
                     <th>Designação</th>
                     <th class="text-center">Luminosidade</th>
                     <th class="text-center">Estado</th>
+                    <th class="text-center">Modo Operação</th>
                     <th></th>
                 </tr>
             </thead>
@@ -34,6 +35,12 @@
                     <td class="text-center">
                         {!! $lamp['state'] ? '<i class="bi bi-lightbulb text-success" title="Ligado"></i>' : '<i
                             class="bi bi-lightbulb-off text-danger" title="Desligado"></i>' !!}
+                    </td>
+                    <td class="text-center">
+                        <i
+                        class="bi bi-{{ $lamp['automatic'] ? 'play-circle' : 'stop-circle' }} text-muted"
+                        title="{{ $lamp['automatic'] ? 'Automático' : 'Manual' }}">
+                    </i>
                     </td>
                     <td class="text-center">
                         @if (Auth::user()->role === 'admin')

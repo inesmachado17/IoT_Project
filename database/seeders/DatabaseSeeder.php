@@ -261,9 +261,18 @@ class DatabaseSeeder extends Seeder
     {
         DB::table('lamps')->insert([
             [
+                'name'          => 'Portão da rua',
+                'setting'       => 25,
+                'state'         => 0,
+                'automatic'     => 1,
+                'updated_at'    => now(),
+                'created_at'    => now()
+            ],
+            [
                 'name'          => 'Sala de estar',
-                'setting'       => 70,
-                'state'         => 1,
+                'setting'       => 0,
+                'state'         => 0,
+                'automatic'     => 0,
                 'updated_at'    => now(),
                 'created_at'    => now()
             ],
@@ -271,34 +280,39 @@ class DatabaseSeeder extends Seeder
                 'name'          => 'Sala de jantar',
                 'setting'       => 0,
                 'state'         => 0,
+                'automatic'     => 0,
                 'updated_at'    => now(),
                 'created_at'    => now()
             ],
             [
                 'name'          => 'Cozinha',
-                'setting'       => 25,
+                'setting'       => 0,
                 'state'         => 0,
+                'automatic'     => 0,
                 'updated_at'    => now(),
                 'created_at'    => now()
             ],
             [
                 'name'          => 'Quarto principal',
                 'setting'       => 0,
-                'state'         => 1,
+                'state'         => 0,
+                'automatic'     => 0,
                 'updated_at'    => now(),
                 'created_at'    => now()
             ],
             [
                 'name'          => 'Quarto das crianças',
                 'setting'       => 0,
-                'state'         => 1,
+                'state'         => 0,
+                'automatic'     => 0,
                 'updated_at'    => now(),
                 'created_at'    => now()
             ],
             [
                 'name'          => 'Escritório',
-                'setting'       => 75,
-                'state'         => 1,
+                'setting'       => 0,
+                'state'         => 0,
+                'automatic'     => 0,
                 'updated_at'    => now(),
                 'created_at'    => now()
             ],
