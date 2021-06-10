@@ -12,10 +12,18 @@
             </div>
 
             <div class="mb-3">
-                <label for="timer" class="form-label" style="display: block;">Temporizador (min)</label>
+                <label for="timer" class="form-label" style="display: block;">Humidade (min %)</label>
                 <div class="d-flex align-items-center justify-content-between">
                     <input type="text" class="form-control" id="timer" name="timer"
-                        value="{{ $sprinkler->timer }}">
+                        value="{{ $sprinkler->setting }}">
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <span id="span-switch-op" class="form-label" style="display: block;">{{ $sprinkler->automatic ? 'Automático' : 'Manual' }}</span>
+                <div class="d-flex align-items-center justify-content-center">
+                    <button id="button-switch-op" type="button" onclick="toggleOperationMode()" class="text-secondary"></button>
+                    <input type="hidden" id="automatic" name="automatic" value="{{ $sprinkler->automatic }}">
                 </div>
             </div>
 
@@ -38,17 +46,36 @@
 
 @section('scripts')
 <script>
+    const spanOpElement = document.getElementById('span-switch-op');
     const inputElement = document.getElementById('state');
+    const inputOpElement = document.getElementById('automatic');
     const buttonElement = document.getElementById('button-switch');
+    const buttonOpElement = document.getElementById('button-switch-op');
+
     buttonElement.innerHTML = inputElement.value === '1' ?
     '<i class="bi bi-toggle-on text-success" title="Desligar"></i>' :
     '<i class="bi bi-toggle-off text-danger" title="Ligar"></i>';
+
+    buttonOpElement.innerHTML = inputElement.value === '1' ?
+    '<i class="bi bi-stop-circle" title="Passar a modo Manual"></i>' :
+    '<i class="bi bi-play-circle" title="Passar a modo Automático"></i>';
+
+    buttonElement.disabled = inputOpElement.value === '1';
 
     function toggleState() {
         inputElement.value = inputElement.value == '0' ? 1 : 0;
         buttonElement.innerHTML = inputElement.value === '1' ?
         '<i class="bi bi-toggle-on text-success" title="Desligar"></i>' :
         '<i class="bi bi-toggle-off text-danger" title="Ligar"></i>';
+    }
+
+    function toggleOperationMode() {
+        inputOpElement.value = inputOpElement.value == '0' ? 1 : 0;
+        buttonOpElement.innerHTML = inputOpElement.value === '1' ?
+        '<i class="bi bi-stop-circle" title="Passar a modo Manual"></i>' :
+        '<i class="bi bi-play-circle" title="Passar a modo Automático"></i>';
+        spanOpElement.innerHTML = inputOpElement.value === '1' ? 'Automático' : 'Manual';
+        buttonElement.disabled = inputOpElement.value === '1';
     }
 </script>
 @endsection

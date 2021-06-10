@@ -50,47 +50,25 @@ class ActuatorSprinklerController extends AdminController
         $request->merge(['id' => $id]);
         $request->validate([
             'id'      => 'required|exists:sprinklers,id',
-            'name'    => 'required|string',
-            'timer'   => 'required|numeric',
-            'state'   => 'required|boolean'
+            'name'      => 'required|string',
+            'setting'   => 'required|numeric',
+            'state'     => 'required|boolean',
+            'automatic' => 'required|boolean'
         ]);
 
         $sprinkler = (new Sprinkler())->find($id);
         $sprinkler->name = $request['name'];
-
-        if ($sprinkler->timer != $request['timer'] || $sprinkler->state != $request['state']) {
-            $client = new GuzzleHttp\Client();
-
-            try {
-                $response = $client->post(env('APP_API_BASE_URL') . '/actuators/sprinklers', [
-                    'id'      => $id,
-                    'timer'   => $request['timer'],
-                    'state'   => $request['state']
-                ]); //['auth' =>  ['user', 'pass']]
-            } catch (\Exception $exception) {
-                return back()->withErrors([
-                    'error' => 'Cisco Packet Tracer response with unknown error!'
-                ]);
-            }
-
-            if ($response->getStatusCode() == 200 || $response->getStatusCode() == 204) {
-                $sprinkler->timer = $request['timer'];
-                $sprinkler->state = $request['state'];
-            } else {
-                return back()->withErrors([
-                    'error' => 'Cisco Packet Tracer response with unknown error!'
-                ]);
-            }
-        }
+        $sprinkler->setting = $request['setting'];
+        $sprinkler->state = $request['state'];
+        $sprinkler->automatic = $request['automatic'];
 
         $sprinklerValue = new sprinklerValue();
         $sprinklerValue->state = $sprinkler->state;
-        $sprinklerValue->timer = $sprinkler->timer;
+        $sprinklerValue->setting = $sprinkler->setting;
         $sprinklerValue->sprinkler_id = $sprinkler->id;
         $sprinklerValue->save();
 
         $sprinkler->save();
-
 
         return redirect('/actuators/sprinklers');
     }

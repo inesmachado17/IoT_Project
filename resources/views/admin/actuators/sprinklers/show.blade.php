@@ -19,6 +19,12 @@
                     title="{{ $sprinkler->state ? 'Ligado' : 'Desligado' }}">
                 </i>
             </span>
+            <span class="h3">
+                <i
+                    class="bi bi-{{ $sprinkler->automatic ? 'play-circle' : 'stop-circle' }} text-muted"
+                    title="{{ $sprinkler->automatic ? 'Automático' : 'Manual' }}">
+                </i>
+            </span>
         </p>
     </div>
 </div>

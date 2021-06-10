@@ -24,9 +24,13 @@
                 <h5 class="card-title text-left">
                     {{ $sprinkler['name'] }}
                 </h5>
+                <p class="text-right mb-0">
+                    <span class="text-muted small">Operação em modo {{ $sprinkler['automatic'] ? 'Automático' : 'Manual' }}</span>
+                    <i class="bi bi-{{ $sprinkler['automatic'] ? 'play-circle' : 'stop-circle' }} text-muted" title="{{ $sprinkler['automatic'] ? 'Operando Automaticamente' : 'Operando Manualmente' }}"></i>
+                </p>
                 <p class="text-right" title="minutos">
-                    <span class="text-muted small">Programado para: {{ $sprinkler['timer'] }}
-                        <i class="bi bi-stopwatch"></i>
+                    <span class="text-muted small">Programado para: {{ $sprinkler['setting'] }}
+                       % <i class="bi bi-moisture"></i>
                     </span>
                 </p>
                 <p class="d-flex justify-content-between" title="{{ $sprinkler['state'] ? 'Ligado' : 'Desligado' }}">
