@@ -21,7 +21,7 @@
             </span>
             <span class="h3">
                 <i
-                    class="bi bi-{{ $airConditioner->automatic ? 'play-circle' : 'stop-circle' }} {{ $airConditioner->automatic ? 'text-success' : 'text-danger' }}"
+                    class="bi bi-{{ $airConditioner->automatic ? 'play-circle' : 'stop-circle' }} text-muted"
                     title="{{ $airConditioner->automatic ? 'Automático' : 'Manual' }}">
                 </i>
             </span>
