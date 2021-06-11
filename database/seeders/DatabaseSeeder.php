@@ -197,6 +197,7 @@ class DatabaseSeeder extends Seeder
                 'name'          => 'Relvado frente',
                 'setting'       => 72,
                 'state'         => 0,
+                'value'         => 10,
                 'automatic'     => 0,
                 'updated_at'    => now(),
                 'created_at'    => now()
@@ -205,6 +206,7 @@ class DatabaseSeeder extends Seeder
                 'name'          => 'Relvado traseiras',
                 'setting'       => 72,
                 'state'         => 0,
+                'value'         => 10,
                 'automatic'     => 1,
                 'updated_at'    => now(),
                 'created_at'    => now()
@@ -213,6 +215,7 @@ class DatabaseSeeder extends Seeder
                 'name'          => 'Parque',
                 'setting'       => 72,
                 'state'         => 0,
+                'value'         => 10,
                 'automatic'     => 1,
                 'updated_at'    => now(),
                 'created_at'    => now()
@@ -221,6 +224,7 @@ class DatabaseSeeder extends Seeder
                 'name'          => 'Estufa',
                 'setting'       => 72,
                 'state'         => 0,
+                'value'         => 10,
                 'automatic'     => 0,
                 'updated_at'    => now(),
                 'created_at'    => now()

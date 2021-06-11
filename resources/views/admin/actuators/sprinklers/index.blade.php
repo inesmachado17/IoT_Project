@@ -28,9 +28,15 @@
                     <span class="text-muted small">Operação em modo {{ $sprinkler['automatic'] ? 'Automático' : 'Manual' }}</span>
                     <i class="bi bi-{{ $sprinkler['automatic'] ? 'play-circle' : 'stop-circle' }} text-muted" title="{{ $sprinkler['automatic'] ? 'Operando Automaticamente' : 'Operando Manualmente' }}"></i>
                 </p>
-                <p class="text-right" title="minutos">
+                <p class="text-right mb-0" title="minutos">
                     <span class="text-muted small">Programado para: {{ $sprinkler['setting'] }}
                        % <i class="bi bi-moisture"></i>
+                    </span>
+                </p>
+                <p class="text-right">
+                    <span class="text-muted small">
+                        Humidade das proximidades: {{ $sprinkler['value'] }} %
+                        <i class="bi bi-moisture"></i>
                     </span>
                 </p>
                 <p class="d-flex justify-content-between" title="{{ $sprinkler['state'] ? 'Ligado' : 'Desligado' }}">
