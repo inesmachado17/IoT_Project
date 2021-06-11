@@ -1,11 +1,13 @@
 <?php
 
+
 namespace App\Models;
+
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Lamp extends Model
+class SmokeAlarm extends Model
 {
     use HasFactory;
 
@@ -19,6 +21,6 @@ class Lamp extends Model
 
     public function history()
     {
-        return $this->hasMany(LampState::class)->latest()->take(30);
+        return $this->hasMany(SmokeAlarmValue::class)->latest()->take(30);
     }
 }

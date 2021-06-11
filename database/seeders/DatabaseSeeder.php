@@ -64,6 +64,7 @@ class DatabaseSeeder extends Seeder
         $this->createBlinds();
         $this->createAirConditioners();
         $this->createSprinklers();
+        $this->createAlarms();
         $this->createDoors();
         $this->createLamps();
 
@@ -221,6 +222,21 @@ class DatabaseSeeder extends Seeder
                 'setting'       => 72,
                 'state'         => 0,
                 'automatic'     => 0,
+                'updated_at'    => now(),
+                'created_at'    => now()
+            ],
+        ]);
+    }
+
+    private function createAlarms()
+    {
+        DB::table('smoke_alarms')->insert([
+            [
+                'name'          => 'Garagem',
+                'value'         => 0,
+                'setting'       => 8,
+                'state'         => 0,
+                'automatic'     => 1,
                 'updated_at'    => now(),
                 'created_at'    => now()
             ],

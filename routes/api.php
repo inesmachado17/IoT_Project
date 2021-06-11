@@ -8,6 +8,7 @@ use App\Models\Sensors\Light;
 use App\Models\Sensors\Motion;
 use App\Models\Sensors\Smoke;
 use App\Models\Sensors\Temperature;
+use App\Models\SmokeAlarm;
 use App\Models\Sprinkler;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -250,6 +251,30 @@ Route::post('/actuators/lamps', function (Request $request) {
         $lamp->value = $request['value'];
 
         $lamp->save();
+    } catch (\Exception $exception) {
+        return response($exception->getMessage(), 500);
+    }
+
+    return response('', 204);
+});
+
+Route::post('/actuators/smoke-alarms', function (Request $request) {
+    $validator = Validator::make($request->all(), [
+        "id"    => "required|exists:smoke_alarms,id",
+        "state" => "required|boolean",
+        "value" => 'required|numeric',
+    ]);
+
+    if ($validator->fails()) {
+        return response($validator->messages(), 400);
+    }
+
+    try {
+        $smokeAlarm = (new SmokeAlarm())->find($request["id"]);
+        $smokeAlarm->state = $request['state'];
+        $smokeAlarm->value = $request['value'];
+
+        $smokeAlarm->save();
     } catch (\Exception $exception) {
         return response($exception->getMessage(), 500);
     }

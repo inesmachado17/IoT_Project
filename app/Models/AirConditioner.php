@@ -12,7 +12,7 @@ class AirConditioner extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name', 'setting', 'state'
+        'name', 'setting', 'state', 'value'
     ];
 
     protected $hidden =  [

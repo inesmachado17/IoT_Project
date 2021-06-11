@@ -7,6 +7,7 @@ use App\Http\Controllers\Actuator\ActuatorDoorController;
 use App\Http\Controllers\Actuator\ActuatorLampController;
 use App\Http\Controllers\Actuator\ActuatorController;
 use App\Http\Controllers\Actuator\ActuatorFireAlarmController;
+use App\Http\Controllers\Actuator\ActuatorSmokeAlarmController;
 use App\Http\Controllers\Sensor\SensorHumidityController;
 use App\Http\Controllers\Sensor\SensorLightController;
 use App\Http\Controllers\Sensor\SensorMotionController;
@@ -47,6 +48,11 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/actuators/sprinklers/{id}', [ActuatorSprinklerController::class, 'show']);
     Route::get('/actuators/sprinklers/{id}/edit', [ActuatorSprinklerController::class, 'edit'])->middleware('is.admin');
     Route::put('/actuators/sprinklers/{id}', [ActuatorSprinklerController::class, 'update'])->middleware('is.admin');
+
+    Route::get('/actuators/smoke-alarms', [ActuatorSmokeAlarmController::class, 'index']);
+    Route::get('/actuators/smoke-alarms/{id}', [ActuatorSmokeAlarmController::class, 'show']);
+    Route::get('/actuators/smoke-alarms/{id}/edit', [ActuatorSmokeAlarmController::class, 'edit'])->middleware('is.admin');
+    Route::put('/actuators/smoke-alarms/{id}', [ActuatorSmokeAlarmController::class, 'update'])->middleware('is.admin');
 
     Route::get('/actuators/doors', [ActuatorDoorController::class, 'index']);
     Route::get('/actuators/doors/{id}', [ActuatorDoorController::class, 'show']);

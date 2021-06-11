@@ -12,7 +12,7 @@ class Sprinkler extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name', 'timer', 'state'
+        'name', 'timer', 'state', 'value'
     ];
 
     protected $hidden =  [
