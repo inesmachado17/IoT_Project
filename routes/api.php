@@ -157,6 +157,7 @@ Route::get('/actuators/{actuatorName}', function (Request $request, $actuatorNam
         "air-conditionairs" => new AirConditioner(),
         "sprinklers"        => new Sprinkler(),
         "lamps"             => new Lamp(),
+        "smoke-alarms"      => new SmokeAlarm(),
     ];
 
     if (!array_key_exists($actuatorName, $actuators)) {

@@ -41,7 +41,9 @@
                 </p>
                 <p class="d-flex justify-content-between" title="{{ $sa['state'] ? 'Ligado' : 'Desligado' }}">
                     <span>Estado:</span>
-                    <i class="bi bi-power {{ $sa['state'] ? 'text-success' : 'text-danger' }}" title="{{ $sa['state'] ? 'Ligado' : 'Desligado' }}"></i>
+                    {!! !$sa['state'] ?
+                    '<i class="far fa-smile text-success" title="Alarme Desligado"></i>' :
+                    '<i class="fas fa-skull-crossbones text-danger" title="Alarme Ligado"></i>' !!}
                 </p>
                 <p class="d-flex justify-content-between">
                     <a href="/actuators/smoke-alarms/{{ $sa['id'] }}" class="btn btn-outline-primary btn-sm">

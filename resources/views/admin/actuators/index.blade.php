@@ -18,6 +18,10 @@
                 <span>Aspersores</span>
                 <i class="fas fa-faucet"></i>
             </a>
+            <a href="/actuators/smoke-alarms" class="list-group-item list-group-item-action d-flex justify-content-between">
+                <span>Alarmes de fumaça</span>
+                <i class="fas fa-smog"></i>
+            </a>
             <a href="/actuators/doors" class="list-group-item list-group-item-action d-flex justify-content-between">
                 <span>Portas</span>
                 <i class="bi bi-door-closed"></i>
