@@ -85,7 +85,7 @@ Route::post('/sensors/humidities', function (Request $request) {
 
 Route::post('/sensors/lights', function (Request $request) {
     $validator = Validator::make($request->all(), [
-        "value" => "required|numeric|min:0|max:10000",
+        "value" => "required|numeric|min:0|max:100",
         "date"  => "required|date"
     ]);
 
@@ -94,11 +94,11 @@ Route::post('/sensors/lights', function (Request $request) {
     }
 
     try {
-        $smoke = new Smoke();
-        $smoke->value = $request['value'];
-        $smoke->date = new Carbon($request['date']);
+        $light = new Light();
+        $light->value = $request['value'];
+        $light->date = new Carbon($request['date']);
 
-        $smoke->save();
+        $light->save();
     } catch (\Exception $exception) {
         return response($exception->getMessage(), 500);
     }
@@ -151,6 +151,22 @@ Route::post('/sensors/motions', function (Request $request) {
 
 
 // ACTUATORS
+Route::get('/actuators/{actuatorName}', function (Request $request, $actuatorName) {
+    $actuators = [
+        "air-conditionairs" => new AirConditioner(),
+        "sprinklers"        => new Sprinkler(),
+        "lamps"             => new Lamp(),
+    ];
+
+    if (!array_key_exists($actuatorName, $actuators)) {
+        return response("Actuator name not recognized", 400);
+    }
+
+    $list = $actuators[$actuatorName]->orderBy('id', 'asc')->get();
+
+    return response($list, 200);
+});
+
 Route::post('/actuators/fire-alarms', function (Request $request) {
     $validator = Validator::make($request->all(), [
         "value" => "required|boolean"
@@ -174,7 +190,8 @@ Route::post('/actuators/fire-alarms', function (Request $request) {
 Route::post('/actuators/air-conditionairs', function (Request $request) {
     $validator = Validator::make($request->all(), [
         "id"    => "required|exists:air_conditioners,id",
-        "state" => "required|boolean"
+        "state" => "required|boolean",
+        "value" => 'required|numeric',
     ]);
 
     if ($validator->fails()) {
@@ -184,6 +201,7 @@ Route::post('/actuators/air-conditionairs', function (Request $request) {
     try {
         $airConditionair = (new AirConditioner())->find($request["id"]);
         $airConditionair->state = $request['state'];
+        $airConditionair->value = $request['value'];
 
         $airConditionair->save();
     } catch (\Exception $exception) {
@@ -235,41 +253,4 @@ Route::post('/actuators/lamps', function (Request $request) {
     }
 
     return response('', 204);
-});
-
-
-Route::get('/actuators/air-conditionairs', function (Request $request) {
-    $airConditionairs = [];
-
-    try {
-        $airConditionairs = AirConditioner::all();
-    } catch (\Exception $exception) {
-        return response($exception->getMessage(), 500);
-    }
-
-    return response($airConditionairs, 200);
-});
-
-Route::get('/actuators/sprinklers', function (Request $request) {
-    $sprinklers = [];
-
-    try {
-        $sprinklers = Sprinkler::all();
-    } catch (\Exception $exception) {
-        return response($exception->getMessage(), 500);
-    }
-
-    return response($sprinklers, 200);
-});
-
-Route::get('/actuators/lamps', function (Request $request) {
-    $lamps = [];
-
-    try {
-        $lamps = Lamp::all();
-    } catch (\Exception $exception) {
-        return response($exception->getMessage(), 500);
-    }
-
-    return response($lamps, 200);
 });

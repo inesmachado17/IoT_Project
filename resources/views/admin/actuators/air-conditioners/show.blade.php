@@ -11,21 +11,30 @@
 <div class="row d-flex justify-content-center mb-5">
     <div class="col-6">
         <h2>{{ $airConditioner->name }}</h2>
-        <p>Atualmente:
-            <span class="h3 mx-2">{{ $airConditioner->setting }} ºC</span>
-            <span class="h3">
-                <i
-                    class="bi bi-power {{ $airConditioner->state ? 'text-success' : 'text-danger' }}"
-                    title="{{ $airConditioner->state ? 'Ligado' : 'Desligado' }}">
-                </i>
-            </span>
-            <span class="h3">
-                <i
-                    class="bi bi-{{ $airConditioner->automatic ? 'play-circle' : 'stop-circle' }} text-muted"
-                    title="{{ $airConditioner->automatic ? 'Automático' : 'Manual' }}">
-                </i>
-            </span>
-        </p>
+        <div class="row">
+            <div class="col-6">
+                <p>
+                    <span class="small text-muted">programado para: </span>{{ $airConditioner->setting }} ºC
+                </p>
+                <p>
+                    <span class="small text-muted">temperatura ambiente: </span>{{ $airConditioner->value }} ºC
+                </p>
+            </div>
+            <div class="col-6">
+                <p>
+                    <span class="small text-muted">estado: </span>
+                    <i class="bi bi-power {{ $airConditioner->state ? 'text-success' : 'text-danger' }}"
+                        title="{{ $airConditioner->state ? 'Ligado' : 'Desligado' }}">
+                    </i>
+                </p>
+                <p>
+                    <span class="small text-muted">operação {{ $airConditioner->automatic ? 'automático' : 'manual' }}</span>
+                    <i class="bi bi-{{ $airConditioner->automatic ? 'play-circle' : 'stop-circle' }} text-muted"
+                        title="{{ $airConditioner->automatic ? 'Automático' : 'Manual' }}">
+                    </i>
+                </p>
+            </div>
+        </div>
     </div>
 </div>
 

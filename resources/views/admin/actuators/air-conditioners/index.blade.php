@@ -32,8 +32,11 @@
                     <span class="text-muted small">Operação em modo {{ $ac['automatic'] ? 'Automático' : 'Manual' }}</span>
                     <i class="bi bi-{{ $ac['automatic'] ? 'play-circle' : 'stop-circle' }} text-muted" title="{{ $ac['automatic'] ? 'Operando Automaticamente' : 'Operando Manualmente' }}"></i>
                 </p>
-                <p class="text-right">
+                <p class="text-right mb-0">
                     <span class="text-muted small">Programado para: {{ $ac['setting'] }} ºC</span>
+                </p>
+                <p class="text-right">
+                    <span class="text-muted small">Temperatura ambiente: {{ $ac['value'] }} ºC</span>
                 </p>
                 <p class="d-flex justify-content-between" title="{{ $ac['state'] ? 'Ligado' : 'Desligado' }}">
                     <span>Estado:</span>

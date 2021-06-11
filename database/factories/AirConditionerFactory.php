@@ -15,6 +15,7 @@ class AirConditionerFactory extends Factory
         return [
             'name'          => $this->faker->word(),
             'setting'       => $this->faker->numberBetween(1, 5),
+            'value'         => $this->faker->numberBetween(1, 5),
             'updated_at'    => now(),
             'created_at'    => now()
         ];
