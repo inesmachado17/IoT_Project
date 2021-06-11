@@ -20,11 +20,15 @@
         <table class="table table-striped table-hover">
             <thead>
                 <tr>
-                    <th>Designação</th>
-                    <th class="text-center">Luminosidade</th>
-                    <th class="text-center">Estado</th>
-                    <th class="text-center">Modo Operação</th>
-                    <th></th>
+                    <th rowspan="2" class="text-center">Designação</th>
+                    <th colspan="2" class="text-center">Luminosidade</th>
+                    <th rowspan="2" class="text-center center">Estado</th>
+                    <th rowspan="2" class="text-center">Modo Operação</th>
+                    <th rowspan="2"></th>
+                </tr>
+                <tr>
+                    <th class="text-center small">programada</th>
+                    <th class="text-center small">ambiente</th>
                 </tr>
             </thead>
             <tbody>
@@ -32,6 +36,7 @@
                 <tr>
                     <td>{{ $lamp['name'] }}</td>
                     <td class="text-center">{{ $lamp['setting'] }} %</td>
+                    <td class="text-center">{{ $lamp['value'] }} %</td>
                     <td class="text-center">
                         {!! $lamp['state'] ? '<i class="bi bi-lightbulb text-success" title="Ligado"></i>' : '<i
                             class="bi bi-lightbulb-off text-danger" title="Desligado"></i>' !!}

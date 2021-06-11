@@ -16,6 +16,7 @@ class CreateLampsTable extends Migration
         Schema::create('lamps', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->unsignedInteger('value');
             $table->unsignedInteger('setting');
             $table->boolean('automatic')->default(false);
             $table->boolean('state')->default(false);

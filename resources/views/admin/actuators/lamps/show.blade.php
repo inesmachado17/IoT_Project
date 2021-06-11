@@ -11,13 +11,30 @@
 <div class="row d-flex justify-content-center mb-5">
     <div class="col-6">
         <h2>{{ $lamp->name }}</h2>
-        <p>Atualmente: <span class="h3">{{ $lamp->setting }}% </span>
-            <span class="h5">luminosidade</span>
-            <span class="ml-2">
-                {!! $lamp['state'] ? '<i class="bi bi-lightbulb text-success" title="Ligado"></i>' :
-                    '<i class="bi bi-lightbulb-off text-danger" title="Desligado"></i>' !!}
-            </span>
-        </p>
+        <div class="row">
+            <div class="col-6">
+                <p>
+                    <span class="small text-muted">programado para: </span>{{ $lamp->setting }} %
+                </p>
+                <p>
+                    <span class="small text-muted">luminosidade ambiente: </span>{{ $lamp->value }} %
+                </p>
+            </div>
+            <div class="col-6">
+                <p>
+                    <span class="small text-muted">estado: </span>
+                    <i class="bi bi-lightbulb{{ $lamp->state ? ' text-success' : '-off text-danger' }}"
+                        title="{{ $lamp->state ? 'Ligado' : 'Desligado' }}">
+                    </i>
+                </p>
+                <p>
+                    <span class="small text-muted">operação {{ $lamp->automatic ? 'automático' : 'manual' }}</span>
+                    <i class="bi bi-{{ $lamp->automatic ? 'play-circle' : 'stop-circle' }} text-muted"
+                        title="{{ $lamp->automatic ? 'Automático' : 'Manual' }}">
+                    </i>
+                </p>
+            </div>
+        </div>
     </div>
 </div>
 

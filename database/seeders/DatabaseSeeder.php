@@ -267,6 +267,7 @@ class DatabaseSeeder extends Seeder
             [
                 'name'          => 'Portão da rua',
                 'setting'       => 25,
+                'value'         => 0,
                 'state'         => 0,
                 'automatic'     => 1,
                 'updated_at'    => now(),
@@ -275,6 +276,7 @@ class DatabaseSeeder extends Seeder
             [
                 'name'          => 'Sala de estar',
                 'setting'       => 0,
+                'value'         => 0,
                 'state'         => 0,
                 'automatic'     => 0,
                 'updated_at'    => now(),
@@ -283,6 +285,7 @@ class DatabaseSeeder extends Seeder
             [
                 'name'          => 'Sala de jantar',
                 'setting'       => 0,
+                'value'         => 0,
                 'state'         => 0,
                 'automatic'     => 0,
                 'updated_at'    => now(),
@@ -291,6 +294,7 @@ class DatabaseSeeder extends Seeder
             [
                 'name'          => 'Cozinha',
                 'setting'       => 0,
+                'value'         => 0,
                 'state'         => 0,
                 'automatic'     => 0,
                 'updated_at'    => now(),
@@ -299,6 +303,7 @@ class DatabaseSeeder extends Seeder
             [
                 'name'          => 'Quarto principal',
                 'setting'       => 0,
+                'value'         => 0,
                 'state'         => 0,
                 'automatic'     => 0,
                 'updated_at'    => now(),
@@ -307,6 +312,7 @@ class DatabaseSeeder extends Seeder
             [
                 'name'          => 'Quarto das crianças',
                 'setting'       => 0,
+                'value'         => 0,
                 'state'         => 0,
                 'automatic'     => 0,
                 'updated_at'    => now(),
@@ -315,6 +321,7 @@ class DatabaseSeeder extends Seeder
             [
                 'name'          => 'Escritório',
                 'setting'       => 0,
+                'value'         => 0,
                 'state'         => 0,
                 'automatic'     => 0,
                 'updated_at'    => now(),

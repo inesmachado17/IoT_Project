@@ -177,3 +177,7 @@ label.form-check-label i {
     }
 }
 
+.table thead th {
+    vertical-align: middle;
+}
+

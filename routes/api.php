@@ -236,7 +236,8 @@ Route::post('/actuators/sprinklers', function (Request $request) {
 Route::post('/actuators/lamps', function (Request $request) {
     $validator = Validator::make($request->all(), [
         "id"    => "required|exists:lamps,id",
-        "state" => "required|boolean"
+        "state" => "required|boolean",
+        "value" => 'required|numeric',
     ]);
 
     if ($validator->fails()) {
@@ -246,6 +247,7 @@ Route::post('/actuators/lamps', function (Request $request) {
     try {
         $lamp = (new Lamp())->find($request["id"]);
         $lamp->state = $request['state'];
+        $lamp->value = $request['value'];
 
         $lamp->save();
     } catch (\Exception $exception) {
