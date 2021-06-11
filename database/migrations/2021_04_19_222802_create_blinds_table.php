@@ -16,7 +16,8 @@ class CreateBlindsTable extends Migration
         Schema::create('blinds', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->unsignedInteger('size');
+            $table->unsignedInteger('value');
+            $table->unsignedInteger('setting');
             $table->unsignedInteger('state')->default(0);
             $table->timestamps();
         });

@@ -19,6 +19,7 @@
             <thead>
                 <tr>
                     <th>Designação</th>
+                    <th class="text-center">Abertura Programada</th>
                     <th class="text-center">Abertura</th>
                     <th></th>
                 </tr>
@@ -27,7 +28,8 @@
                 @foreach($blinds as $blind)
                 <tr>
                     <td>{{ $blind['name'] }}</td>
-                    <td class="text-center">{{ $blind['state'] }} %</td>
+                    <td class="text-center">{{ $blind['setting'] }} %</td>
+                    <td class="text-center">{{ $blind['value'] }} %</td>
                     <td class="text-center">
                         @if (Auth::user()->role === 'admin')
                         <a href="{{ url('/actuators/blinds/'. $blind['id'] . '/edit') }}"

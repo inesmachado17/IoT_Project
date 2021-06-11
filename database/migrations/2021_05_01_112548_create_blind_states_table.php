@@ -15,7 +15,7 @@ class CreateBlindStatesTable extends Migration
     {
         Schema::create('blind_states', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('state')->default(0);
+            $table->unsignedInteger('value')->default(0);
             $table->timestamps();
 
             $table->foreignId('blind_id')

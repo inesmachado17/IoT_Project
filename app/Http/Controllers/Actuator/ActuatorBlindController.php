@@ -58,42 +58,18 @@ class ActuatorBlindController extends AdminController
     {
         $request->merge(['id' => $id]);
         $request->validate([
-            'id'    => 'required|exists:blinds,id',
-            'name'  => 'required|string',
-            'state' => 'required|numeric|min:0|max:100'
+            'id'      => 'required|exists:blinds,id',
+            'name'    => 'required|string',
+            'setting' => 'required|numeric|min:0|max:100'
         ]);
 
         $blind = (new Blind())->findOrFail($id);
         $blind->name = $request['name'];
+        $blind->setting = $request['setting'];
 
-        if ($blind->state != $request['state']) {
-            //Enviar ao cisco packet tracer o pedido de alteração de state
-            //para esta persiana o cisco reponde ok ou error
-            //no caso de ok atualiza o state desta persiana no banco de dados
-            $client = new GuzzleHttp\Client();
-
-            try {
-                $response = $client->post(env('APP_API_BASE_URL') . '/actuators/blinds', [
-                    'id'    => $id,
-                    'state' => $request['state']
-                ]); //['auth' =>  ['user', 'pass']]
-            } catch (\Exception $exception) {
-                return back()->withErrors([
-                    'error' => 'Cisco Packet Tracer response with unknown error!'
-                ]);
-            }
-
-            if ($response->getStatusCode() == 200 || $response->getStatusCode() == 204) {
-                $blind->state = $request['state'];
-            } else {
-                return back()->withErrors([
-                    'error' => 'Cisco Packet Tracer reponde with unknown error!'
-                ]);
-            }
-        }
 
         $blindState = new BlindState();
-        $blindState->state = $blind->state;
+        $blindState->value = $blind->value;
         $blindState->blind_id = $blind->id;
         $blindState->save();
 

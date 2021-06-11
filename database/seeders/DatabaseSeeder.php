@@ -97,50 +97,9 @@ class DatabaseSeeder extends Seeder
     {
         DB::table('blinds')->insert([
             [
-                'name'          => 'Janela Esq. da Sala',
-                'size'          => 120,
-                'state'         => 50,
-                'updated_at'    => now(),
-                'created_at'    => now()
-            ],
-            [
-                'name'          => 'Janela Dir. da Sala',
-                'size'          => 120,
-                'state'         => 50,
-                'updated_at'    => now(),
-                'created_at'    => now()
-            ],
-            [
-                'name'          => 'Janela do Quarto A',
-                'size'          => 120,
-                'state'         => 75,
-                'updated_at'    => now(),
-                'created_at'    => now()
-            ],
-            [
-                'name'          => 'Janela do Quarto B',
-                'size'          => 120,
-                'state'         => 75,
-                'updated_at'    => now(),
-                'created_at'    => now()
-            ],
-            [
-                'name'          => 'Varanda da Sala',
-                'size'          => 170,
-                'state'         => 25,
-                'updated_at'    => now(),
-                'created_at'    => now()
-            ],
-            [
-                'name'          => 'Basculante da Casa de Banho Grande',
-                'size'          => 60,
-                'state'         => 0,
-                'updated_at'    => now(),
-                'created_at'    => now()
-            ],
-            [
-                'name'          => 'Basculante da Casa de Banho Pequena',
-                'size'          => 60,
+                'name'          => 'Sala',
+                'setting'       => 50,
+                'value'         => 0,
                 'state'         => 0,
                 'updated_at'    => now(),
                 'created_at'    => now()
@@ -161,29 +120,11 @@ class DatabaseSeeder extends Seeder
                 'created_at'    => now()
             ],
             [
-                'name'          => 'Escritório',
+                'name'          => 'Sala',
                 'setting'       => 22,
                 'value'         => 20,
                 'state'         => 0,
                 'automatic'     => 0,
-                'updated_at'    => now(),
-                'created_at'    => now()
-            ],
-            [
-                'name'          => 'Sala de Jogos',
-                'setting'       => 21,
-                'value'         => 20,
-                'state'         => 0,
-                'automatic'     => 0,
-                'updated_at'    => now(),
-                'created_at'    => now()
-            ],
-            [
-                'name'          => 'Quarto do Pânico',
-                'setting'       => 15,
-                'value'         => 20,
-                'state'         => 0,
-                'automatic'     => 1,
                 'updated_at'    => now(),
                 'created_at'    => now()
             ],
@@ -294,52 +235,7 @@ class DatabaseSeeder extends Seeder
                 'created_at'    => now()
             ],
             [
-                'name'          => 'Sala de estar',
-                'setting'       => 0,
-                'value'         => 0,
-                'state'         => 0,
-                'automatic'     => 0,
-                'updated_at'    => now(),
-                'created_at'    => now()
-            ],
-            [
-                'name'          => 'Sala de jantar',
-                'setting'       => 0,
-                'value'         => 0,
-                'state'         => 0,
-                'automatic'     => 0,
-                'updated_at'    => now(),
-                'created_at'    => now()
-            ],
-            [
-                'name'          => 'Cozinha',
-                'setting'       => 0,
-                'value'         => 0,
-                'state'         => 0,
-                'automatic'     => 0,
-                'updated_at'    => now(),
-                'created_at'    => now()
-            ],
-            [
-                'name'          => 'Quarto principal',
-                'setting'       => 0,
-                'value'         => 0,
-                'state'         => 0,
-                'automatic'     => 0,
-                'updated_at'    => now(),
-                'created_at'    => now()
-            ],
-            [
-                'name'          => 'Quarto das crianças',
-                'setting'       => 0,
-                'value'         => 0,
-                'state'         => 0,
-                'automatic'     => 0,
-                'updated_at'    => now(),
-                'created_at'    => now()
-            ],
-            [
-                'name'          => 'Escritório',
+                'name'          => 'Sala',
                 'setting'       => 0,
                 'value'         => 0,
                 'state'         => 0,

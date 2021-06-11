@@ -1,15 +1,12 @@
 <?php
 
-use App\Models\AirConditioner;
+use App\Http\Controllers\ApiActuatorController;
 use App\Models\FireAlarm;
-use App\Models\Lamp;
 use App\Models\Sensors\Humidity;
 use App\Models\Sensors\Light;
 use App\Models\Sensors\Motion;
 use App\Models\Sensors\Smoke;
 use App\Models\Sensors\Temperature;
-use App\Models\SmokeAlarm;
-use App\Models\Sprinkler;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Validator;
@@ -152,22 +149,11 @@ Route::post('/sensors/motions', function (Request $request) {
 
 
 // ACTUATORS
-Route::get('/actuators/{actuatorName}', function (Request $request, $actuatorName) {
-    $actuators = [
-        "air-conditionairs" => new AirConditioner(),
-        "sprinklers"        => new Sprinkler(),
-        "lamps"             => new Lamp(),
-        "smoke-alarms"      => new SmokeAlarm(),
-    ];
+Route::get('/actuators/{actuatorName}', [ApiActuatorController::class, 'index']);
 
-    if (!array_key_exists($actuatorName, $actuators)) {
-        return response("Actuator name not recognized", 400);
-    }
+//air-conditioners, sprinklers, lamps, smoke-alarms
+Route::post('/actuators/{actuatorName}', [ApiActuatorController::class, 'update']);
 
-    $list = $actuators[$actuatorName]->orderBy('id', 'asc')->get();
-
-    return response($list, 200);
-});
 
 Route::post('/actuators/fire-alarms', function (Request $request) {
     $validator = Validator::make($request->all(), [
@@ -186,101 +172,5 @@ Route::post('/actuators/fire-alarms', function (Request $request) {
     } catch (\Exception $exception) {
         return response($exception->getMessage(), 500);
     }
-    return response('', 204);
-});
-
-Route::post('/actuators/air-conditionairs', function (Request $request) {
-    $validator = Validator::make($request->all(), [
-        "id"    => "required|exists:air_conditioners,id",
-        "state" => "required|boolean",
-        "value" => 'required|numeric',
-    ]);
-
-    if ($validator->fails()) {
-        return response($validator->messages(), 400);
-    }
-
-    try {
-        $airConditionair = (new AirConditioner())->find($request["id"]);
-        $airConditionair->state = $request['state'];
-        $airConditionair->value = $request['value'];
-
-        $airConditionair->save();
-    } catch (\Exception $exception) {
-        return response($exception->getMessage(), 500);
-    }
-
-    return response('', 204);
-});
-
-Route::post('/actuators/sprinklers', function (Request $request) {
-    $validator = Validator::make($request->all(), [
-        "id"    => "required|exists:sprinklers,id",
-        "state" => "required|boolean",
-        "value" => 'required|numeric',
-    ]);
-
-    if ($validator->fails()) {
-        return response($validator->messages(), 400);
-    }
-
-    try {
-        $sprinkler = (new Sprinkler())->find($request["id"]);
-        $sprinkler->state = $request['state'];
-        $sprinkler->value = $request['value'];
-
-        $sprinkler->save();
-    } catch (\Exception $exception) {
-        return response($exception->getMessage(), 500);
-    }
-
-    return response('', 204);
-});
-
-Route::post('/actuators/lamps', function (Request $request) {
-    $validator = Validator::make($request->all(), [
-        "id"    => "required|exists:lamps,id",
-        "state" => "required|boolean",
-        "value" => 'required|numeric',
-    ]);
-
-    if ($validator->fails()) {
-        return response($validator->messages(), 400);
-    }
-
-    try {
-        $lamp = (new Lamp())->find($request["id"]);
-        $lamp->state = $request['state'];
-        $lamp->value = $request['value'];
-
-        $lamp->save();
-    } catch (\Exception $exception) {
-        return response($exception->getMessage(), 500);
-    }
-
-    return response('', 204);
-});
-
-Route::post('/actuators/smoke-alarms', function (Request $request) {
-    $validator = Validator::make($request->all(), [
-        "id"    => "required|exists:smoke_alarms,id",
-        "state" => "required|boolean",
-        "value" => 'required|numeric',
-    ]);
-
-    if ($validator->fails()) {
-        return response($validator->messages(), 400);
-    }
-
-    try {
-        $smokeAlarm = (new SmokeAlarm())->find($request["id"]);
-        $smokeAlarm->state = $request['state'];
-        $smokeAlarm->value = $request['value'];
-
-        $smokeAlarm->save();
-    } catch (\Exception $exception) {
-        return response($exception->getMessage(), 500);
-    }
-
     return response('', 204);
 });

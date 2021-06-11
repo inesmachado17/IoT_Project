@@ -10,7 +10,7 @@ class Blind extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name', 'size', 'state'
+        'name', 'setting', 'state', 'value'
     ];
 
     protected $hidden =  [

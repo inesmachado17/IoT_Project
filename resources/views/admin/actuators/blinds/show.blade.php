@@ -11,7 +11,7 @@
 <div class="row d-flex justify-content-center mb-5">
     <div class="col-6">
         <h2>{{ $blind->name }}</h2>
-        <p>Atualmente: <span class="h3">{{ $blind->state }} %</span>
+        <p>Atualmente: <span class="h3">{{ $blind->value }} %</span>
             <span class="h5">abertura</span>
         </p>
     </div>
@@ -31,7 +31,7 @@
                 @foreach ($blind->history as $history)
                 <tr>
                     <td class="text-center">{{ $history->created_at->setTimezone('Europe/Lisbon') }}</td>
-                    <td class="text-right">{{ $history->state }} %</td>
+                    <td class="text-right">{{ $history->value }} %</td>
                 </tr>
                 @endforeach
             </tbody>

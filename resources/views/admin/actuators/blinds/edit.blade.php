@@ -13,10 +13,10 @@
             </div>
 
             <div class="mb-3">
-                <span class="form-label" style="display: block;">Abertura</span>
+                <span class="form-label" style="display: block;">Abertura Programada</span>
                 <div class="d-flex align-items-center justify-content-between">
-                    <input type="range" min="0" max="100" class="form-range" id="abertura" name="state"
-                        value="{{ $blind->state }}">
+                    <input type="range" min="0" max="100" class="form-range" id="abertura" name="setting"
+                        value="{{ $blind->setting }}">
                     <span id="span-value" class="ml-2"></span>
                 </div>
             </div>
@@ -31,7 +31,7 @@
 
 @section('scripts')
 <script>
-    const value = {!! json_encode($blind->state) !!}; //"50"
+    const value = {!! json_encode($blind->setting) !!}; //"50"
     const spanElement = document.getElementById('span-value');
     spanElement.innerHTML = value + " %";
 
