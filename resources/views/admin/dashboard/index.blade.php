@@ -117,13 +117,26 @@
         <h3>Webcams</h3>
     </div>
     <div class="col-6 d-flex flex-column justify-content-center align-items-center">
-        <img src="{{ Storage::url('webcam/images/oneshot/porta.jpg') }}" class="img-thumbnail webcam-image" alt="...">
+        <img id="porta" src="http://localhost:8000/storage/webcam/images/oneshot/porta.jpg" class="img-thumbnail webcam-image" alt="...">
         <h5>Porta</h5>
     </div>
 
     <div class="col-6 d-flex flex-column justify-content-center align-items-center">
-        <img src="{{ Storage::url('webcam/images/oneshot/garagem.jpg') }}" class="img-thumbnail webcam-image" alt="...">
+        <img id="garagem" src="http://localhost:8000/storage/webcam/images/oneshot/garagem.jpg" class="img-thumbnail webcam-image" alt="...">
         <h5>Garagem</h5>
     </div>
 </div>
+@endsection
+
+@section('scripts')
+<script>
+    const portaImgElem = document.getElementById('porta');
+    const garagemImgElem = document.getElementById('garagem');
+
+    setInterval(() => {
+        portaImgElem.src = "http://localhost:8000/storage/webcam/images/oneshot/porta.jpg?x=" + Math.random();
+        garagemImgElem.src = "http://localhost:8000/storage/webcam/images/oneshot/garagem.jpg?x=" + Math.random();
+    }, 2000);
+
+</script>
 @endsection

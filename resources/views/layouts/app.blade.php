@@ -78,12 +78,11 @@
         integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous">
     </script>
 
-    @yield('scripts')
-
     <!--Chart.js-->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.2.0/dist/chart.min.js"></script>
     @yield('chart-script')
 
+    @yield('scripts')
 
     @if (env('APP_EMULATE_CPT'))
     <!-- For demonstration purpose -->

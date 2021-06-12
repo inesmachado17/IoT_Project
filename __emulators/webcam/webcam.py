@@ -5,7 +5,7 @@ import cv2
 # camera = cv2.VideoCapture(1, cv2.CAP_DSHOW)
 # camera = cv2.VideoCapture('http://10.20.228.225:4747/video')
 
-INTERVAL = 5000
+INTERVAL = 2000
 
 
 def returnCameraIndexes():
