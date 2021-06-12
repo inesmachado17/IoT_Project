@@ -57,7 +57,7 @@ class DatabaseSeeder extends Seeder
             return random_int(0, 100) > 80;
         });
         $this->createSensorsData('smokes', 50, function () {
-            return random_int(0, 500);
+            return random_int(0, 100);
         });
 
         // Actuators

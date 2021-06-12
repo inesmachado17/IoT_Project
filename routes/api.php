@@ -174,3 +174,22 @@ Route::post('/actuators/fire-alarms', function (Request $request) {
     }
     return response('', 204);
 });
+
+//Webcam
+Route::post('/webcam/oneshot/{webcamName}', function (Request $request, $webcamName) {
+    $validator = Validator::make($request->all(), [
+        "file" => "required|image|mimes:jpeg,png,jpg|max:2048"
+    ]);
+
+    if ($validator->fails()) {
+        return response($validator->messages(), 400);
+    }
+
+    $request->file->storeAs(
+        'webcam/images/oneshot',
+        $webcamName . '.' . $request->file->extension(),
+        'public'
+    );
+
+    return response('', 204);
+});

@@ -181,3 +181,20 @@ label.form-check-label i {
     vertical-align: middle;
 }
 
+div.webcam-images {
+    border: 1px solid #ccc;
+    padding: 8px;
+    border-radius: 8px;
+}
+/* div.webcam-images > div {
+    border: 1px solid #ccc;
+    padding: 8px;
+    border-radius: 8px;
+} */
+img.webcam-image {
+    width: 200px;
+    height: 200px;
+    -o-object-fit: cover;
+       object-fit: cover;
+}
+

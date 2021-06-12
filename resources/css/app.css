@@ -142,3 +142,19 @@ label.form-check-label i {
 .table thead th {
     vertical-align: middle;
 }
+
+div.webcam-images {
+    border: 1px solid #ccc;
+    padding: 8px;
+    border-radius: 8px;
+}
+/* div.webcam-images > div {
+    border: 1px solid #ccc;
+    padding: 8px;
+    border-radius: 8px;
+} */
+img.webcam-image {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+}

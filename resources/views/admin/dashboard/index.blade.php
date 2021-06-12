@@ -74,11 +74,6 @@
     <div class="col-4 offset-2">
         <div class="card h-100">
             <div class="sensor-icon-dashboard">
-                {{-- <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-wind"
-                    viewBox="0 0 16 16">
-                    <path
-                        d="M12.5 2A2.5 2.5 0 0 0 10 4.5a.5.5 0 0 1-1 0A3.5 3.5 0 1 1 12.5 8H.5a.5.5 0 0 1 0-1h12a2.5 2.5 0 0 0 0-5zm-7 1a1 1 0 0 0-1 1 .5.5 0 0 1-1 0 2 2 0 1 1 2 2h-5a.5.5 0 0 1 0-1h5a1 1 0 0 0 0-2zM0 9.5A.5.5 0 0 1 .5 9h10.042a3 3 0 1 1-3 3 .5.5 0 0 1 1 0 2 2 0 1 0 2-2H.5a.5.5 0 0 1-.5-.5z" />
-                </svg> --}}
                 <i class="fas fa-smog"></i>
             </div>
             <div class="card-body">
@@ -114,6 +109,21 @@
                 <a href="sensors/motions" class="btn btn-primary btn-sm">Abrir histórico</a>
             </div>
         </div>
+    </div>
+</div>
+
+<div class="row mt-5 webcam-images">
+    <div class="col-12">
+        <h3>Webcams</h3>
+    </div>
+    <div class="col-6 d-flex flex-column justify-content-center align-items-center">
+        <img src="{{ Storage::url('webcam/images/oneshot/porta.jpg') }}" class="img-thumbnail webcam-image" alt="...">
+        <h5>Porta</h5>
+    </div>
+
+    <div class="col-6 d-flex flex-column justify-content-center align-items-center">
+        <img src="{{ Storage::url('webcam/images/oneshot/garagem.jpg') }}" class="img-thumbnail webcam-image" alt="...">
+        <h5>Garagem</h5>
     </div>
 </div>
 @endsection
