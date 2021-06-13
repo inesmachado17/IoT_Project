@@ -111,7 +111,7 @@ class DatabaseSeeder extends Seeder
         DB::table('air_conditioners')->insert([
             [
                 'name'          => 'Central',
-                'setting'       => 21,
+                'setting'       => 18,
                 'value'         => 20,
                 'state'         => 0,
                 'automatic'     => 1,
@@ -120,7 +120,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'name'          => 'Sala',
-                'setting'       => 22,
+                'setting'       => 18,
                 'value'         => 20,
                 'state'         => 0,
                 'automatic'     => 0,

@@ -12,7 +12,7 @@ class FireAlarm extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name', 'action', 'state'
+        'disabled', 'state'
     ];
 
     protected $hidden =  [

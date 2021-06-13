@@ -64,7 +64,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/actuators/lamps/{id}/edit', [ActuatorLampController::class, 'edit'])->middleware('is.admin');
     Route::put('/actuators/lamps/{id}', [ActuatorLampController::class, 'update'])->middleware('is.admin');
 
-    Route::get('/actuators/fire-alarms/turn-off/{id}', [ActuatorFireAlarmController::class, 'turnOff'])->middleware('is.admin');
+    Route::get('/actuators/fire-alarms/disabled/{id}', [ActuatorFireAlarmController::class, 'disabled'])->middleware('is.admin');
+    Route::get('/actuators/fire-alarms/enabled/{id}', [ActuatorFireAlarmController::class, 'enabled'])->middleware('is.admin');
+
 
     Route::get('/sensors/temperatures', [SensorTemperatureController::class, 'index']);
     Route::get('/sensors/temperatures/force-update', [SensorTemperatureController::class, 'update']);

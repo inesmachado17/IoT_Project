@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="row">
-    <div class="col-4">
+    <div id="temperatures" class="col-4">
         <div class="card h-100">
             <div class="sensor-icon-dashboard">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -15,17 +15,17 @@
             </div>
             <div class="card-body">
                 <h5 class="card-title text-center">Temperatura</h5>
-                <p class="card-text text-center mb-1">
+                <p class="value card-text text-center mb-1">
                     <span class="h5">{{ $data['temperature']->value }} ºC</span>
                 </p>
-                <p class="text-muted text-center small">
+                <p class="date text-muted text-center small">
                     {{ (new \Carbon\Carbon($data['temperature']->date))->setTimezone('Europe/Lisbon') }}
                 </p>
                 <a href="sensors/temperatures" class="btn btn-primary btn-sm">Abrir histórico</a>
             </div>
         </div>
     </div>
-    <div class="col-4">
+    <div id="humidities" class="col-4">
         <div class="card">
             <div class="sensor-icon-dashboard">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -36,17 +36,17 @@
             </div>
             <div class="card-body">
                 <h5 class="card-title text-center">Humidade</h5>
-                <p class="card-text text-center mb-1">
-                    <span class="h5">{{ $data['humidity']->value }}%</span>
+                <p class="value card-text text-center mb-1">
+                    <span class="h5">{{ $data['humidity']->value }} %</span>
                 </p>
-                <p class="text-muted text-center small">
+                <p class="date text-muted text-center small">
                     {{ (new \Carbon\Carbon($data['humidity']->date))->setTimezone('Europe/Lisbon') }}
                 </p>
                 <a href="sensors/humidities" class="btn btn-primary btn-sm">Abrir histórico</a>
             </div>
         </div>
     </div>
-    <div class="col-4">
+    <div id="lights" class="col-4">
         <div class="card">
             <div class="sensor-icon-dashboard">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -58,10 +58,10 @@
             </div>
             <div class="card-body">
                 <h5 class="card-title text-center">Luz</h5>
-                <p class="card-text text-center mb-1">
-                    <span class="h5">{{ $data['light']->value }}</span>
+                <p class="value card-text text-center mb-1">
+                    <span class="h5">{{ $data['light']->value }} %</span>
                 </p>
-                <p class="text-muted text-center small">
+                <p class="date text-muted text-center small">
                     {{ (new \Carbon\Carbon($data['light']->date))->setTimezone('Europe/Lisbon') }}
                 </p>
                 <a href="sensors/lights" class="btn btn-primary btn-sm">Abrir histórico</a>
@@ -71,24 +71,24 @@
 </div>
 
 <div class="row mt-5">
-    <div class="col-4 offset-2">
+    <div id="smokes" class="col-4 offset-2">
         <div class="card h-100">
             <div class="sensor-icon-dashboard">
                 <i class="fas fa-smog"></i>
             </div>
             <div class="card-body">
                 <h5 class="card-title text-center">Fumo</h5>
-                <p class="card-text text-center mb-1">
-                    <span class="h5">{{ $data['smoke']->value }}</span>
+                <p class="value card-text text-center mb-1">
+                    <span class="h5">{{ $data['smoke']->value }} %</span>
                 </p>
-                <p class="text-muted text-center small">
+                <p class="date text-muted text-center small">
                     {{ (new \Carbon\Carbon($data['smoke']->date))->setTimezone('Europe/Lisbon') }}
                 </p>
                 <a href="sensors/smokes" class="btn btn-primary btn-sm">Abrir histórico</a>
             </div>
         </div>
     </div>
-    <div class="col-4">
+    <div id="motions" class="col-4">
         <div class="card">
             <div class="sensor-icon-dashboard">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -99,11 +99,11 @@
             </div>
             <div class="card-body">
                 <h5 class="card-title text-center">Movimento</h5>
-                <p class="card-text text-center mb-1">
+                <p class="value card-text text-center mb-1">
                     <span class="h5">{!! $data['motion']->value == 0 ? '<i class="bi bi-person-check"></i>' : '<i
                             class="bi bi-person-x"></i>' !!}</span>
                 </p>
-                <p class="text-muted text-center small">
+                <p class="date text-muted text-center small">
                     {{ (new \Carbon\Carbon($data['motion']->date))->setTimezone('Europe/Lisbon') }}
                 </p>
                 <a href="sensors/motions" class="btn btn-primary btn-sm">Abrir histórico</a>
@@ -137,6 +137,36 @@
         portaImgElem.src = "http://localhost:8000/storage/webcam/images/oneshot/porta.jpg?x=" + Math.random();
         garagemImgElem.src = "http://localhost:8000/storage/webcam/images/oneshot/garagem.jpg?x=" + Math.random();
     }, 2000);
+
+    const sensors = [
+        ["temperatures", "ºC"],
+        ["lights", "%"],
+        ["smokes", "%"],
+        ["humidities", "%"],
+        ["motions", ""]
+    ];
+
+    const sensorsGroup = sensors.reduce((acc, [sensor, sufix]) => {
+        const obj = {
+            sufix,
+            elemValue: document.querySelector(`#${sensor} .value > span`),
+            elemDate: document.querySelector(`#${sensor} .date`)
+        };
+        acc[sensor] = obj;
+        return acc;
+    }, {});
+
+    setInterval(() => {
+        fetch('/api/sensors/all')
+        .then(res => res.json())
+        .then(data => {
+            Object.entries(data).forEach(([key, item]) => {
+                sensorsGroup[key].elemValue.innerHTML = `${item.value} ${sensorsGroup[key].sufix}`;
+                sensorsGroup[key].elemDate.innerHTML = `${item.date}`;
+            });
+        })
+        .catch(console.error);
+    }, 3000);
 
 </script>
 @endsection

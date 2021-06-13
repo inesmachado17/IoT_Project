@@ -12,11 +12,25 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Validator;
 use Carbon\Carbon;
 
+use function PHPUnit\Framework\isEmpty;
+
 /* Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 }); */
 
 // SENSORS
+Route::get('/sensors/all', function () {
+    $list = [
+        "temperatures"  => (new Temperature())->orderBy('date', 'desc')->first(),
+        "humidities"    => (new Humidity())->orderBy('date', 'desc')->first(),
+        "lights"        => (new Light())->orderBy('date', 'desc')->first(),
+        "motions"       => (new Motion())->orderBy('date', 'desc')->first(),
+        "smokes"        => (new Smoke())->orderBy('date', 'desc')->first(),
+    ];
+
+    return response($list);
+});
+
 Route::get('/sensors/{sensorName}', function (Request $request, $sensorName) {
     $sensors = [
         "temperatures"    => new Temperature(),
@@ -156,16 +170,20 @@ Route::get('/actuators/fire-alarms', function () {
 });
 Route::post('/actuators/fire-alarms', function (Request $request) {
     $validator = Validator::make($request->all(), [
-        "value" => "required|boolean"
+        "value" => "required|boolean",
+        "disabled" => "boolean",
     ]);
 
     if ($validator->fails()) {
         return response($validator->messages(), 400);
     }
 
+    $last = (new FireAlarm())->latest()->first();
+
     try {
         $fireAlarm = new FireAlarm();
         $fireAlarm->state = $request['value'];
+        $fireAlarm->disabled = isset($request['disabled']) ? $request['disabled'] : $last->disabled;
 
         $fireAlarm->save();
     } catch (\Exception $exception) {

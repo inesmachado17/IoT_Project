@@ -3,11 +3,7 @@
 @section('content')
 
 <div class="row d-flex justify-content-center mb-3">
-    <div class="col-6 d-flex justify-content-between">
-        <a class="btn btn-outline-secondary btn-sm" href="/sensors/{{ $uriName }}/force-update" role="button"
-            title="Atualizar registos">
-            <i class="bi bi-arrow-repeat"></i>
-        </a>
+    <div class="col-6 d-flex justify-content-end">
         <a class="btn btn-outline-secondary btn-sm" href="/dashboard" role="button">Voltar</a>
     </div>
 </div>

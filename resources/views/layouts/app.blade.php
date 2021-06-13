@@ -26,26 +26,7 @@
         @include('layouts.navbar')
         @endauth
         <div class="row d-flex justify-content-end m-3">
-
-            @if (isset($fireAlarm))
-            <span id="fire-alarm-icon">
-                @if ($fireAlarm && $fireAlarm->state)
-                <button type="button" class="btn btn-danger">Ligar 112</button>
-                {{-- <button type="button" class="btn btn-outline-danger">Desligar Alarme</button> --}}
-                {{-- <a class="btn btn-danger" href="#" role="button">Ligar 112</a>--}}
-                <a class="btn btn-outline-danger" href="/actuators/fire-alarms/turn-off/{{$fireAlarm->id}}"
-                    role="button">Desligar
-                    Alarme</a>
-                @endif
-
-                <span class="text-muted ml-4 mr-2 {{ $fireAlarm && $fireAlarm->state ? '' : 'small'}}">Alarme de
-                    incêndio</span>
-                {!! $fireAlarm && $fireAlarm->state ? '<i class="far fa-bell text-danger on"></i>' : '<i
-                    class="far fa-bell text-muted"></i>'
-                !!}
-            </span>
-            @endif
-
+            <span id="fire-alarm-icon"></span>
         </div>
 
     </header>
@@ -81,6 +62,44 @@
     <!--Chart.js-->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.2.0/dist/chart.min.js"></script>
     @yield('chart-script')
+
+    <script>
+        const fireAlarm = {!! $fireAlarm !!};
+        function getAlarmElement(id, state, disabled)  {
+            let text =  ``;
+
+            if(disabled) {
+                text += `<a class="btn btn-outline-warning" href="/actuators/fire-alarms/enabled/${id}"
+                role="button">Armar Alarme</a>`
+            }
+
+            if(!state) {
+                text += `<span class="text-muted ml-4 mr-2 small">Alarme de incêndio</span>
+                <i class="far fa-bell text-muted"></i>`;
+            } else  {
+                text += `<a class="btn btn-outline-danger" href="/actuators/fire-alarms/disabled/${id}"
+                role="button">Desligar Alarme</a><span class="text-muted ml-4 mr-2">Alarme de incêndio</span>
+                <i class="far fa-bell text-danger on"></i>`;
+            }
+
+
+
+            return text;
+        }
+
+        const elementAlarm = document.getElementById('fire-alarm-icon');
+        elementAlarm.innerHTML = getAlarmElement(fireAlarm.id, !!fireAlarm.state, !!fireAlarm.disabled);
+
+        setInterval(() => {
+            fetch('/api/actuators/fire-alarms')
+            .then(res => res.json())
+            .then(data => {
+                elementAlarm.innerHTML = getAlarmElement(data.id, data.state, data.disabled);
+            })
+            .catch(console.error);
+        }, 2000);
+
+    </script>
 
     @yield('scripts')
 

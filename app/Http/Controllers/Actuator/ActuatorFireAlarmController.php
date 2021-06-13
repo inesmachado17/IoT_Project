@@ -9,10 +9,21 @@ use Illuminate\Http\Request;
 
 class ActuatorFireAlarmController extends AdminController
 {
-    public function turnOff(Request $request, $id)
+    public function disabled(Request $request, $id)
     {
         $fireAlarm = (new FireAlarm())->findOrFail($id);
         $fireAlarm->state = false;
+        $fireAlarm->disabled = true;
+        $fireAlarm->save();
+
+        return redirect($request->getSession()->previousUrl());
+    }
+
+    public function enabled(Request $request, $id)
+    {
+        $fireAlarm = (new FireAlarm())->findOrFail($id);
+        $fireAlarm->state = false;
+        $fireAlarm->disabled = false;
         $fireAlarm->save();
 
         return redirect($request->getSession()->previousUrl());
