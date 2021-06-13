@@ -69,8 +69,7 @@ class DatabaseSeeder extends Seeder
         $this->createLamps();
 
         DB::table('fire_alarms')->insert([
-            'name'       => 'Alarm 1',
-            'state'      => 1,
+            'state'      => 0,
             'created_at' => now(),
             'updated_at' => now(),
         ]);

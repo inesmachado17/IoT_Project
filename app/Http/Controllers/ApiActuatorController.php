@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\AirConditioner;
 use App\Models\Blind;
+use App\Models\FireAlarm;
 use App\Models\Lamp;
 use App\Models\SmokeAlarm;
 use App\Models\Sprinkler;
@@ -77,7 +78,6 @@ class ApiActuatorController extends Controller
 
     public function index(Request $request, $actuatorName)
     {
-
         if (!array_key_exists($actuatorName, $this->modelMap)) {
             return response("Actuator name not recognized", 400);
         }

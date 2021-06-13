@@ -13,8 +13,6 @@ class FireAlarmFactory extends Factory
     public function definition(): array
     {
         return [
-            'name'          => $this->faker->word(),
-            'action'        => $this->faker->word(),
             'updated_at'    => now(),
             'created_at'    => now()
         ];

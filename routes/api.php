@@ -148,13 +148,12 @@ Route::post('/sensors/motions', function (Request $request) {
 });
 
 
-// ACTUATORS
-Route::get('/actuators/{actuatorName}', [ApiActuatorController::class, 'index']);
+// FIRE ALARM
+Route::get('/actuators/fire-alarms', function () {
+    $item = (new FireAlarm())->latest()->first();
 
-//air-conditioners, sprinklers, lamps, smoke-alarms
-Route::post('/actuators/{actuatorName}', [ApiActuatorController::class, 'update']);
-
-
+    return response($item, 200);
+});
 Route::post('/actuators/fire-alarms', function (Request $request) {
     $validator = Validator::make($request->all(), [
         "value" => "required|boolean"
@@ -166,7 +165,7 @@ Route::post('/actuators/fire-alarms', function (Request $request) {
 
     try {
         $fireAlarm = new FireAlarm();
-        $fireAlarm->value = $request['value'];
+        $fireAlarm->state = $request['value'];
 
         $fireAlarm->save();
     } catch (\Exception $exception) {
@@ -174,6 +173,11 @@ Route::post('/actuators/fire-alarms', function (Request $request) {
     }
     return response('', 204);
 });
+
+// ACTUATORS
+Route::get('/actuators/{actuatorName}', [ApiActuatorController::class, 'index']);
+//air-conditioners, sprinklers, lamps, smoke-alarms
+Route::post('/actuators/{actuatorName}', [ApiActuatorController::class, 'update']);
 
 //Webcam
 Route::post('/webcam/oneshot/{webcamName}', function (Request $request, $webcamName) {

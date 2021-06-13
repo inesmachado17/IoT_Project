@@ -15,9 +15,7 @@ class CreateFireAlarmsTable extends Migration
     {
         Schema::create('fire_alarms', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
             $table->unsignedInteger('state')->default(0);
-            $table->string('action')->nullable();
             $table->timestamps();
         });
     }
