@@ -119,11 +119,13 @@
     <div id="webcam-1" class="col-6 d-flex flex-column justify-content-center align-items-center">
         <img id="porta" src="http://localhost:8000/storage/webcam/images/oneshot/porta.jpg" class="img-thumbnail webcam-image" alt="...">
         <h5>Porta</h5>
+        <button id="porta-principal-btn" type="button" onclick="toggleDoor('principal')" data-id></button>
     </div>
 
     <div id="webcam-2" class="col-6 d-flex flex-column justify-content-center align-items-center">
         <img id="garagem" src="http://localhost:8000/storage/webcam/images/oneshot/garagem.jpg" class="img-thumbnail webcam-image" alt="...">
         <h5>Garagem</h5>
+        <button id="garagem-btn" type="button" onclick="toggleDoor('garagem')" data-id></button>
     </div>
 </div>
 @endsection
@@ -134,6 +136,8 @@
     const garagemImgElem = document.getElementById('garagem');
     const webcam1Div = document.getElementById('webcam-1');
     const webcam2Div = document.getElementById('webcam-2');
+    const portaButton = document.getElementById('porta-principal-btn');
+    const garagemButton = document.getElementById('garagem-btn');
 
     setInterval(() => {
         portaImgElem.src = "http://localhost:8000/storage/webcam/images/oneshot/porta.jpg?x=" + Math.random();
@@ -178,8 +182,10 @@
         .then(data => {
             const porta = data.find(i => i.name === 'Porta principal');
             const garagem = data.find(i => i.name === 'Portão garagem');
+            portaButton.dataset.id = porta?.id;
+            garagemButton.dataset.id = garagem?.id;
 
-            console.log(data, porta, garagem)
+            //console.log(data, porta, garagem)
 
             if(porta && porta.value) {
                 webcam1Div.classList.add('presence');
@@ -192,9 +198,62 @@
             } else {
                 webcam2Div.classList.remove('presence');
             }
+
+            if(porta && !porta.locked) {
+                portaButton.disabled = false;
+
+                if(!porta.state) {
+                    portaButton.innerHTML = '<i class="bi bi-door-closed"></i>';
+                    portaButton.title = "Clique para Abrir";
+                } else {
+                    portaButton.innerHTML = '<i class="bi bi-door-open"></i>';
+                    portaButton.title = "Clique para Fechar";
+                }
+
+            } else {
+                portaButton.disabled = true;
+                portaButton.innerHTML = '<i class="bi bi-lock"></i>';
+                portaButton.title = "Trancada";
+            }
+
+            if(garagem && !garagem.locked) {
+                garagemButton.disabled = false;
+
+                if(!garagem.state) {
+                    garagemButton.innerHTML = '<i class="bi bi-door-closed"></i>';
+                    garagemButton.title = "Clique para Abrir";
+                } else {
+                    garagemButton.innerHTML = '<i class="bi bi-door-open"></i>';
+                    garagemButton.title = "Clique para Fechar";
+                }
+
+            } else {
+                garagemButton.disabled = true;
+                garagemButton.innerHTML = '<i class="bi bi-lock"></i>';
+                garagemButton.title = "Trancada";
+            }
         })
         .catch(console.error)
     }, 5000);
+
+
+    function toggleDoor(door) {
+        let id;
+
+        if(door === 'principal') {
+            id = portaButton.dataset.id;
+        }
+        if(door === 'garagem') {
+            id = garagemButton.dataset.id
+        }
+
+        if(id) {
+            fetch(`/api/actuators/doors/toogle/${id}`, {
+                method: 'POST',
+            });
+        }
+
+    }
 
 </script>
 @endsection

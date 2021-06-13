@@ -25,7 +25,7 @@
                     {{ $door['name'] }}
                 </h5>
                 <p class="text-right">
-                    <span class="text-muted small">Presença à porta: {{ count($door['history']) }} <i
+                    <span class="text-muted small">Presença à porta: {{ $door['value'] }} <i
                             class="bi bi-person-bounding-box"></i></span>
                 </p>
                 <p class="text-right">

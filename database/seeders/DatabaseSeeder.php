@@ -103,6 +103,14 @@ class DatabaseSeeder extends Seeder
                 'updated_at'    => now(),
                 'created_at'    => now()
             ],
+            [
+                'name'          => 'Quarto',
+                'setting'       => 50,
+                'value'         => 0,
+                'state'         => 0,
+                'updated_at'    => now(),
+                'created_at'    => now()
+            ],
         ]);
     }
 
@@ -143,29 +151,11 @@ class DatabaseSeeder extends Seeder
                 'created_at'    => now()
             ],
             [
-                'name'          => 'Relvado traseiras',
+                'name'          => 'Horta',
                 'setting'       => 72,
                 'state'         => 0,
                 'value'         => 10,
                 'automatic'     => 1,
-                'updated_at'    => now(),
-                'created_at'    => now()
-            ],
-            [
-                'name'          => 'Parque',
-                'setting'       => 72,
-                'state'         => 0,
-                'value'         => 10,
-                'automatic'     => 1,
-                'updated_at'    => now(),
-                'created_at'    => now()
-            ],
-            [
-                'name'          => 'Estufa',
-                'setting'       => 72,
-                'state'         => 0,
-                'value'         => 10,
-                'automatic'     => 0,
                 'updated_at'    => now(),
                 'created_at'    => now()
             ],
@@ -221,6 +211,15 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'name'          => 'Sala',
+                'setting'       => 0,
+                'value'         => 0,
+                'state'         => 0,
+                'automatic'     => 0,
+                'updated_at'    => now(),
+                'created_at'    => now()
+            ],
+            [
+                'name'          => 'Quarto',
                 'setting'       => 0,
                 'value'         => 0,
                 'state'         => 0,

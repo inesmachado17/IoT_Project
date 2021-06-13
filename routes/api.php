@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ApiActuatorController;
+use App\Models\Door;
 use App\Models\FireAlarm;
 use App\Models\Sensors\Humidity;
 use App\Models\Sensors\Light;
@@ -193,6 +194,18 @@ Route::post('/actuators/fire-alarms', function (Request $request) {
 });
 
 // ACTUATORS
+Route::post('/actuators/doors/toogle/{id}', function ($id) {
+
+    $door = (new Door())->findOrFail($id);
+
+    try {
+        $door->state = $door->state == 0 ? 1 : 0;
+        $door->save();
+    } catch (\Exception $exception) {
+        return response($exception->getMessage(), 500);
+    }
+    return response('', 204);
+});
 Route::get('/actuators/{actuatorName}', [ApiActuatorController::class, 'index']);
 //air-conditioners, sprinklers, lamps, smoke-alarms
 Route::post('/actuators/{actuatorName}', [ApiActuatorController::class, 'update']);
