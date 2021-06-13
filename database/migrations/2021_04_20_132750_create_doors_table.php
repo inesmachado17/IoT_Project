@@ -16,6 +16,7 @@ class CreateDoorsTable extends Migration
         Schema::create('doors', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->boolean('presence')->default(false);
             $table->boolean('state');
             $table->boolean('locked');
             $table->timestamps();

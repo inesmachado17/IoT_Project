@@ -198,21 +198,7 @@ class DatabaseSeeder extends Seeder
                 'created_at'    => now()
             ],
             [
-                'name'          => 'Porta traseiras',
-                'state'         => 1,
-                'locked'        => 1,
-                'updated_at'    => now(),
-                'created_at'    => now()
-            ],
-            [
                 'name'          => 'Portão garagem',
-                'state'         => 0,
-                'locked'        => 0,
-                'updated_at'    => now(),
-                'created_at'    => now()
-            ],
-            [
-                'name'          => 'Portão jardim',
                 'state'         => 0,
                 'locked'        => 0,
                 'updated_at'    => now(),
