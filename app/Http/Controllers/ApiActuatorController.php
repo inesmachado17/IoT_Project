@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\AirConditioner;
 use App\Models\Blind;
-use App\Models\FireAlarm;
+use App\Models\Door;
 use App\Models\Lamp;
 use App\Models\SmokeAlarm;
 use App\Models\Sprinkler;
@@ -39,7 +39,12 @@ class ApiActuatorController extends Controller
             "id"      => "required|exists:blinds,id",
             "state"   => "required|boolean",
             "value"   => "required|numeric|min:0|max:100",
-        ]
+        ],
+        'doors' => [
+            "id"    => "required|exists:doors,id",
+            "state" => "required|boolean",
+            "value" => 'required|boolean',
+        ],
     ];
 
     private $modelMap = [
@@ -48,6 +53,7 @@ class ApiActuatorController extends Controller
         'lamps'             => Lamp::class,
         'smoke-alarms'      => SmokeAlarm::class,
         'blinds'            => Blind::class,
+        'doors'             => Door::class
     ];
 
     public function update(Request $request, $actuatorName)

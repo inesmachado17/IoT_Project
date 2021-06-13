@@ -17,7 +17,7 @@ class CreateDoorStatesTable extends Migration
             $table->id();
             $table->boolean('state');
             $table->boolean('locked');
-            $table->boolean('presence');
+            $table->boolean('value');
             $table->timestamps();
 
             $table->foreignId('door_id')
