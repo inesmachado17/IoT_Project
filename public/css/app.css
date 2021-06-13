@@ -198,3 +198,10 @@ img.webcam-image {
        object-fit: cover;
 }
 
+#webcam-1.presence > img,
+#webcam-2.presence > img {
+    border: 2px solid orange;
+    border-radius: 8px;
+    box-shadow: 0px 0px 20px 2px #33333380;
+}
+

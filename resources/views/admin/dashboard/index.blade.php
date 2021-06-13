@@ -98,7 +98,7 @@
                 </svg>
             </div>
             <div class="card-body">
-                <h5 class="card-title text-center">Movimento</h5>
+                <h5 class="card-title text-center">Movimento da Porta da Frente</h5>
                 <p class="value card-text text-center mb-1">
                     <span class="h5">{!! $data['motion']->value == 0 ? '<i class="bi bi-person-check"></i>' : '<i
                             class="bi bi-person-x"></i>' !!}</span>
@@ -116,12 +116,12 @@
     <div class="col-12">
         <h3>Webcams</h3>
     </div>
-    <div class="col-6 d-flex flex-column justify-content-center align-items-center">
+    <div id="webcam-1" class="col-6 d-flex flex-column justify-content-center align-items-center">
         <img id="porta" src="http://localhost:8000/storage/webcam/images/oneshot/porta.jpg" class="img-thumbnail webcam-image" alt="...">
         <h5>Porta</h5>
     </div>
 
-    <div class="col-6 d-flex flex-column justify-content-center align-items-center">
+    <div id="webcam-2" class="col-6 d-flex flex-column justify-content-center align-items-center">
         <img id="garagem" src="http://localhost:8000/storage/webcam/images/oneshot/garagem.jpg" class="img-thumbnail webcam-image" alt="...">
         <h5>Garagem</h5>
     </div>
@@ -132,11 +132,13 @@
 <script>
     const portaImgElem = document.getElementById('porta');
     const garagemImgElem = document.getElementById('garagem');
+    const webcam1Div = document.getElementById('webcam-1');
+    const webcam2Div = document.getElementById('webcam-2');
 
     setInterval(() => {
         portaImgElem.src = "http://localhost:8000/storage/webcam/images/oneshot/porta.jpg?x=" + Math.random();
         garagemImgElem.src = "http://localhost:8000/storage/webcam/images/oneshot/garagem.jpg?x=" + Math.random();
-    }, 2000);
+    }, 5000);
 
     const sensors = [
         ["temperatures", "ºC"],
@@ -161,12 +163,38 @@
         .then(res => res.json())
         .then(data => {
             Object.entries(data).forEach(([key, item]) => {
-                sensorsGroup[key].elemValue.innerHTML = `${item.value} ${sensorsGroup[key].sufix}`;
+                if(key === 'motions') {
+                    sensorsGroup[key].elemValue.innerHTML = item.value ? '<i class="bi bi-person-check text-success"></i>' : '<i class="bi bi-person-x text-danger"></i>'
+                } else  {
+                    sensorsGroup[key].elemValue.innerHTML = `${item.value} ${sensorsGroup[key].sufix}`;
+                }
                 sensorsGroup[key].elemDate.innerHTML = `${item.date}`;
             });
         })
         .catch(console.error);
-    }, 3000);
+
+        fetch('/api/actuators/doors')
+        .then(res => res.json())
+        .then(data => {
+            const porta = data.find(i => i.name === 'Porta principal');
+            const garagem = data.find(i => i.name === 'Portão garagem');
+
+            console.log(data, porta, garagem)
+
+            if(porta && porta.value) {
+                webcam1Div.classList.add('presence');
+            } else {
+                webcam1Div.classList.remove('presence');
+            }
+
+            if(garagem && garagem.value) {
+                webcam2Div.classList.add('presence');
+            } else {
+                webcam2Div.classList.remove('presence');
+            }
+        })
+        .catch(console.error)
+    }, 5000);
 
 </script>
 @endsection

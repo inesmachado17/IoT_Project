@@ -97,7 +97,7 @@
                 elementAlarm.innerHTML = getAlarmElement(data.id, data.state, data.disabled);
             })
             .catch(console.error);
-        }, 2000);
+        }, 5000);
 
     </script>
 

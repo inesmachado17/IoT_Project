@@ -2,7 +2,7 @@ import requests
 import sys
 import cv2
 
-INTERVAL = 2000
+INTERVAL = 5000
 
 
 def returnCameraIndexes():
