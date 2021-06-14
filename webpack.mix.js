@@ -9,3 +9,5 @@ mix.js("resources/js/app.js", "public/js").postCss(
 );
 
 mix.js("__server/app/index.jsx", "public/demo/app.js").react();
+
+mix.js("resources/js/fire-alarm.js", "public/js/fire-alarm.js");
