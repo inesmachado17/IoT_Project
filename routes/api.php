@@ -204,7 +204,7 @@ Route::post('/actuators/doors/toogle/{id}', function ($id) {
     } catch (\Exception $exception) {
         return response($exception->getMessage(), 500);
     }
-    return response('', 204);
+    return response($door->state, 200);
 });
 Route::get('/actuators/{actuatorName}', [ApiActuatorController::class, 'index']);
 //air-conditioners, sprinklers, lamps, smoke-alarms

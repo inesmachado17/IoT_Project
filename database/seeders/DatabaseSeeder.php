@@ -131,7 +131,7 @@ class DatabaseSeeder extends Seeder
                 'setting'       => 18,
                 'value'         => 20,
                 'state'         => 0,
-                'automatic'     => 0,
+                'automatic'     => 1,
                 'updated_at'    => now(),
                 'created_at'    => now()
             ],
@@ -146,7 +146,7 @@ class DatabaseSeeder extends Seeder
                 'setting'       => 72,
                 'state'         => 0,
                 'value'         => 10,
-                'automatic'     => 0,
+                'automatic'     => 1,
                 'updated_at'    => now(),
                 'created_at'    => now()
             ],
@@ -214,7 +214,7 @@ class DatabaseSeeder extends Seeder
                 'setting'       => 0,
                 'value'         => 0,
                 'state'         => 0,
-                'automatic'     => 0,
+                'automatic'     => 1,
                 'updated_at'    => now(),
                 'created_at'    => now()
             ],
@@ -223,7 +223,7 @@ class DatabaseSeeder extends Seeder
                 'setting'       => 0,
                 'value'         => 0,
                 'state'         => 0,
-                'automatic'     => 0,
+                'automatic'     => 1,
                 'updated_at'    => now(),
                 'created_at'    => now()
             ],
