@@ -7,10 +7,6 @@ INTERVAL = 2000
 URL = "http://localhost:8000/api/actuators/doors"
 
 
-def dataHora():
-    return time.gmtime()
-
-
 def sendToApi(id):
     r = requests.post(URL + '/toogle/' + id)
     print(r.text)

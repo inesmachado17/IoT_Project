@@ -21,7 +21,7 @@
 
                 <div class="form-check form-check-inline">
                     <input class="form-check-input" type="radio" name="locked" id="unlocked" value="0" title="Desativar"
-                        checked="{{ boolval($door->locked) }}" />
+                        checked="{{ !boolval($door->locked) }}" />
                     <label class="form-check-label" for="unlocked"><i class="bi bi-unlock"></i></label>
                 </div>
             </div>

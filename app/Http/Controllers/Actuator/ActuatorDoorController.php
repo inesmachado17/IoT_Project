@@ -53,45 +53,18 @@ class ActuatorDoorController extends AdminController
             'id'      => 'required|exists:doors,id',
             'name'    => 'required|string',
             'state'   => 'required|boolean',
-            'locked'  => 'required|boolean'
+            'locked'  => 'required|boolean',
         ]);
 
         $door = (new Door())->find($id);
         $door->name = $request['name'];
-        $presence = false;
-
-        if ($door->locked != $request['locked'] || $door->state != $request['state']) {
-            $client = new GuzzleHttp\Client();
-
-            try {
-                $responseForPresence = $client->get(env('APP_API_BASE_URL') . '/sensors/motions');
-                $presence = json_decode($responseForPresence->getBody()->getContents());
-
-                $response = $client->post(env('APP_API_BASE_URL') . '/actuators/doors', [
-                    'id'      => $id,
-                    'state'   => $request['state'],
-                    'locked'  => $request['locked']
-                ]); //['auth' =>  ['user', 'pass']]
-            } catch (\Exception $exception) {
-                return back()->withErrors([
-                    'error' => 'Cisco Packet Tracer response with unknown error!'
-                ]);
-            }
-
-            if ($response->getStatusCode() == 200 || $response->getStatusCode() == 204) {
-                $door->state = $request['state'];
-                $door->locked = $request['locked'];
-            } else {
-                return back()->withErrors([
-                    'error' => 'Cisco Packet Tracer response with unknown error!'
-                ]);
-            }
-        }
+        $door->state = $request['state'];
+        $door->locked = $request['locked'];
 
         $doorState = new DoorState();
         $doorState->state = $door->state;
         $doorState->locked = $door->locked;
-        $doorState->presence = boolval($presence);
+        $doorState->value = $door->value;
         $doorState->door_id = $door->id;
         $doorState->save();
 
